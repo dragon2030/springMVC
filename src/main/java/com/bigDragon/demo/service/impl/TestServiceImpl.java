@@ -44,7 +44,6 @@ public class TestServiceImpl implements TestService{
 		}catch(Exception e){
 			num=999;
 			e.printStackTrace();
-			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
 		}
 		return num;
 	}

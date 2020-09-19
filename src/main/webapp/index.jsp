@@ -9,15 +9,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>登录页面</title>
+<title>hello world</title>
 </head>
 <body>
  	<div style="color:red">
-		<h1 >看到这个页面的人是我儿子！！！！</h1>
+		<h1 >HELLO WORLD</h1>
 	</div>
-<!-- 	<form action="com.bigDragonn.common.test/userMessage" method="get">
-		<input type="submit" value="登录">
-	</form> -->
 </body>
 <script>
 </script>

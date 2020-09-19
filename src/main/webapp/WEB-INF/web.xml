@@ -6,7 +6,7 @@
         <!-- <welcome-file>/html/index.jsp</welcome-file> -->
         <!-- <welcome-file>index.jsp</welcome-file> -->
         <!-- <welcome-file>com.bigDragonn.common.test.jsp</welcome-file> -->
-        <welcome-file>/WEB-INF/com.bigDragon.common.demo.jsp</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
   <!-- 对静态资源的配置 -->
 <!--     <servlet-mapping>

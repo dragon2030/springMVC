@@ -67,8 +67,10 @@ public class Main {
 		//处理流之七：随机处理对象流
 		RandomAccessFileTest.main(args);
 		//Java NIO NOIO2
+		Nio.main(args);
+		//excel文件的读写
+		ExcelTest.main(args);
 
-		//IO流对各类文件的读写操作
 	}
 	
 

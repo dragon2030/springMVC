@@ -13,17 +13,15 @@ public interface TestService {
 	 * @return
 	 */
 	int saveUser(User user);
-	
+
 	/**
 	 * 获取用户数据List<Map<String,Object>>
-	 * @param user
 	 * @return
 	 */
 	List<Map<String,Object>> getUser();
-	
+
 	/**
 	 * 获取用户数据List<User>
-	 * @param user
 	 * @return
 	 */
 	List<User> getUserMsg();

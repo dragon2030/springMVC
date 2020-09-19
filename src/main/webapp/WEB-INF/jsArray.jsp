@@ -48,7 +48,8 @@
     console.info("arrays:"+mycars);
 
     function join() {
-        console.info("join:"+mycars.join());
+        console.info("join:"+mycars.join());//join:Saab,Volvo,BMW 默认以‘，’分隔
+        //console.info("join:"+mycars.join("|"));//join:Saab|Volvo|BMW
     }
     function push() {
         var len = mycars.push($("#input1").val());
