@@ -91,7 +91,7 @@
 
 //      JSON.parse(text, reviver)
 //          This method parses a JSON text to produce an object or array.
-//          It can throw a SyntaxError exception.
+//          It can throw a SyntaxError exceptionError.
 
 //          The optional reviver parameter is a function that can filter and
 //          transform the results. It receives each of the keys and values,

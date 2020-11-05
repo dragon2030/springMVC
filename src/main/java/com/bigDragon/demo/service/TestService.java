@@ -25,4 +25,16 @@ public interface TestService {
 	 * @return
 	 */
 	List<User> getUserMsg();
+
+	/**
+	 * 数据处理
+	 * @return
+	 */
+	Integer dataDispose(String userNo);
+
+	/**
+	 * 数据处理2
+	 * @return
+	 */
+	Integer dataDispose2(List<String> list);
 }

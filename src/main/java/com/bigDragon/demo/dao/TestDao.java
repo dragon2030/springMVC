@@ -27,4 +27,11 @@ public interface TestDao {
 	 * @return
 	 */
 	List<User> getUserMsg();
+
+
+	/**
+	 * 数据处理
+	 * @return
+	 */
+	Integer dataDispose(@Param("userNo") String userNo);
 }

@@ -3,17 +3,23 @@ package com.bigDragon.demo.service.impl;
 import java.util.List;
 import java.util.Map;
 
+import com.bigDragon.demo.controller.testContorller;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import com.bigDragon.demo.dao.TestDao;
 import com.bigDragon.demo.entity.User;
 import com.bigDragon.demo.service.TestService;
 
-/*@Service
-@Transactional(propagation=Propagation.REQUIRED)*/
+@Service
+@Transactional(propagation= Propagation.REQUIRED)
 public class TestServiceImpl implements TestService{
-
+	private static final Logger logger = LoggerFactory.getLogger(TestServiceImpl.class);
 	/**
 	 * @Resource的作用相当于@Autowired，只不过@Autowired按byType自动注入，
 	 * 而@Resource默认按 byName自动注入罢了。@Resource有两个属性是比较重要的，
@@ -58,5 +64,23 @@ public class TestServiceImpl implements TestService{
 	public List<User> getUserMsg(){
 		List<User> listMap=testDao.getUserMsg();
 		return listMap;
+	}
+
+	@Override
+	public Integer dataDispose(String userNo){
+		return testDao.dataDispose(userNo);
+	}
+
+	@Override
+	public Integer dataDispose2(List<String> list){
+		int successNum = 0;
+		for(int i=0;i<list.size();i++){
+			int result = testDao.dataDispose(list.get(i));
+			if(result == 1){
+				successNum++;
+			}
+			logger.info("当前插入数为:"+(i+1));
+		}
+		return successNum;
 	}
 }

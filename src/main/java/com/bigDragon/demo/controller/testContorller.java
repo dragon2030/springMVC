@@ -3,8 +3,11 @@ package com.bigDragon.demo.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.bigDragon.demo.service.TestService;
+import com.bigDragon.javase.ioStream.ExcelTest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,13 +23,14 @@ import com.bigDragon.model.User;
 public class testContorller {
 	private static final Logger logger = LoggerFactory.getLogger(testContorller.class); 
 	private static String testUpdateStateFlag="1";
+
+	@Autowired
+	public TestService testService;
 	
 	@RequestMapping(value = "/main")
 	public ModelAndView testJsp(){
-    	logger.info("log4j正常打印日志信息");
 		ModelAndView modelAndView=new ModelAndView();
 		modelAndView.setViewName("demo");
-    	logger.info("log4j正常打印日志信息2");
 		return modelAndView;
 	}
 	
@@ -59,5 +63,55 @@ public class testContorller {
 		logger.info(JSON.toJSONString(jsonObject));
 		return JSON.toJSONString(jsonObject);
 	}
-	
+
+	/**
+	 * 逐条事务管理
+	 * @param json
+	 * @return
+	 */
+	@RequestMapping(value = "/dataDispose")
+	@ResponseBody
+	public String dataDispose(@RequestBody String json){
+		JSONObject jsonObject = JSONObject.parseObject(json);
+		String filePath=(String)jsonObject.get("filePath");
+		//String filePath = "D:\\disposeExcel.xls";
+		ExcelTest excelTest= new ExcelTest();
+		List<String>list = excelTest.excelDispose(filePath);
+		logger.info("获取文件内容成功，条数："+list.size());
+		int successNum = 0;
+		for (String str:list){
+			int result = testService.dataDispose(str);
+			if (result == 1)
+				successNum++;
+		}
+		logger.info("总条数："+list.size()+" 成功插入："+successNum);
+		return "总条数："+list.size()+" 成功插入："+successNum;
+	}
+
+	/**
+	 * 整体事务管理
+	 * @param json
+	 * @return
+	 */
+	@RequestMapping(value = "/dataDispose2")
+	@ResponseBody
+	public String dataDispose2(@RequestBody String json){
+		JSONObject jsonObject = JSONObject.parseObject(json);
+		String filePath=(String)jsonObject.get("filePath");
+		//String filePath = "D:\\disposeExcel.xls";
+		ExcelTest excelTest= new ExcelTest();
+		List<String>list = excelTest.excelDispose(filePath);
+		logger.info("获取文件内容成功，条数："+list.size());
+		int successNum = testService.dataDispose2(list);
+		logger.info("总条数："+list.size()+" 成功插入："+successNum);
+		return "总条数："+list.size()+" 成功插入："+successNum;
+	}
+
+	@RequestMapping(value = "/getUsers")
+	@ResponseBody
+	public String getUsers(){
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("users",testService.getUserMsg());
+		return JSON.toJSONString(jsonObject);
+	}
 }

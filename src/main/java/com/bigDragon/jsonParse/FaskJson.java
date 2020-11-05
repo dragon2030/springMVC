@@ -23,11 +23,11 @@ public class FaskJson {
 		FaskJson faskJson=new FaskJson();
 		
 		//测试生成JSONArray字符串
-		//String jsonText=faskJson.setJSONArray();
+		String jsonText=faskJson.setJSONArray();
 		//System.out.println(jsonText);
 		//测试获取JSONArray中某一值
-		//JSONArray jsonArray = JSON.parseArray(jsonText);
-		//JSONObject jsonObject=jsonArray.getJSONObject(0);
+		JSONArray jsonArray = JSON.parseArray(jsonText);
+		JSONObject jsonObject=jsonArray.getJSONObject(0);
 		//System.out.println(jsonObject.get("a"));
 		
 		//测试生成JSONObject字符串

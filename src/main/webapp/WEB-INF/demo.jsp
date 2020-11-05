@@ -125,11 +125,16 @@
  	<button class="w2ui-btn" onclick="popup()">Open Popup</button>
  	<br>
  	<button id="testAJAX" name="testAJAX" onclick="test_ajax()">testAJAX</button>
+	<hr>
+	测试区
+	<form>
+		<textarea rows="20"></textarea>
+	</form>
 </body>
 <script>
 
 	$(function(){
-	   $('#form1').parsley();//调用parsley表单验证插件(提交时才会验证 是否必填和输入格式)
+	   //$('#form1').parsley();//调用parsley表单验证插件(提交时才会验证 是否必填和输入格式)
 		//$('#form').parsley().validate();//调用parsley表单验证插件(页面加载时就验证 是否必填和输入格式)
 		
 	});

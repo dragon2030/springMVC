@@ -15,12 +15,12 @@ public class RegularExpression {
         String regex = "\\s*(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|17[0-9]|18[0|1|2|3|5|6|7|8|9]|19[0-9])\\d{8}\\s*";
         String str=" 15372050554   15372050553";
         //测试字符串是否符合正则表达式格式
-        //regularExpression.match(regex, str);
+        regularExpression.match(regex, str);
         //获取字符串中匹配正则表达式的字符串返回(单次)
-        //String str2=regularExpression.matchPrintOut(regex,str);
-        //System.out.println(str2);
-        //String str3=regularExpression.matchPrintOut2(regex,str);
-        //System.out.println(str3);
+        String str2=regularExpression.matchPrintOut(regex,str);
+        System.out.println(str2);
+        String str3=regularExpression.matchPrintOut2(regex,str);
+        System.out.println(str3);
         
         //获取字符串中指定字符串之后的值
         String st3="梦网平台更新短信状态数据（接收回执方式）：SmsMwStatusReceive [mtmsgid=-8480765987778456652, mtstat=DELIVRD, msgid=2008201936157132954, sa=13148389666, sendStatus=4]";

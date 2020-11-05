@@ -15,6 +15,12 @@
  	<div style="color:red">
 		<h1 >HELLO WORLD</h1>
 	</div>
+	<hr>
+<a href=<%=basePath%>uploadDownload/main>file upload and download</a>
+<hr>
+<a href=${pageContext.request.contextPath}/gluttonousSnake/gluttonousSnake1.0>play a game</a>
+<hr>
+<a href=<%=basePath%>test/main>test page</a>
 </body>
 <script>
 </script>

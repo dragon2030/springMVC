@@ -20,7 +20,7 @@
         
 	<context:annotation-config />
 	<task:annotation-driven />
-    <context:component-scan base-package="com.bigDragon.concurrent.task" />
+    <context:component-scan base-package="com.bigDragon.javase.concurrent.task" />
         
    <!-- 加载配置文件,在配置占位使用 -->
     <context:property-placeholder location="classpath:db.properties"/>
@@ -55,15 +55,21 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
 	<!-- 加载mybatis的文件 -->
-        <property name="mapperLocations" value="classpath:com/bigDragon/demo/dao/*.xml" />
+        <!--<property name="mapperLocations" value="com/bigDragon/demo/dao/*.xml" />-->
+        <!-- 该配置文件用来指定Mapper映射文件的位置 ，如果映射文件与相应的接口同名，且在同一路径下，那么可以不配置该选项-->
+        <property name="mapperLocations">
+            <list>
+                <value>classpath:mappers/*.xml</value>
+            </list>
+        </property>
 	<!-- MyBatis配置文件 -->
-        <property name="configLocation" value="classpath:mybatis-config.xml"></property>
+        <!--<property name="configLocation" value="classpath:mybatis-config.xml"></property>-->
     </bean>   
 	<!-- mapper扫描器 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 	<!-- 扫描包路径，如果需要扫描多个包，中间使用半角逗号隔开  -->
-        <property name="basePackage" value="com.bigDragon.com.bigDragon.common.demo.dao"/>
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+        <property name="basePackage" value="com.bigDragon.demo.dao"/>
+        <!--<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>-->
     </bean>
 	<!-- 事务管理器 -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
