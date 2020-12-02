@@ -1,6 +1,16 @@
 package com.bigDragon;
 
+import com.alibaba.fastjson.JSONObject;
 import com.bigDragon.javase.exceptionError.ExceptionMain;
+import org.omg.Messaging.SYNC_WITH_TRANSPORT;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author bigDragon
@@ -8,10 +18,7 @@ import com.bigDragon.javase.exceptionError.ExceptionMain;
  */
 public class Main {
     public static void main(String[] args){
-        String st1 = "123";
-        Object obj1=(Object) st1;
-        System.out.println(obj1);
-        Object obj2="456";
-        System.out.println(obj2);
+        Map map = new HashMap<>();
+        map.values();
     }
 }

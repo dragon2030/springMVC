@@ -1688,7 +1688,7 @@
     _validateConstraint: function _validateConstraint(value, constraint) {
       var _this3 = this;
 
-      var result = constraint.validate(value, this); // Map false to a failed promise
+      var result = constraint.validate(value, this); // map false to a failed promise
 
       if (false === result) result = $.Deferred().reject(); // Make sure we return a promise and that we record failures
 
@@ -2353,7 +2353,7 @@
 
       var handleXhr = function handleXhr() {
         var result = Parsley.asyncValidators[validator].fn.call(instance, xhr, url, options);
-        if (!result) // Map falsy results to rejected promise
+        if (!result) // map falsy results to rejected promise
           result = $.Deferred().reject();
         return $.when(result);
       };

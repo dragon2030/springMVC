@@ -15,7 +15,7 @@ public interface TestService {
 	int saveUser(User user);
 
 	/**
-	 * 获取用户数据List<Map<String,Object>>
+	 * 获取用户数据List<map<String,Object>>
 	 * @return
 	 */
 	List<Map<String,Object>> getUser();

@@ -26,6 +26,8 @@ public class testContorller {
 
 	@Autowired
 	public TestService testService;
+
+
 	
 	@RequestMapping(value = "/main")
 	public ModelAndView testJsp(){

@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * 文件上传
+ * 文件上传:表单提交
  * 参考文献：
  * https://juejin.im/post/6844903810079391757#comment 上传文件multipart/form-data深入解析
  * https://www.cnblogs.com/liubin1988/p/8003848.html  java文件上传和下载
@@ -120,6 +120,7 @@ public class uploadDemo extends HttpServlet {
             }
         }
         req.setAttribute("message",message);
+        //转发的方式返回数据，重新刷新页面
         req.getRequestDispatcher("../uploadDownload/main").forward(req,resp);
     }
 }

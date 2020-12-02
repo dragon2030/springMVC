@@ -6,8 +6,11 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Param;
 
 import com.bigDragon.demo.entity.User;
+import org.springframework.stereotype.Repository;
+import tk.mybatis.mapper.common.Mapper;
 
-public interface TestDao {
+@Repository
+public interface TestDao extends Mapper<User> {
 	
 	/**
 	 * 插入用户数据
@@ -17,7 +20,7 @@ public interface TestDao {
 	Integer saveUser(@Param("user") User user);
 	
 	/**
-	 * 获取用户数据List<Map<String,Object>>
+	 * 获取用户数据List<map<String,Object>>
 	 * @return
 	 */
 	List<Map<String,Object>> getUser();

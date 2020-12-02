@@ -29,12 +29,12 @@ public class FileReader_FileWriter {
 
 			FileReader_FileWriter f = new FileReader_FileWriter();
 			//获取资源文件hello.txt的file对象
-			//f.getFile();
+			f.getFile();
 			
 			//将file文件中hello.txt输出到控制台
-			//f.testFileReader();
+			f.testFileReader();
 			//对read()操作升级：使用read的重载方法read(char cbuf[])
-			//f.testFileReader2();
+			f.testFileReader2();
 		
 			//从内存中写出数据到硬盘文件
 			//f.testFileWriter();

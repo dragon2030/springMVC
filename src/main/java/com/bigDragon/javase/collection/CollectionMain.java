@@ -16,7 +16,7 @@ package com.bigDragon.javase.collection;
  * 二、集合框架
  *      Collection接口：单列集合，用来存储一个一个的对象
  *          List接口：存储有序的、可重复的数据
- *              ArrayList/LinkedList/Vector
+ *              ArrayList/LinkedListTest/Vector
  *          Set接口：存储无序的、不可重复的数据
  *              HashSet/LinkedHashSet/TreeSet
  *      Map接口：双列集合，用来存储一个（key-value）一对的数据
@@ -37,5 +37,13 @@ public class CollectionMain {
         new ForEachTest();
         //List接口概述
         new ListTest();
+        //ArrayList
+        new ArrayListTest();
+        //LinkedList
+        new LinkedListTest();
+        //Vector
+        new VectorTest();
+        //SetList
+        new SetList();
     }
 }

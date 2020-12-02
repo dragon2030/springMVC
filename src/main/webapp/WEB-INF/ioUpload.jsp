@@ -14,22 +14,25 @@
     <script src="resources/js/plug_in/jquery-2.1.0.js"></script>
 </head>
 <body>
+上传方式一：ajax提交<br>
     <form action="${pageContext.request.contextPath}/uploadDownload/uploadDemo2"
           enctype="multipart/form-data" method="post" name="form1" id="form1">
-        ajax提交 &nbsp;&nbsp; <label id="result1"></label> <br>
         上传用户：<input type="text" name="username"><br>
         上传文件1（字节流）：<input type="file" name="meFile"><br>
     </form>
     <button onclick="submitButton()">外部提交</button>
-    <br>
+    <br>ajax提交状态： &nbsp;&nbsp; <label id="result1"></label> <br>
+    <hr>
+上传方式二:表单提交<br>
     <form action="${pageContext.request.contextPath}/servlet/UploadDemo"
           enctype="multipart/form-data" method="post" name="form2">
-        submit提交 &nbsp;&nbsp; ${message} <br>
         上传用户：<input type="text" name="username"><br>
         上传文件1（字节流）：<input type="file" name="meFile"><br>
         <input type="submit" value="提交" name="submitButton">
+        <br>表单提交状态： &nbsp;&nbsp; ${message}
     </form>
-    下载：<br>
+    <br><hr>
+    显示阅览：<br>
     <c:forEach var="me" items="${fileList}">
         <c:url value="/uploadDownload/download" var="downUrl">
             <c:param name="filename" value="${me}"></c:param>
@@ -38,7 +41,7 @@
         <br/>
     </c:forEach>
     <hr />
-    下载2：<br>
+    下载：<br>
     <c:forEach var="me" items="${fileList}">
         <c:url value="/uploadDownload/download2" var="downUrl">
             <c:param name="filename" value="${me}"></c:param>

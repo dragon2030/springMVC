@@ -11,7 +11,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class ThreadSafetyCompare {
 	/**
 	 * 线程安全解决办法 
-	 * 方法1： Collections.synchronizedList(new LinkedList<String>())
+	 * 方法1： CollectionsTest.synchronizedList(new LinkedListTest<String>())
 	 * 方法2: LinkedList和ArrayList换成线程安全的集合，如CopyOnWriteArrayList，ConcurrentLinkedQueue......
 	 * 方法3：Vector(内部主要使用synchronized关键字实现同步)
 	 */

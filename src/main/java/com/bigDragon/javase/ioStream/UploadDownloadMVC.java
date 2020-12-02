@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedInputStream;
@@ -34,7 +35,13 @@ public class UploadDownloadMVC {
     private static final Logger logger = LoggerFactory.getLogger(UploadDownloadMVC.class);
 
     /**
-     * 上传1.0
+     * 文件上传:表单提交
+     */
+    public void upload2(){
+        new uploadDemo();
+    }
+    /**
+     * 上传：ajax提交
      * @param request
      * @param meFile
      * @return
@@ -107,7 +114,7 @@ public class UploadDownloadMVC {
             file.mkdir();
         }
         File[] files = file.listFiles();
-        if (files!=null && file.length()!=0){
+        if (files != null && files.length != 0){
             for(File f : files){
                 fileList.add(f.getName());
             }
@@ -117,7 +124,7 @@ public class UploadDownloadMVC {
     }
 
     /**
-     * 文件下载1.0
+     * 文件阅览查看（没事设置返回格式为可下载）
      * @param request
      * @param response
      */
@@ -164,36 +171,58 @@ public class UploadDownloadMVC {
     }
 
     /**
-     * 文件下载2.0
+     * 文件下载
      * @param request
      * @param response
      */
     @RequestMapping(value = "/download2",method = RequestMethod.GET)
     @ResponseBody
     public void download2(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        //得到要下载的文件名
-        String filename = request.getParameter("filename");
-        filename = new String(filename.getBytes("iso8859-1"),"UTF-8");
-        //上传的文件都是保存在/WEB-INF/upload目录下的子目录当中
-        String fileSaveRootPath = request.getServletContext().getRealPath("/WEB-INF/upload");
-        //得到要下载的文件
-        File file = new File(fileSaveRootPath+File.separator+filename);
-        //如果文件不存在
-        if(!file.exists()){
-            System.out.println("目标文件已删除");
+        //创建输入流
+        BufferedInputStream bufferedInputStream = null;
+        //创建输出流
+        BufferedOutputStream bufferedOutputStream = null;
+        try {
+            //得到要下载的文件名
+            String filename = request.getParameter("filename");
+            filename = new String(filename.getBytes("iso8859-1"),"UTF-8");
+            //上传的文件都是保存在/WEB-INF/upload目录下的子目录当中
+            ServletContext servletContext =request.getServletContext();
+            String fileSaveRootPath = servletContext.getRealPath("/WEB-INF/upload");
+            //得到要下载的文件
+            File file = new File(fileSaveRootPath+File.separator+filename);
+            //如果文件不存在
+            if(!file.exists()){
+                System.out.println("目标文件已删除");
+            }
+
+            //通知浏览器以下载的方式打开
+            String mimeType=servletContext.getMimeType(filename);
+            response.addHeader("Content-Type",mimeType);
+            //response.addHeader("Content-Type","application/octet-stream");
+            response.addHeader("Content-Disposition","attachment;filename="+URLEncoder.encode(filename, "UTF-8"));
+            //读取文复制到本地
+            bufferedInputStream = new BufferedInputStream(new FileInputStream(file));
+            bufferedOutputStream = new BufferedOutputStream(response.getOutputStream());
+
+            byte[] bytes=new byte[1024];
+            int len=0;
+            while ((len=bufferedInputStream.read(bytes))!=-1){
+                bufferedOutputStream.write(bytes,0,len);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                bufferedInputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                bufferedOutputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-        //通知浏览器以下载的方式打开
-        response.addHeader("Content-Type","application/octet-stream");
-        response.addHeader("Content-Disposition","attachment;filename="+URLEncoder.encode(filename, "UTF-8"));
-        //通过文件输入流读取文件
-        InputStream in= new FileInputStream(file);
-        OutputStream out=response.getOutputStream();
-        byte[] bytes=new byte[1024];
-        int len=0;
-        while ((len=in.read(bytes))!=-1){
-            out.write(bytes,0,len);
-        }
-        in.close();
-        out.close();
     }
 }
