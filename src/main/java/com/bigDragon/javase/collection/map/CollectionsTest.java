@@ -1,6 +1,5 @@
-package com.bigDragon.javase.map;
+package com.bigDragon.javase.collection.map;
 
-import com.bigDragon.javase.collection.Person;
 import org.junit.Test;
 
 import java.util.ArrayList;

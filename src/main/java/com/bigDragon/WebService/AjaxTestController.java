@@ -11,13 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
@@ -29,8 +28,34 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/ajaxTest")
-public class AjaxTest {
-    private static final Logger logger = LoggerFactory.getLogger(AjaxTest.class);
+public class AjaxTestController {
+    private static final Logger logger = LoggerFactory.getLogger(AjaxTestController.class);
+
+    public static void main(String[] args) throws NoSuchMethodException {
+        AjaxTestController ajaxTestController = new AjaxTestController();
+
+        //页面跳转
+        ajaxTestController.main();
+        //jquary中ajax标准格式
+        ajaxTestController.getClass().getMethod("ajaxStandard");
+        //测试ajax中error返回格式,异常时返回详细错误信息
+        ajaxTestController.ajaxError("");
+        //ajax中dataType
+        ajaxTestController.ajaxDataType();
+        //测试ajax中参数contentType
+        ajaxTestController.ajaxContentType("");
+        //获取ajax请求中HttpServletRequest，HttpServletResponse中的信息
+        ajaxTestController.getClass().getMethod("GetRequestResponseInfo");
+    }
+
+    /*
+    jquary中ajax标准格式
+     */
+    @RequestMapping("/standardAjax")
+    @ResponseBody
+    public String ajaxStandard(HttpServletRequest request, HttpServletResponse response){
+        return "";
+    }
 
     /**
      * 获取ajax请求中HttpServletRequest，HttpServletResponse中的信息
@@ -39,10 +64,9 @@ public class AjaxTest {
      * @throws ServletException
      * @throws IOException
      */
-    @RequestMapping("/ajaxStandard")
+    @RequestMapping("/GetRequestResponseInfo")
     @ResponseBody
-    public String ajaxStandard(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+    public String GetRequestResponseInfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
         StringBuffer stringBuffer = new StringBuffer();
         //获得客户机信息
         stringBuffer.append("request.getRequestURL():").append(request.getRequestURL()).append("\n");//返回客户端发出的请求时的完整URL
@@ -89,13 +113,13 @@ public class AjaxTest {
      * @return
      */
     @RequestMapping("/main")
-    public ModelAndView test1(){
+    public ModelAndView main(){
         ModelAndView modelAndView=new ModelAndView();
         modelAndView.setViewName("ajaxTest");
         return modelAndView;
     }
 
-
+    //测试ajax中error返回格式,异常时返回详细错误信息
     @RequestMapping(value = "/ajaxError")
     @ResponseBody
     public String ajaxError(@RequestBody String json){
@@ -115,6 +139,7 @@ public class AjaxTest {
         users.add(user2);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("list", users);
+        "12".substring(4);
         logger.info(JSON.toJSONString(jsonObject));
         return JSON.toJSONString(jsonObject);
     }
@@ -150,6 +175,17 @@ public class AjaxTest {
         return JSON.toJSONString(jsonObject);
     }
 
+    /*
+    测试ajax中参数contentType
+     */
+    @RequestMapping(value = "/ajaxContentType")
+    @ResponseBody
+    public String ajaxContentType(@RequestBody String json){
+        logger.info("测试ajax中参数contentType请求数据："+json);
+        return json;
+    }
+
+    //ajax试验
     @RequestMapping(value = "/ajaxTest")
     @ResponseBody
     public String ajaxTest(@RequestBody String json){

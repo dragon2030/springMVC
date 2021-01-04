@@ -77,6 +77,8 @@ public class Main {
 
 		//文件上传
 		new uploadDemo();
+
+		//测试练习
 	}
 	
 

@@ -1,4 +1,4 @@
-package com.bigDragon.javase.map;
+package com.bigDragon.javase.collection.map;
 
 import com.bigDragon.javase.collection.Person;
 import com.bigDragon.javase.collection.Person3;

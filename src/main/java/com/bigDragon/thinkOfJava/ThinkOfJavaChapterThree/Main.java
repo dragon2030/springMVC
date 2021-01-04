@@ -21,7 +21,7 @@ public class Main {
 		System.out.println(i1);*/
 		/*System.out.println(new Double("0").MAX_VALUE);
 		System.out.println(new Double("0").MIN_VALUE);
-		Main main=new Main();
+		test20201209 main=new test20201209();
 		main.practive13((char)34);*/
 		Object object="";
 		System.out.println(object=="");

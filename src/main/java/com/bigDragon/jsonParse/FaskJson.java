@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.bigDragon.demo.entity.User;
+import org.junit.Test;
 
 /**
  * alibaba fastjson 
@@ -21,25 +22,36 @@ public class FaskJson {
 	
 	public static void main(String[] args){
 		FaskJson faskJson=new FaskJson();
-		
+
+		//JSONArray
 		//测试生成JSONArray字符串
 		String jsonText=faskJson.setJSONArray();
-		//System.out.println(jsonText);
+		System.out.println(jsonText);
 		//测试获取JSONArray中某一值
 		JSONArray jsonArray = JSON.parseArray(jsonText);
 		JSONObject jsonObject=jsonArray.getJSONObject(0);
-		//System.out.println(jsonObject.get("a"));
-		
+		System.out.println(jsonObject.get("a"));
+
+		//JSONObject
 		//测试生成JSONObject字符串
 		String jsonText2=faskJson.setJSONObject();
 		//测试获取JSONObject中某一值
 		JSONObject jsonObject2=JSONObject.parseObject(jsonText2);
 		System.out.println(jsonObject2.get("a"));
+
 		//用fastjson打印容器中的内容
-		//faskJson.jsonPrint();
-		
+		faskJson.jsonPrint();
+
+		//JSONArray.parseArray(json,UpdateStateYQX.class);
 	}
-	
+
+	@Test
+	public void test1(){
+		String str="{\"code\":0,\"msg\":\"SUCCESS\",\"data\":\"[{\\\"content\\\":\\\"回复3\\\",\\\"moTime\\\":1607343727778,\\\"msgId\\\":\\\"2001183465308160\\\",\\\"phone\\\":\\\"15372050554\\\"},{\\\"content\\\":\\\"回复2\\\",\\\"moTime\\\":1607343727778,\\\"msgId\\\":\\\"2001183465308160\\\",\\\"phone\\\":\\\"15372050554\\\"},{\\\"content\\\":\\\"回复1\\\",\\\"moTime\\\":1607343727778,\\\"msgId\\\":\\\"2001183465308160\\\",\\\"phone\\\":\\\"15372050554\\\"}]\"}";
+		JSONObject json=JSONObject.parseObject(str);
+		List<smsZX>list=JSONArray.parseArray(str,smsZX.class);
+		System.out.println(list);
+	}
 	/**
 	 * 测试生成JSONArray字符串
 	 * @return

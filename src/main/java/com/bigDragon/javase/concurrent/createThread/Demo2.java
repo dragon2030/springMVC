@@ -61,6 +61,6 @@ public class Demo2 implements Runnable{
 		Demo2 demo2=new Demo2();
 		new Thread(demo2).start(); 
 		new Thread(demo2).start(); 
-		new Thread(demo2).start(); 
+		new Thread(demo2).start();
 	}
 }

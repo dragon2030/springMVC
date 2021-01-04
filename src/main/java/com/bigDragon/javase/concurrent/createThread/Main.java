@@ -14,7 +14,7 @@ package com.bigDragon.javase.concurrent.createThread;
  */
 public class Main {
 
-	public static void main(String[] args){
+	public static void main(String[] args) throws Exception {
 		//机器的CPU核数
 		System.out.println(Runtime.getRuntime().availableProcessors());
 		
@@ -50,5 +50,9 @@ public class Main {
 		Class c=ThreadPoolDemo.class;
 		//工具类的线程安全解决
 		ThreadSafetyCompare.main(args);
+
+		//测试方法
+		//join
+		JoinMethod.main(new String[]{});
 	}
 }

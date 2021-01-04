@@ -130,6 +130,7 @@
 	<form>
 		<textarea rows="20"></textarea>
 	</form>
+	<div id="div1"></div>
 </body>
 <script>
 

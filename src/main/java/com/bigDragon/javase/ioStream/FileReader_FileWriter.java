@@ -37,7 +37,7 @@ public class FileReader_FileWriter {
 			f.testFileReader2();
 		
 			//从内存中写出数据到硬盘文件
-			//f.testFileWriter();
+			f.testFileWriter();
 			
 			//文件流的输入输出（复制）
 			f.testFileReaderFileWriter();

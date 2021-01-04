@@ -45,7 +45,8 @@ public class TryCatchFinallyException {
     }
 
     /**
-     * 辨析finally与直接在try-catch后写的区别
+     * 辨析finally与直接在try-catch后写的区别：
+     * 当catch中的代码出现异常未被捕获时，try-catch后的代码将不会执行
      */
     public void finallyTest(){
         try {

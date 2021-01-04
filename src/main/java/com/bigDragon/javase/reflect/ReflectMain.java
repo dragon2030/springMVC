@@ -8,7 +8,7 @@ package com.bigDragon.javase.reflect;
  *      Reflection(反射)是被视为动态语言的关键，反射机制允许程序在执行期借助于Reflection API取得任何类的内部信息，并能直接
  *      操作任意对象的内部属性及方法。
  *
- *      加载完类之后，在堆内存的方法区中就产生了一罐Class类型的对象（一个类只有一个Class对象），这个对象就包含了完整的类的结构
+ *      加载完类之后，在堆内存的方法区中就产生了一个Class类型的对象（一个类只有一个Class对象），这个对象就包含了完整的类的结构
  *      信息。我们可以通过这个对象看到类的结构。这个对象就像一面镜子，透过这个镜子看到类的结构，所以，我们形象的称之为：反射。
  *
  *      正常方式：
@@ -55,8 +55,30 @@ public class ReflectMain {
     public static void main(String[] args){
         //测试反射的实体类
         new Person();
-        //直接实例化和反射的对比
-        new ReflectionTest();
 
+        //二、理解Class类并获取Class实例
+        new ReflectionTest();
+        //三、类的加载与ClassLoader的理解
+        new ClassLoaderTest();
+        //四、创建运行时类的对象
+        new NewInstanceTest();
+        //五、获取运行时类的完整结构
+        //获取当前运行时类的属性结构
+        new FieldTest();
+        //运行时类的方法结构
+        new MethodTest();
+        //运行时类的其他结构
+        new OtherTest();
+        //六、调用运行时类的指定结构(属性、方法、构造器)
+        new ReflectionUsingTest();
+        //七、反射的应用：动态代理
+        new AgencyTest();
+        //静态代理举例
+        new StaticProxyTest();
+        //动态代理的举例
+        new ProxyTest();
+
+        //java.lang.reflect.InvocationTargetException异常及处理
+        new reflectException();
     }
 }
