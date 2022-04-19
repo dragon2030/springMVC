@@ -20,7 +20,7 @@ public class ThrowsException {
             e.printStackTrace();
         }
     }
-    public void method1 ()throws ArrayIndexOutOfBoundsException{
+    public void method1 () throws ArrayIndexOutOfBoundsException{
         String[] array=new String[2];
         String st=array[5];
         System.out.println("异常产生之后的代码");

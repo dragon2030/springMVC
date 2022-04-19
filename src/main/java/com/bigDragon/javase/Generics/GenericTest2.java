@@ -25,7 +25,7 @@ import java.util.List;
  * ? extends A：（<=）
  *          G<? extends A> 可以作为G<A>和G<B>的子类时，其中B是A的子类
  * ? super A：（>=）
- *          G<? extends A> 可以作为G<A>和G<B>的父类时，其中B是A的父类
+ *          G<? super A> 可以作为G<A>和G<B>的父类时，其中B是A的父类
  *
  * @author bigDragon
  * @create 2020-11-26 9:49

@@ -24,7 +24,7 @@ import java.util.Iterator;
  *      equals(Object obj):判断两个集合是否相等（注：ArrayList要求顺序也一致）
  *      hasCode():返回当前对象的哈希值
  *      数组集合转换
- *          集合 --> 数组 ：toArray()
+ *          集合 --> 数组 ：Collection.toArray()
  *          数组 --> 集合 : Arrays.asList(Object[] obj)
  *      iterator()：返回Iterator接口的实例，用于遍历集合的元素。
  *
@@ -72,11 +72,11 @@ public class CollectionTest {
         collection.remove("AA");//true
 
         //removeAll(Collection coll1)：移除所有和形参coll中相同的元素，将查聚返回给当前集合
-        //collection.removeAll(Arrays.asList("AA","DD"));
+        //collection.removeAll(ArrayTest.asList("AA","DD"));
         //print(collection);
 
         //retainAll(Collection coll1):获取当前集合和coll1的交集，并返回给当前集合
-        //collection.retainAll(Arrays.asList("CC","II","OO"));
+        //collection.retainAll(ArrayTest.asList("CC","II","OO"));
         //print(collection);
 
         //equals(Object obj):判断两个集合是否相等（注：ArrayList要求顺序也一致）
@@ -89,7 +89,7 @@ public class CollectionTest {
         //集合 --> 数组 ：toArray()
         Object[] arr = collection.toArray();
         print2(arr);
-        //数组 --> 集合 : Arrays.asList(Object[] obj)
+        //数组 --> 集合 : ArrayTest.asList(Object[] obj)
         print(Arrays.asList(arr));
         System.out.println(Arrays.asList(arr));
 

@@ -46,7 +46,7 @@ public class GenericsMain {
         Order<Integer> order= new SubOrder();//不再是泛型类，只是普通类
         Order<Boolean> order2 = new SubOrder2<Boolean>();//是泛型类
         //自定义泛型方法
-        new Order().copyFromArrayToList(new Object[5]);
+        new Order().copyFromArrayToList(new String[5]);
         //泛型在继承方面的体现
         //通配符的使用
         //有限制条件的通配符使用

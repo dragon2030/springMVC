@@ -1,5 +1,9 @@
 package com.bigDragon.javase.reflect;
 
+import com.bigDragon.javase.baseTest.procyDemoMevie.ProxyTest;
+import com.bigDragon.javase.reflect.cgLibProxy.CgLibProxy;
+import com.bigDragon.javase.reflect.jdkProxy.JdkProxy;
+
 /**
  * 反射
  *
@@ -56,14 +60,14 @@ public class ReflectMain {
         //测试反射的实体类
         new Person();
 
-        //二、理解Class类并获取Class实例
+        //二、理解Class类并获取Class实例 反射之前对象的操作 vs 反射之后对象的操作
         new ReflectionTest();
         //三、类的加载与ClassLoader的理解
         new ClassLoaderTest();
         //四、创建运行时类的对象
         new NewInstanceTest();
         //五、获取运行时类的完整结构
-        //获取当前运行时类的属性结构
+        //获取运行时类的属性结构
         new FieldTest();
         //运行时类的方法结构
         new MethodTest();
@@ -72,11 +76,14 @@ public class ReflectMain {
         //六、调用运行时类的指定结构(属性、方法、构造器)
         new ReflectionUsingTest();
         //七、反射的应用：动态代理
-        new AgencyTest();
-        //静态代理举例
-        new StaticProxyTest();
-        //动态代理的举例
+        //静态代理举例1
         new ProxyTest();
+        //静态代理举例2
+        new StaticProxyTest();
+        //jdk 动态代理
+        new JdkProxy();
+        //CGLIB 动态代理
+        new CgLibProxy();
 
         //java.lang.reflect.InvocationTargetException异常及处理
         new reflectException();

@@ -25,7 +25,7 @@
 		<context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice" /> -->
 	</context:component-scan>
 	  <!--扫描Service里面的注解-->
-    <context:component-scan base-package="com.bigDragon.*.service"></context:component-scan>
+    <context:component-scan base-package="com.bigDragon.demo.test.service"></context:component-scan>
 
     <!--使用mvc:annotation-driven代替上边注解映射器和注解适配器 配置 如果使用mvc:annotation-driven就不用配置上面的
         RequestMappingHandlerMapping和RequestMappingHandlerAdapter-->
@@ -59,10 +59,10 @@
 	
 	<!-- AOP 注解方式 ；定义Aspect -->
     <!-- 激活组件扫描功能,在包"com.example.aop及其子包下面自动扫描通过注解配置的组件-->
-    <context:component-scan base-package="com.bigDragon.common.aspect"/>
-    <aop:aspectj-autoproxy proxy-target-class="true" /> 
-	
-    <!-- 配置视图解析器 如何把handler 方法返回值解析为实际的物理视图 -->
+
+	<context:component-scan base-package="com.bigDragon.common.aspect"/>
+	<aop:aspectj-autoproxy proxy-target-class="true" />
+	<!-- 配置视图解析器 如何把handler 方法返回值解析为实际的物理视图 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name = "prefix" value="/WEB-INF/"></property>
         <property name = "suffix" value = ".jsp"></property>

@@ -7,7 +7,7 @@ package com.bigDragon.javase.concurrent.createThread;
  */
 public class SimpleStructure {
 	
-	//局部内置类：类定义在方法中
+	//局部内部类：类定义在方法中
 	public void SimpleFunction1(){
 		System.out.println("简化书写之前执行，线程名："+Thread.currentThread().getName());
 		class RunnableTest implements  Runnable{

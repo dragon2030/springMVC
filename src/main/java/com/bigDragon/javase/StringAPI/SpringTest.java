@@ -45,12 +45,24 @@ public class SpringTest {
      */
     @Test
     public void test1(){
-        String st1= "abc";//字面量的定义方式
+        String st1= "abc";
         String st2= "abc";
-        System.out.println(st1==st2);//第5点和第6点证明
+        System.out.println(st1==st2);
         String st3= "hello";
         st2=st3;
-        System.out.println(st1==st2);//第4点和证明
+        System.out.println(st1);
+        System.out.println(st2);
+
+        String s1="abc";
+        String s2="abc";
+        s1+="def";
+        System.out.println(s1);
+        System.out.println(s2);
+
+        String s3="abcd";
+        String s4 = s3.replace("c", "e");
+        System.out.println(s3);
+        System.out.println(s4);
     }
     /*
     String实例化方式：
@@ -65,9 +77,23 @@ public class SpringTest {
         //通过字面量定义的方式：此时的s1和s2的数据javaEE声明在方法区的字符串常量池中。
         String s1 = "javaEE";
         String s2 = "javaEE";
+
+
         //通过new + 构造器的方式：此时s3和s4保存的地址值，是数据在堆空间中开辟空间以后对应的地址值。
         String s3 = new String("javaEE");
         String s4 = new String("javaEE");
+
+        //this.value = "".value;
+        String s5 = new String();
+        //    public String(String original) {
+        //        this.value = original.value;
+        //        this.hash = original.hash;
+        //    }
+        String s6 = new String("");
+
+        String s7 = new String(new char[]{65,66});
+        System.out.println(s7);
+
         System.out.println(s1==s2);//true
         System.out.println(s1==s3);//false
         System.out.println(s3==s4);//false
@@ -80,7 +106,7 @@ public class SpringTest {
     /*
         String不同拼接方式的对比(内存中的特点)
             结论
-            >常量与常量的拼接结果再常量池。且常量池中不会存在相同的常量。
+            >常量与常量的拼接结果在常量池。且常量池中不会存在相同的常量。
             >只要其中一个是变量，结果就在堆中（堆中对象在将实际地址指向对应常量池内存）
             >如果拼接的结果调用intern()方法，返回值就在常量池中
      */
@@ -88,7 +114,6 @@ public class SpringTest {
     public void test3(){
         String s1 = "javaEE";
         String s2 = "hadoop";
-
         String s3 = "javaEEhadoop";
         String s4 = "javaEE"+"hadoop";
         String s5 = s1+"hadoop";
@@ -192,6 +217,8 @@ public class SpringTest {
         //注：indexOf和lastIndexOf方法如果未找到都是返回-1
 
         //替换
+        System.out.println(s1.replace('被','动'));
+        System.out.println(s1.replace("被","动"));
         //String replace(CharSequence target, CharSequence replacement):使用指定字面量替换目标字面量
         System.out.println(s1.replace("or","orr"));//helloWorrld
         //String replaceAll(String regex, String replacement)：使用给定的replacement替换正则表达式匹配的子字符串

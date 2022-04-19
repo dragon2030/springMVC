@@ -21,14 +21,15 @@
 <button onclick="ajaxDataType()">测试ajax中参数dataType</button><br>
 <button onclick="ajaxContentType()">测试ajax中参数contentType</button>
 <br>
+${pageContext.request.contextPath}
 </body>
 <script>
 	//jquary中ajax标准格式
 	function ajaxStandard(){
 		$.ajax({
 			url:"<%=basePath %>ajaxTest/standardAjax",    //请求的url地址
-			//contentType: "application/json;charset=UTF-8",//发送给服务器的格式
-			dataType:"json",   //返回格式为json
+			//contentType: "application/json;charset=UTF-8",//发送给服务器的格式，contentType默认的值：application/x-www-form-urlencoded
+			dataType:"json",   //返回格式为json,不设置该值是response Headers Content-Type: text/html;charset=UTF-8
 			async:true,//请求是否异步，默认为异步，这也是ajax重要特性
 			data:{"param":"Mike"},    //参数值
 			type:"POST",   //请求方式
@@ -112,9 +113,10 @@
 	function ajaxContentType() {
 		var data = {"name": "Mike","age":"22"};
 		//默认
+		//后台接收格式：{"name":"Mike","age":"22"}
+		//后台接收格式：name=Mike&age=22
 		$.ajax({
 			url:"<%=basePath %>ajaxTest/ajaxContentType",
-			//contentType: "application/json;charset=UTF-8",//发送给服务器的格式
 			data:data,    //参数值
 			type:"POST",   //请求方式
 			success:function(req){//成功返回数据
@@ -122,6 +124,7 @@
 			}
 		});
 		//contentType: "application/json;charset=UTF-8"
+		//后台接收格式：{"name":"Mike","age":"22"}
 		$.ajax({
 			url:"<%=basePath %>ajaxTest/ajaxContentType",
 			contentType: "application/json;charset=UTF-8",//发送给服务器的格式

@@ -99,7 +99,7 @@ public class MyThread4 {
 		//2.执行指定的线程操作。需要提供实现Runnable接口或Callable接口实现的对象
 		//executorService.execute(new NumberThread());//适合使用于Runnable
 		//executorService.execute(new NumberThread1());
-		Future<Integer> submit = executorService.submit(new NumberThread2());
+		Future<Integer> submit = executorService.submit(new NumberThread2());//适合使用于Callable
 		FutureTask<Integer> futureTask= (FutureTask<Integer>) submit;//适合使用与Callable
 		try {
 			System.out.println(futureTask.get());

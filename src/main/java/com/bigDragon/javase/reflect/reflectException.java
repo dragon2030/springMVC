@@ -3,6 +3,7 @@ package com.bigDragon.javase.reflect;
 import java.lang.reflect.Method;
 
 /**
+ * 不知道在说明什么
  * java.lang.reflect.InvocationTargetException异常及处理
  * 在我们使用Java的反射API时，我们经常会遇到java.lang.reflect.InvocationTargetException异常，在本教程中，我们将通过一个简单的实例来了解它
  * 以及处理它。
@@ -17,7 +18,7 @@ public class reflectException {
         try {
             //method1——原调用方法
             reflectException.testClass testClass = new reflectException().new testClass();
-            //testClass.test();
+            testClass.test();
             //method2——反射调用方法
             Class<? extends reflectException.testClass> aClass = new reflectException().new testClass().getClass();
             //调用方法

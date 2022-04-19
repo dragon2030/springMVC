@@ -37,8 +37,16 @@ public class Demo1 extends Thread{
 	}
 	
 	public static void main(String[] args){
-		new Demo1().start(); 
-		new Demo1().start(); 
-		new Demo1().start(); 
+		Demo1 demo1 = new Demo1();
+		demo1.setName("demo1");
+		demo1.start();
+
+		Demo1 demo2 = new Demo1();
+		demo2.setName("demo2");
+		demo2.start();
+
+		Demo1 demo3 = new Demo1();
+		demo3.setName("demo3");
+		demo3.start();
 	}
 }

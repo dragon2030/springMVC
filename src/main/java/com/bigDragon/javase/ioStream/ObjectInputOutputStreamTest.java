@@ -45,10 +45,10 @@ public class ObjectInputOutputStreamTest {
 	public static void main(String[] args){
 		ObjectInputOutputStreamTest objectInputOutputStreamTest = new ObjectInputOutputStreamTest();
 		//序列化的过程:将内存中的java对象保存到磁盘中或通过网络传输出去---使用ObjectOutputStream实现
-		//objectInputOutputStreamTest.testObjectOutputStream("src\\main\\resources\\file\\object.dat");
-		objectInputOutputStreamTest.testObjectOutputStream("src\\main\\resources\\file\\object2.dat");
+		//objectInputOutputStreamTest.testObjectOutputStream("src\\Main\\resources\\file\\object.dat");
+		objectInputOutputStreamTest.testObjectOutputStream("src\\Main\\resources\\file\\object2.dat");
 		//反序列化：将磁盘文件中的对象还原为内存中的一个java对象--使用ObjectInputStream
-		objectInputOutputStreamTest.testObjectInputStream("src\\main\\resources\\file\\object2.dat");
+		objectInputOutputStreamTest.testObjectInputStream("src\\Main\\resources\\file\\object2.dat");
 	}
 	
 	/**

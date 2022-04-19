@@ -14,17 +14,17 @@
     <script src="resources/js/plug_in/jquery-2.1.0.js"></script>
 </head>
 <body>
-HELLO WORLD
+    <button id="btn" onclick="setValue()">按钮测试</button>
+    <button id="btn2" onclick="showValue()">按钮测试</button>
 </body>
-<script>
-    var text = "///15372050554ddd";
+<script type="javascript">
+    var a = 1;
 
-    var mat2 = text.match(/\d{11}/g);
-
-    var text3 = "///15370554ddd";
-    var mat3 = text3.match(/\d{11}/g);
-
-    console.info(mat2[0]);
-    console.info(mat3==null);
+    function setValue(){
+        a=2;
+    };
+    function showValue(){
+        console.info(a);
+    };
 </script>
 </html>

@@ -6,12 +6,7 @@ import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Font;
-import org.apache.poi.ss.usermodel.IndexedColors;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -34,13 +29,13 @@ import java.util.List;
 public class ExcelTest {
     public static void main(String[] args){
         ExcelTest excelTest = new ExcelTest();
-        String Path1 = "src\\main\\resources\\excel\\testExcel.xls";
-        String Path2 = "src\\main\\resources\\excel\\testExcel2.xls";
-        String Path3 = "src\\main\\resources\\excel\\testExcel3.xlsx";
-        String Path4 = "src\\main\\resources\\excel\\testExcel4.xlsx";
+        String Path1 = "src\\Main\\resources\\excel\\testExcel.xls";
+        String Path2 = "src\\Main\\resources\\excel\\testExcel2.xls";
+        String Path3 = "src\\Main\\resources\\excel\\testExcel3.xlsx";
+        String Path4 = "src\\Main\\resources\\excel\\testExcel4.xlsx";
 
 
-       //excel操作 97-2003 xls
+       //excel操作 97-2003 xls(读取数据)
         System.out.println(excelTest.readXls(Path1));
         //处理文件类型--Microsoft Excel 97-2003 工作表.xls （写入数据）
         excelTest.writeXls(Path2);
@@ -75,9 +70,9 @@ public class ExcelTest {
                 for (Iterator iterator=row.cellIterator();iterator.hasNext();){
                     HSSFCell cell=(HSSFCell) iterator.next();
                     //根据单元的的类型 读取相应的结果
-                    if(cell.getCellType()==HSSFCell.CELL_TYPE_STRING) text+=cell.getStringCellValue()+"\t";
-                    else if(cell.getCellType()==HSSFCell.CELL_TYPE_NUMERIC) text+=cell.getNumericCellValue()+"\t";
-                    else if(cell.getCellType()==HSSFCell.CELL_TYPE_FORMULA) text+=cell.getCellFormula()+"\t";
+                    if(cell.getCellType()== CellType.STRING) text+=cell.getStringCellValue()+"\t";
+                    else if(cell.getCellType()==CellType.NUMERIC) text+=cell.getNumericCellValue()+"\t";
+                    else if(cell.getCellType()==CellType.FORMULA) text+=cell.getCellFormula()+"\t";
                 }
                 text+="\n";
             }
@@ -147,9 +142,9 @@ public class ExcelTest {
                 for (Iterator iterator=row.cellIterator();iterator.hasNext();){
                     XSSFCell cell=(XSSFCell) iterator.next();
                     //根据单元的的类型 读取相应的结果
-                    if(cell.getCellType()==XSSFCell.CELL_TYPE_STRING) text+=cell.getStringCellValue()+"\t";
-                    else if(cell.getCellType()==XSSFCell.CELL_TYPE_NUMERIC) text+=cell.getNumericCellValue()+"\t";
-                    else if(cell.getCellType()==XSSFCell.CELL_TYPE_FORMULA) text+=cell.getCellFormula()+"\t";
+                    if(cell.getCellType()==CellType.STRING) text+=cell.getStringCellValue()+"\t";
+                    else if(cell.getCellType()==CellType.NUMERIC) text+=cell.getNumericCellValue()+"\t";
+                    else if(cell.getCellType()==CellType.FORMULA) text+=cell.getCellFormula()+"\t";
                 }
                 text+="\n";
             }
@@ -229,9 +224,9 @@ public class ExcelTest {
                 for (Iterator iterator=row.cellIterator();iterator.hasNext();){
                     Cell cell=(Cell) iterator.next();
                     //根据单元的的类型 读取相应的结果
-                    if(cell.getCellType()==XSSFCell.CELL_TYPE_STRING) text+=cell.getStringCellValue()+"\t";
-                    else if(cell.getCellType()==XSSFCell.CELL_TYPE_NUMERIC) text+=cell.getNumericCellValue()+"\t";
-                    else if(cell.getCellType()==XSSFCell.CELL_TYPE_FORMULA) text+=cell.getCellFormula()+"\t";
+                    if(cell.getCellType()==CellType.STRING) text+=cell.getStringCellValue()+"\t";
+                    else if(cell.getCellType()==CellType.NUMERIC) text+=cell.getNumericCellValue()+"\t";
+                    else if(cell.getCellType()==CellType.FORMULA) text+=cell.getCellFormula()+"\t";
                 }
                 text+="\n";
             }
@@ -275,28 +270,28 @@ public class ExcelTest {
                     String cellValue = "";//当前数值
                     //根据单元的的类型 读取相应的结果
                     switch (cell.getCellType()) {
-                        case Cell.CELL_TYPE_NUMERIC: //数字
+                        case NUMERIC: //数字
                             //避免出现科学计数法
                             long longVal = Math.round(cell.getNumericCellValue());
                             Double doubleVal = cell.getNumericCellValue();
                             if (Double.parseDouble(longVal + ".0") == doubleVal){
-                                cell.setCellType(Cell.CELL_TYPE_STRING);
+                                cell.setCellType(CellType.STRING);
                                 cellValue = cell.getStringCellValue();
                             }
                             break;
-                        case Cell.CELL_TYPE_STRING: //字符串
+                        case STRING: //字符串
                             cellValue = String.valueOf(cell.getStringCellValue());
                             break;
-                        case Cell.CELL_TYPE_BOOLEAN: //Boolean
+                        case BOOLEAN: //Boolean
                             cellValue = String.valueOf(cell.getBooleanCellValue());
                             break;
-                        case Cell.CELL_TYPE_FORMULA: //公式
+                        case FORMULA: //公式
                             cellValue = String.valueOf(cell.getCellFormula());
                             break;
-                        case Cell.CELL_TYPE_BLANK: //空值
+                        case BLANK: //空值
                             cellValue = "";
                             break;
-                        case Cell.CELL_TYPE_ERROR: //故障
+                        case ERROR: //故障
                             cellValue = "非法字符";
                             break;
                         default:

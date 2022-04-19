@@ -13,7 +13,7 @@ import org.junit.Test;
  *      >String对象的字符内容是存储在一个字符数组value[]中的
  *
  *  public final class String
- *     implements java.io.Serializable, Comparable<String>, CharSequence {
+ *     implements java.io.Serializable, CompareAPI<String>, CharSequence {
  *      private final char value[];
  *      private int hash;
  *
@@ -23,7 +23,16 @@ import org.junit.Test;
  * @create 2020-12-24 17:10
  */
 public class StringApiMain {
-    public static void main(String[] args) {
+/*    public static void main(String[] args) {
         new StringApiMain();
+    }*/
+
+    @Test
+    public void case_20220329() {
+        double d = 3.1415926;
+        String result1 = String.format("%.2f", d);
+        String result = String.format("%.3f", d);
+        System.out.println(result1);
+        System.out.println(result);
     }
 }

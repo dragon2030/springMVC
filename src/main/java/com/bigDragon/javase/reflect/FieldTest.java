@@ -7,7 +7,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
 /**
- * 获取当前运行时类的属性结构
+ * 获取运行时类的完整结构
  *
  * @author bigDragon
  * @create 2020-12-08 19:03

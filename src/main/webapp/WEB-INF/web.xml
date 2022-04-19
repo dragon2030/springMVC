@@ -19,7 +19,7 @@
         <url-pattern>/fonts/*</url-pattern>
         <url-pattern>/font/*</url-pattern>
     </servlet-mapping> -->
-    
+
      <servlet-mapping>
         <servlet-name>default</servlet-name>
         <url-pattern>*.css</url-pattern>
@@ -43,7 +43,7 @@
 	<servlet-mapping>
 		<servlet-name>default</servlet-name>
 		<url-pattern>*.html</url-pattern>
-	</servlet-mapping> 
+	</servlet-mapping>
   <!-- 加载spring容器 -->
 	<context-param>
 	    <param-name>contextConfigLocation</param-name>

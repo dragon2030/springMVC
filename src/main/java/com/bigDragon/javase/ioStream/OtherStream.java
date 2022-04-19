@@ -76,8 +76,8 @@ public class OtherStream {
 		//打印流
 		//otherStream.printStream();
 		//数据流
-		//otherStream.DataStream1("src\\main\\resources\\file\\hello5.txt");
-		otherStream.DataStream2("src\\main\\resources\\file\\hello5.txt");
+		//otherStream.DataStream1("src\\Main\\resources\\file\\hello5.txt");
+		otherStream.DataStream2("src\\Main\\resources\\file\\hello5.txt");
 	}
 	
 	/**
@@ -178,7 +178,7 @@ public class OtherStream {
 	public void printStream(){
 		FileOutputStream fos = null;
 		try {
-			fos = new FileOutputStream(new File("src\\main\\resources\\file\\hello6.txt"));
+			fos = new FileOutputStream(new File("src\\Main\\resources\\file\\hello6.txt"));
 			//创建打印输出流，设置为自动刷新模式（写入换行符或字节'\n'时都会刷新输出缓存区）
 			PrintStream ps = new PrintStream(fos, true);
 			if (ps != null) {// 把标准输出流（控制台输出）改成文件

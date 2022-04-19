@@ -72,4 +72,15 @@ public class User implements Serializable{
     public void setSexId(String sexId) {
         this.sexId = sexId;
     }
+
+    public User(int userId, String age, String name, String peopleDes, String sexId) {
+        this.userId = userId;
+        this.age = age;
+        this.name = name;
+        this.peopleDes = peopleDes;
+        this.sexId = sexId;
+    }
+
+    public User() {
+    }
 }

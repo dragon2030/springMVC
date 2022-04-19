@@ -74,10 +74,6 @@ public class ReflectionUsingTest {
 
         Field sex = personClass.getDeclaredField("sex");
         name.setAccessible(true);
-        /*
-        说明：showDesc通过personClass拿到，personClass为Person运行时类，可获取静态属性和静态方法。
-        非静态方法属性和方法，需要知道是哪个具体对象的，不同对象非静态属性和方法不同。
-         */
         System.out.println(sex.get(null));
         System.out.println(sex.get(Person.class));
         System.out.println(sex.get(person));

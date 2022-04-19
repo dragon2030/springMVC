@@ -42,10 +42,10 @@ public class InputStreamReaderTest {
 	public static void main(String[] args) {
 		InputStreamReaderTest iTest = new InputStreamReaderTest();
 		//使用转换流将文件写入控制台
-		iTest.characterPrint("src\\main\\resources\\file\\hello.txt");
+		iTest.characterPrint("src\\Main\\resources\\file\\hello.txt");
 		//使用转换流将文件复制
-		iTest.characterConvert("src\\main\\resources\\file\\hello.txt",
-				"src\\main\\resources\\file\\hello5.txt");
+		iTest.characterConvert("src\\Main\\resources\\file\\hello.txt",
+				"src\\Main\\resources\\file\\hello5.txt");
 	}
 	
 	public void characterConvert(String srcStr,String destStr){

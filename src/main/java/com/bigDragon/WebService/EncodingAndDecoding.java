@@ -24,6 +24,9 @@ public class EncodingAndDecoding {
 		} 
 		return urlString;
 	}
+	/*
+
+	 */
 	public String decoding(String st,String parseCharset){
 		//将上面加码后的字符串进行解码
 		String keyWord="";

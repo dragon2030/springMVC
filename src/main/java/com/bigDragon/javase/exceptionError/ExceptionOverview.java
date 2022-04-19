@@ -52,10 +52,10 @@ import java.util.Date;
  */
 public class ExceptionOverview {
     public static void main(String[] args){
-        //栈溢出：Exception in thread "main" java.lang.StackOverflowError
-        //main(args);
+        //栈溢出：Exception in thread "Main" java.lang.StackOverflowError
+        //Main(args);
 
-        //堆溢出：Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
+        //堆溢出：Exception in thread "Main" java.lang.OutOfMemoryError: Java heap space
         Integer[] integers = new Integer[1024 * 1024 * 1024];
     }
 

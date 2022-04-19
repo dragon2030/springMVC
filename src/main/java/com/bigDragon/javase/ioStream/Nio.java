@@ -38,7 +38,7 @@ public class Nio {
      */
     public void testPath(){
         //Path可以看成File类的升级版本
-        Path path = Paths.get("src\\main\\resources\\file\\hello.txt");
+        Path path = Paths.get("src\\Main\\resources\\file\\hello.txt");
         System.out.println(path);
         //判断是否以path路径开始
         System.out.println(path.startsWith("src\\"));

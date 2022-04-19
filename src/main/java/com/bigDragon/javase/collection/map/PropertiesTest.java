@@ -21,7 +21,7 @@ public class PropertiesTest {
     public void test(){
         try {
             Properties properties = new Properties();
-            FileInputStream fileInputStream=new FileInputStream("src\\main\\resources\\db.properties");
+            FileInputStream fileInputStream=new FileInputStream("src\\Main\\resources\\db.properties");
             properties.load(fileInputStream);
             String url = properties.getProperty("jdbc.url");
             System.out.println(url);

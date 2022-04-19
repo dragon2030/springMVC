@@ -1,6 +1,8 @@
 package com.bigDragon.regular;
 
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import org.apache.commons.lang3.StringUtils;
+import org.junit.Test;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -115,6 +117,30 @@ public class RegularExpression {
         int startIndex=str.indexOf(substr)+substr.length();
         return str.substring(startIndex);
     }
-    
+
+    /**
+     * 案例：中文姓名输入匹配
+     */
+    @Test
+    public void case20220107(){
+        String input = "郑佳豪";//true
+        //String input = "郑佳豪一二三四五六七八九十";//false
+        //String input = "dfdsces!";//false
+        String regex = "^[\u4e00-\u9fa5_a-zA-Z0-9]{1,10}$";
+        Pattern p = Pattern.compile(regex);
+        Matcher m = p.matcher(input);
+        System.out.println(m.matches());
+    }
+
+    /**
+     * 案例：短信内容输入格式
+     * params must be [a-zA-Z0-9] for verification sms
+     */
+    @Test
+    public void test(){
+        String str = "aaZZ991";
+        boolean matches = str.matches("^[a-zA-Z0-9]+$");
+        System.out.println(matches);
+    }
 
 }

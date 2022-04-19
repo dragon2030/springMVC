@@ -1,5 +1,6 @@
 package com.bigDragon.javase.java8;
 
+import org.apache.poi.ss.formula.functions.T;
 import org.junit.Test;
 
 import java.io.PrintStream;
@@ -113,6 +114,12 @@ public class MethodReferencesTest {
      */
     @Test
     public void test3(){
+        Comparator<Integer> com0 = new Comparator<Integer>(){
+            @Override
+            public int compare(Integer t1, Integer t2) {
+                return Integer.compare(t1,t2);
+            }
+        };
         Comparator<Integer> com1 = (t1,t2) -> Integer.compare(t1,t2);
         System.out.println(com1.compare(12,21));
         System.out.println("*************************************");
@@ -143,7 +150,7 @@ public class MethodReferencesTest {
     /*
     情况三：类 :: 非静态方法
     Comparator中int compare(T t1,T t2)
-    String中的int t1.compareTo(t2)
+    String中的 t1.compareTo(t2)
      */
     @Test
     public void test5(){

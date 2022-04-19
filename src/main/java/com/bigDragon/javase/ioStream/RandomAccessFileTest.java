@@ -24,11 +24,11 @@ public class RandomAccessFileTest {
     public static void main(String[] args){
         RandomAccessFileTest raf= new RandomAccessFileTest();
         //RandomAccessFile对文件的复制
-        //raf.test("src\\main\\resources\\jpg\\0509-01.jpg","src\\main\\resources\\jpg\\0509-05.jpg");
+        //raf.test("src\\Main\\resources\\jpg\\0509-01.jpg","src\\Main\\resources\\jpg\\0509-05.jpg");
         //RandomAccessFile文件的写入
-        //raf.test2("src\\main\\resources\\file\\hello6.txt");
+        //raf.test2("src\\Main\\resources\\file\\hello6.txt");
         //RandomAccessFile文件的“插入”数据
-        raf.test3("src\\main\\resources\\file\\hello6.txt");
+        raf.test3("src\\Main\\resources\\file\\hello6.txt");
     }
 
     /**

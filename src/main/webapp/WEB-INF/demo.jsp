@@ -36,17 +36,17 @@
 			<label class="control-label" for="name">姓名：</label>
 			<input type="text" name="name" id="name" data-parsley-required="true">
 		</div>
-		
+
 		<div>
 			<label class="control-label" for="age">年龄：</label>
 			<input type="text" name="age" id="age" data-parsley-required="true">
 		</div>
-		
+
 		<div>
 			<label class="control-label" for="peopleDes">人物描述：</label>
 			<input type="text" name="peopleDes" id="peopleDes" data-parsley-required="true">
 		</div>
-		
+
 		<div>
 			<label class="control-label" for="sexId">性别：</label>
 			<select class="form-control" id="sexId" name="sexId" data-parsley-required="true">
@@ -60,18 +60,18 @@
  		<div>
 			<label class="control-label" for="bornDate">出生日期：</label>
 			<input type="text" name="bornDate" id="bornDate" class="datepicker-default">
-		</div> 
-		
+		</div>
+
  		<div>
 			<label class="control-label" for="phoneNo">手机号码：</label>
 			<input type="text" name="phoneNo" id="phoneNo"  data-parsley-required="true"
 			data-parsley-phoneemail='#input1' data-parsley-phoneemail-message="can't equal!">
 		</div>
-		
+
 		<input type="submit" id="tosubmit" class="tosubmit" value="表单提交">
 		<input type="button" id="tosubmit2" class="tosubmit2" value="表单提交2">
 		<input type="button" id="lookOver" class="lookOver" value="查看所有用户数据" >
-		
+
 	</form>
 	<br>
 	<div id="divTable1" style="display:none;">
@@ -88,7 +88,7 @@
  	<button id="testJson" class="testRequestResponse" onclick="test_request_response()">测试RequestResponse数据</button>
  	<button id="testJson" class="testJson" onclick="post_json()">测试application/json;charset=utf-8传输(json)</button>
  	<button id="testForm" class="testForm" onclick="test_form()">测试application/x-www-form-urlencoded传输</button>
- 	
+
  	<!-- jquary --><br><br>
  	jquary:<br>
  	<input type=text id="change_event" value="change_event">
@@ -96,17 +96,17 @@
  	<br>
  	<div id="div_1"><span></span><p></p></div>
  	<button id="div_btn" onclick="div_test()">html标签处理</button>
- 	
- 	
- 	
+
+
+
  	<!-- IO --><br>
  	IO:<br>
  	下载数据：<input id="loading" value="C:\Users\3759\Desktop\壁纸\timg.jpg">
  	<a id="loading_btn" href="<%=basePath%>com.bigDragon.common.test/loading?loading_path=C:\Users\3759\Desktop\wallpaper\timg.jpg">loading</a>
- 	
-    <c:url value="/test/loading" var="downurl">
+
+<%--    <c:url value="/test/loading" var="downurl">
       	<c:param name="filename" value="C:\Users\3759\Desktop\壁纸\timg.jpg"></c:param>
-   	</c:url>
+   	</c:url>--%>
        下载<a href="${downurl}">下载</a><br>
  	<!-- <img src="/img/Chevrolet Silverado.png" alt="" /> -->
  	<!-- <img src="com.bigDragonn.common.test/showImgGet?pathName=D://FPS//10_093427_18.JPG" alt="" /> -->
@@ -127,9 +127,7 @@
  	<button id="testAJAX" name="testAJAX" onclick="test_ajax()">testAJAX</button>
 	<hr>
 	测试区
-	<form>
-		<textarea rows="20"></textarea>
-	</form>
+	<button onclick="onTest()">测试方法</button>
 	<div id="div1"></div>
 </body>
 <script>
@@ -137,7 +135,7 @@
 	$(function(){
 	   //$('#form1').parsley();//调用parsley表单验证插件(提交时才会验证 是否必填和输入格式)
 		//$('#form').parsley().validate();//调用parsley表单验证插件(页面加载时就验证 是否必填和输入格式)
-		
+
 	});
 	function test_ajax(){
 		$.ajax({
@@ -155,14 +153,14 @@
 		});
 		console.info("AJAX之后的命令执行！！");
 	}
-	
+
 	$("#tosubmit2").click(function(){
 		var form1Serialize=$("#form1").serialize();
 		console.info(form1Serialize);
 		$.ajax({
 		    type: 'POST',
 		    url: 'com.bigDragon.common.test/save',
-		    data:form1Serialize, 
+		    data:form1Serialize,
 		    success: function (data) {
 		    	console.info(data);
 		    	console.info("name:"+data.name);
@@ -172,8 +170,8 @@
 		    }
 		});
 	});
-	
-	
+
+
 	  	//ajax后台数据回显
 		$(".lookOver").click(function(){
 			$.ajax({
@@ -212,7 +210,7 @@
 			        	tbody.appendChild(tr_body);
 			        }
 			        table.appendChild(tbody);
-			        
+
 			        document.getElementById("divTable1").style.display='block';
 			    },
 			    error: function (data) {
@@ -224,11 +222,11 @@
 	$("#change_event").change(function(){
 		console.info($("#change_event").val());
 		});
-	
+
 	function onchange_event(x){
 		console.info(document.getElementById(x).value)
 	}
-	
+
 	function div_test(){
 		var HTML='<p>HELLO WORLD</p>';
 		console.info($("#div_1"));
@@ -243,7 +241,7 @@
 		//document.getElementById("div_1").innerHTML(HTML);
 		document.getElementById('div_1').innerHTML=HTML;
 	}
-	
+
 	/* IO */
 	$("#loading_btn").click(function(){
 /* 		var loading_path=$("#loading").val();
@@ -262,11 +260,11 @@
 		}); */
 		window.location.href("com.bigDragon.common.test/loading?loading_path=C:\Users\3759\Desktop\壁纸\timg.jpg");
 	  });
-	
+
  	<!-- plug in -->
   	$('.datepicker-default').datepicker({
 	    todayHighlight: true
-	}); 
+	});
 	/* $( "#datepicker" ).datepicker(); */
 	/*qrcode*/
 
@@ -275,7 +273,7 @@
 			width : 100,
 			height : 100
 		});
-		
+
 		var elText = document.getElementById("qrcode_text");
 		if (!elText.value) {
 			console.info("Input a text");
@@ -292,7 +290,7 @@
 	        makeCode();
 	    }
 	});
-	
+
 	/* w2ui popup */
 	function popup() {
 	    w2popup.open({
@@ -316,6 +314,20 @@
 	        onMin     : function (event) { console.log('min'); },
 	        onKeydown : function (event) { console.log('keydown'); }
 	    });
+	}
+	function onTest() {
+		var data="发送结果 ：号码不符合规定数量：0 符合规定号码发送情况：{\"message\":\"成功\",\"resultDrs\":\"总发送数：2 成功：2 失败0\",\"status\":\"200\"}";
+		//短信项目返回的json字符串开始指针
+		var index = data.indexOf("{");
+		//短信项目返回的json字符串之前的返回结果
+		var result = data.substring(0,index);
+		//短信项目返回的json对象
+		var json = JSON.parse(data.substring(index));
+		result += json.message;
+		if(json.resultDes){//resultDes未空时不插入
+			result += "---"+json.resultDes;
+		}
+		console.info(result)
 	}
 </script>
 <script src="resources/js/test.js?v=<%=Math.random()%>" type="text/javascript"></script>

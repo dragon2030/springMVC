@@ -50,7 +50,6 @@ public class Main {
 		Class c=ThreadPoolDemo.class;
 		//工具类的线程安全解决
 		ThreadSafetyCompare.main(args);
-
 		//测试方法
 		//join
 		JoinMethod.main(new String[]{});

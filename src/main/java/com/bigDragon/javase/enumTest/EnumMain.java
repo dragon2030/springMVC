@@ -51,7 +51,7 @@ public class EnumMain {
         Season2 winter = Season2.valueOf("WINTER");
         System.out.println(winter);
 
-        //使用enum关键字定义的枚举类实现接口的情况
+        //练习：使用enum关键字定义的枚举类实现接口的情况
         //情况一：实现接口，在enum类中实现抽象方法
         Season3 season3 = Season3.valueOf("WINTER");
         season3.show();

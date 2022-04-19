@@ -93,7 +93,7 @@ public class LogAspect {
     }
     /**
      * 环绕通知(需要携带类型为ProceedingJoinPoint类型的参数)
-     * 环绕通知包含前置、后置、返回、异常通知；ProceedingJoinPoin 类型的参数可以决定是否执行目标方法
+     * 环绕通知包含前置、后置、返回、异常通知；ProceedingJoinPoint 类型的参数可以决定是否执行目标方法
      * 且环绕通知必须有返回值，返回值即目标方法的返回值
      * @param point
      */
@@ -104,7 +104,7 @@ public class LogAspect {
         String methodName = point.getSignature().getName();
         try {
             //前置通知
-        	logger_biz.info("The method "+ methodName+" start. param<"+ Arrays.asList(point.getArgs())+">");
+        	logger_biz.info("The method "+ methodName+" start. param<"+ ArrayTest.asList(point.getArgs())+">");
             //执行目标方法
             result = point.proceed();
             //返回通知

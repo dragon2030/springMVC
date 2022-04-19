@@ -40,7 +40,7 @@ public class FileInputOutputStreamTest {
 		FileInputStream fStream = null;
 		try {
 			//造文件
-			File file = new File("src\\main\\resources\\file\\hello.txt");//文本文件
+			File file = new File("src\\Main\\resources\\file\\hello.txt");//文本文件
 			fStream = new FileInputStream(file);
 			//读数据
 			byte[] buffer = new byte[5];//开发中byte数组长度一般取1024
@@ -77,10 +77,10 @@ public class FileInputOutputStreamTest {
 		
 		try {
 			//1.创建File类的对象，指明读入和写出的文件
-			File srcfile = new File("src\\main\\resources\\jpg\\0509-01.jpg");//图像文件
-			File destfile = new File("src\\main\\resources\\jpg\\0509-02.jpg");//图像文件
-			//File srcfile = new File("src\\main\\resources\\mp3\\Laser Blast.mp3");//音频文件
-			//File destfile = new File("src\\main\\resources\\mp3\\Laser Blast2.mp3");//音频文件
+			File srcfile = new File("src\\Main\\resources\\jpg\\0509-01.jpg");//图像文件
+			File destfile = new File("src\\Main\\resources\\jpg\\0509-02.jpg");//图像文件
+			//File srcfile = new File("src\\Main\\resources\\mp3\\Laser Blast.mp3");//音频文件
+			//File destfile = new File("src\\Main\\resources\\mp3\\Laser Blast2.mp3");//音频文件
 			fileInputStream = new FileInputStream(srcfile);
 			fileOutputStream = new FileOutputStream(destfile);
 			//3.数据的读入和写出操作

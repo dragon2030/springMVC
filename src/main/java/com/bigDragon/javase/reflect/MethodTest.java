@@ -49,25 +49,25 @@ public class MethodTest {
     public void test2(){
         Class<Person> personClass = Person.class;
         Method[] declaredMethod = personClass.getDeclaredMethods();
-        for (Method m : declaredMethod){
+        for (Method method : declaredMethod){
             //1.获取方法声明的注解
-            Annotation[] annotations = m.getAnnotations();
+            Annotation[] annotations = method.getAnnotations();
             for(Annotation a : annotations){
                 System.out.print(a + "\t");
             }
             System.out.println();
 
             //2.权限修饰符
-            System.out.print(Modifier.toString(m.getModifiers()) + "\t");
+            System.out.print(Modifier.toString(method.getModifiers()) + "\t");
 
             //3.返回值类型
-            System.out.print(m.getReturnType().getName() + "\t");
+            System.out.print(method.getReturnType().getName() + "\t");
 
             //4.方法名
-            System.out.println(m.getName() + "\t");
+            System.out.println(method.getName() + "\t");
 
             //5.形参列表
-            Class<?>[] parameterTypes = m.getParameterTypes();
+            Class<?>[] parameterTypes = method.getParameterTypes();
             if( parameterTypes.length > 0){
                 System.out.print("(");
                 for(int i = 0;i < parameterTypes.length;i++){
@@ -81,7 +81,7 @@ public class MethodTest {
             }
 
             //6.获取的异常
-            Class<?>[] exceptionTypes = m.getExceptionTypes();
+            Class<?>[] exceptionTypes = method.getExceptionTypes();
             if(exceptionTypes.length > 0){
                 System.out.println();
                 System.out.print("throws ");

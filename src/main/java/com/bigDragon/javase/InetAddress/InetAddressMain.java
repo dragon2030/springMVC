@@ -23,8 +23,8 @@ import java.net.UnknownHostException;
  *      6.如何实例化InetAddress:两个方法getByName(String host)、getlocalHost()
  *          两个常用方法：getHostName()/getHostAddress()
  *      7、端口号：正在计算机上运行的进程。
- *              要求：不同进程有不同的端口号
- *              范围：被规定为一个16位的整数0~65535
+ *         要求：不同进程有不同的端口号
+ *         范围：被规定为一个16位的整数0~65535
  *      8.端口号与IP地址的组合得出一个网络套接字：Socket
  *
  * @author bigDragon

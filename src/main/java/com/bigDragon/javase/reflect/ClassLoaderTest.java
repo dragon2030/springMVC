@@ -35,7 +35,7 @@ public class ClassLoaderTest {
     @Test
     public void test1(){
         //对于自定义类，使用系统类加载器进行加载
-        ClassLoader classLoader = ClassLoaderTest.class.getClassLoader();
+        ClassLoader classLoader = this.getClass().getClassLoader();
         System.out.println(classLoader);//sun.misc.Launcher$AppClassLoader@18b4aac2--类加载器
         //调用系统类加载器的getParent():获取扩展类加载器
         ClassLoader parent = classLoader.getParent();
@@ -46,7 +46,7 @@ public class ClassLoaderTest {
         System.out.println(parent1);//null--无法获取引导类加载器
 
         ClassLoader classLoader1 = String.class.getClassLoader();
-        System.out.println(classLoader1);
+        System.out.println(classLoader1);//null
     }
 
     /**
@@ -58,7 +58,7 @@ public class ClassLoaderTest {
 
 /*        try {
             Properties properties = new Properties();
-            FileInputStream fileInputStream=new FileInputStream("src\\main\\resources\\db.properties");
+            FileInputStream fileInputStream=new FileInputStream("src\\Main\\resources\\db.properties");
             properties.load(fileInputStream);
             String url = properties.getProperty("jdbc.url");
             System.out.println(url);
@@ -69,7 +69,7 @@ public class ClassLoaderTest {
         //方法二
         try {
             Properties properties = new Properties();
-            ClassLoader classLoader = ClassLoaderTest.class.getClassLoader();
+            ClassLoader classLoader = this.getClass().getClassLoader();
             InputStream resourceAsStream = classLoader.getResourceAsStream("db.properties");
             properties.load(resourceAsStream);
             String url = properties.getProperty("jdbc.url");

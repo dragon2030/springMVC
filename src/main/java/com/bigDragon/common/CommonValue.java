@@ -3,9 +3,8 @@
  */
 package com.bigDragon.common;
 
-import com.bigDragon.demo.entity.GluttonousSnakeLengthRecord;
+import com.bigDragon.demo.test.entity.GluttonousSnakeLengthRecord;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 

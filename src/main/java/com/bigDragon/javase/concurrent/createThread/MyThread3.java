@@ -49,7 +49,7 @@ public class MyThread3 {
 		NumThread numThread=new NumThread();
 		//4.将此Callable接口实现类对象，传递到FutureTask构造器中，创建FutureTask对象
 		FutureTask<Integer> futureTask=new FutureTask<Integer>(numThread);
-		//5.将FutureTask的对象作为参数床底到Thread构造器中，创建Thread对象，并用start方法调用
+		//5.将FutureTask的对象作为参数传递到Thread构造器中，创建Thread对象，并用start方法调用
 		new Thread(futureTask).start();
 		try {
 			//6.获取Callable中call方法的返回值

@@ -21,11 +21,11 @@ public class PicTest {
 	public static void main(String[] args) {
 		PicTest picTest=new PicTest();
 		//加密
-		picTest.test1("src\\main\\resources\\jpg\\0509-01.jpg", 
-				"src\\main\\resources\\jpg\\0509-03.jpg");
+		picTest.test1("src\\Main\\resources\\jpg\\0509-01.jpg",
+				"src\\Main\\resources\\jpg\\0509-03.jpg");
 		//解密
-		picTest.test1("src\\main\\resources\\jpg\\0509-03.jpg", 
-				"src\\main\\resources\\jpg\\0509-04.jpg");
+		picTest.test1("src\\Main\\resources\\jpg\\0509-03.jpg",
+				"src\\Main\\resources\\jpg\\0509-04.jpg");
 	}
 
 	public void test1(String srcStr,String destStr){

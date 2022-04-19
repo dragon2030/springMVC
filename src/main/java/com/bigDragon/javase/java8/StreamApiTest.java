@@ -37,7 +37,7 @@ import java.util.stream.Stream;
  *      >创建Stream方式二：通过数组
  *      >创建Stream方式三：通过Stream的of()
  *  五、Stream的中间操作
- *      概念：多个中间操作可以连接起来形成一个流水线，除非流水线上出发终止操作，否则中间操作捕获执行任何的
+ *      概念：多个中间操作可以连接起来形成一个流水线，除非流水线上出出现终止操作，否则中间操作捕获执行任何的
  *      处理！而在终止操作时一次性全部处理，称为“惰性求值”。
  *      >筛选与切片
  *          Stream<T> filter(Predicate<? super T> predicate)——接收lambda，从流中排除某些元素
@@ -161,8 +161,12 @@ public class StreamApiTest {
         Stream.generate(Math::random).limit(10).forEach(System.out::println);
     }
     /*
-    Stream的中间操作
-    1.筛选与切片
+    *   Stream的中间操作
+    *   1.筛选与切片
+    *          Stream<T> filter(Predicate<? super T> predicate)——接收lambda，从流中排除某些元素
+    *          Stream<T> limit(long maxSize)——截断流，使其元素不超过给定数量
+    *          Stream<T> skip(long n)——跳过元素，返回一个扔掉了前n个元素的流。若流中数据不足n个，
+    *          Stream<T> distinct()——筛选，通过流所生成元素的hasCode()和equals()去除重复元素
      */
     @Test
     public void test5(){
@@ -182,19 +186,24 @@ public class StreamApiTest {
         list.stream().distinct().forEach(System.out::println);
     }
     /*
-    Stream的中间操作
-    2.映射
+    * Stream的中间操作
+    * 2.映射
+    *       <R> Stream<R> map(Function<? super T, ? extends R> mapper)——接收一个参数作为参数，将元素转换成其他形式或提取信息，该函数会被应用到每个元素并被映射成一个新的元素
+    *       <R> Stream<R> flatMap(Function<? super T, ? extends Stream<? extends R>> mapper);
      */
     @Test
     public void test6(){
         List<String> list = Arrays.asList("aa", "bb", "cc", "dd");
-        //<R> Stream<R> map(Function<? super T, ? extends R> mapper)——接收一个参数作为参数，将元素
-        //转换成其他形式或提取信息，该函数会被应用到每个元素并被映射成一个新的元素
+        /*<R> Stream<R> map(Function<? super T, ? extends R> mapper)——接收一个参数作为参数，
+        将元素转换成其他形式或提取信息，该函数会被应用到每个元素并被映射成一个新的元素
+         */
         list.stream().map(str -> str.toUpperCase()).forEach(System.out::println);
         System.out.println("*******************************");
         //练习：获取名字长度大于3的员工姓名
         List<Person> personList = getList();
-        personList.stream().map(Person::getName).filter(name -> name.length()>3).forEach(System.out::println);
+        personList.stream().forEach(System.out::println);
+        personList.stream().map(Person::getName).forEach(System.out::println);
+        //personList.stream().map(Person::getName).filter(name -> name.length()>3).forEach(System.out::println);
         System.out.println("*******************************");
         // <R> Stream<R> flatMap(Function<? super T, ? extends Stream<? extends R>> mapper);
         // 接收一个函数作为参数，将流中的每个值都换成另一个流，然后把所有的流连接成一个流

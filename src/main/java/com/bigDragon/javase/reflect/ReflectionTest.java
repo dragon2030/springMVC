@@ -9,6 +9,7 @@ import java.lang.reflect.Method;
 
 /**
  * 直接实例化和反射的对比
+ * 结论：通过反射可以做做原来直接实例化能做到的事，如创建实例、调属性调方法，还可以做到原来做不到的事，如调用运行时类（class）的私有结构
  *
  * 疑问1.通过直接new的方式或反射的方式都可以调用公共的结构，开发中到底用哪个？
  *      建议：直接new的方式
@@ -20,7 +21,7 @@ import java.lang.reflect.Method;
  * 1.类的加载过程：（后有类加载过程详解）
  * 程序经过javac.exe命令以后，会生成一个或多个字节码文件 (.class结尾)
  * 接着我们使用java.exe命令对某个字节码文件进行解释运行。相当于将某个字节码文件加载到内存中。此过程就称为类的加载。
- * 加载到内存中的类，我们就称为运行时类，此运行时类，就作为Class的一个实例。
+ * 加载到内存中的类，我们就称为运行时类，此运行时类，就作为Class的一个实例。（要背）
  *
  * 2.换句话说，Class的实例就对应着一个运行时类。
  * 3.加载到内存中的运行时类，会缓存一定的时间。在此时间之内，我们可以通过不同的方式来获取此运行时类。
@@ -34,9 +35,9 @@ import java.lang.reflect.Method;
  * 6.primitive type:基本数据类型
  * 7.void
  *
- * 类的加载过程：
+ * 类的加载过程：（没有完全懂，得看视频再学习）
  *      当主程序主动使用某个类时，如果该类还未被加载到内存中，则系统会通过如下三个步骤来对该类进行初始化。
- *          类的加载（Load）:将类的class文件读入内存，并为值创建一个java.lang.Class对象，此过程由类加载器完成。
+ *          类的加载（Load）:将类的class文件读入内存（通过java.exe命令），并为值创建一个java.lang.Class对象，此过程由类加载器完成。
  *              加载：将class文件字节码内容加载到内存中，并将这些静态数据转换成方法区的运行时数据结构，然后在堆中
  *              生成一个代表这个类的java.lang.Class对象，作为方法区中类数据的访问入口(即引用地址)。所有需要访问
  *              和使用的类数据只能通过这个Class对象，这个加载过程需要类加载器参与。
@@ -96,8 +97,7 @@ public class ReflectionTest {
         person.age = 10;
         System.out.println(person);
         person.show();
-        //在Person类外部，不可以通过Person类的对象调用其内部私有结构。
-        //比如：name、showNation()以及私有的构造器
+        //特性：在Person类外部，不可以通过Person类的对象调用其内部私有结构。
     }
 
     /**
@@ -109,19 +109,20 @@ public class ReflectionTest {
             Class clazz = Person.class;
 
             //1.通过反射，创建Person类的对象
+            //有参构造器
             Constructor constructor = clazz.getConstructor(String.class, int.class);
             Object o = constructor.newInstance("Tom", 12);
             Person p = (Person) o;
-            System.out.println(p);
+            System.out.println(p);//Person{name='Tom', age=12}
             //无参构造器
             Person p2 = (Person)clazz.newInstance();
-            System.out.println(p2);
+            System.out.println(p2);//Person{name='null', age=0}
 
             //2.通过反射，调用对象指定的属性、方法
             //调用属性
             Field age = clazz.getDeclaredField("age");
             age.set(p,10);
-            System.out.println(p);
+            System.out.println(p);//Person{name='Tom', age=10}
 
             //调用方法
             Method show = clazz.getDeclaredMethod("show");
@@ -135,18 +136,19 @@ public class ReflectionTest {
             declaredConstructor.setAccessible(true);
             Object o1 = declaredConstructor.newInstance("Jerry");
             Person p1 = (Person) o1;
-            System.out.println(p1);
+            System.out.println(p1);//Person{name='Jerry', age=0}
 
             //调用私有的属性
             Field name = clazz.getDeclaredField("name");
             name.setAccessible(true);
             name.set(p1,"HanMeimei");
-            System.out.println(p1);
+            System.out.println(p1);//Person{name='HanMeimei', age=0}
             
             //调用私有的方法
             Method showNation = clazz.getDeclaredMethod("showNation", String.class);
             showNation.setAccessible(true);
             String nation = (String) showNation.invoke(p1,"中国");//相当于p1.showNation(中国)
+            //Method对象invoke结果的返回值就是调用showNation方法实际返回值
             System.out.println(nation);
 
 
@@ -181,24 +183,25 @@ public class ReflectionTest {
     public void test4() throws ClassNotFoundException {
         //方式一：调用运行时类的属性：.class
         Class clazz1 = Person.class;
-        System.out.println(clazz1);
+        System.out.println(clazz1);//class com.bigDragon.javase.reflect.Person
         //方式二：通过运行时类的对象,调用getClass()
         Person person = new Person();
         Class clazz2 = person.getClass();
-        System.out.println(clazz2);
+        System.out.println(clazz2);//class com.bigDragon.javase.reflect.Person
         //方式三：调用Class的静态方法：forName(String classPath)
         //使用频率更高，更好的提现了动态性
         Class clazz3 = Class.forName("com.bigDragon.javase.reflect.Person");
-        System.out.println(clazz3);
+        System.out.println(clazz3);//class com.bigDragon.javase.reflect.Person
 
         System.out.println(clazz1 == clazz2);
         System.out.println(clazz1 == clazz3);
 
         //方式四：使用类的加载器：ClassLoader
-        ClassLoader classLoader = ReflectionTest.class.getClassLoader();
+        ClassLoader classLoader = this.getClass().getClassLoader();
         Class<?> clazz4 = classLoader.loadClass("com.bigDragon.javase.reflect.Person");
-        System.out.println(clazz4);
+        System.out.println(clazz4);//class com.bigDragon.javase.reflect.Person
         System.out.println(clazz1 == clazz4);
+        //说明：加载到内存中的运行时类，会缓存一定的时间。在此时间之内，我们可以通过不同的方式来获取此运行时类。
     }
 
     /**

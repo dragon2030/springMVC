@@ -1,7 +1,7 @@
 package com.bigDragon.javase.ioStream;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.poi.POITextExtractor;
+import org.apache.poi.extractor.POITextExtractor;
 import org.apache.poi.hwpf.extractor.WordExtractor;
 import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
@@ -23,9 +23,9 @@ public class WordTest {
         //参考博客 https://blog.csdn.net/a917606449/article/details/93617718
 
         WordTest wordTest = new WordTest();
-        String Path5 = "src\\main\\resources\\doc\\testDoc.docx";
-        String Path6 = "src\\main\\resources\\doc\\testDoc2.doc";
-        String Path7 = "src\\main\\resources\\doc\\testDoc3.docx";
+        String Path5 = "src\\Main\\resources\\doc\\testDoc.docx";
+        String Path6 = "src\\Main\\resources\\doc\\testDoc2.doc";
+        String Path7 = "src\\Main\\resources\\doc\\testDoc3.docx";
 
         //word读取文件doc/docx
         //System.out.println(wordTest.readWord(Path6));

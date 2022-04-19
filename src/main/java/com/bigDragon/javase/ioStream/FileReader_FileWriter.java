@@ -48,7 +48,7 @@ public class FileReader_FileWriter {
 	 * 获取资源文件hello.txt的file对象
 	 */
 	public void getFile(){
-		File file = new File("src\\main\\resources\\file\\hello.txt");//相较于当前工程
+		File file = new File("src\\Main\\resources\\file\\hello.txt");//相较于当前工程
 		System.out.println(file.getAbsolutePath());//获取其绝对路径
 	}
 	/**
@@ -66,7 +66,7 @@ public class FileReader_FileWriter {
 		FileReader fileReader = null;
 		try {
 			//实例化File类的对象，指明要操作的文件
-			File file = new File("src\\main\\resources\\file\\hello.txt");
+			File file = new File("src\\Main\\resources\\file\\hello.txt");
 			fileReader = new FileReader(file);
 			//数据的读入
 			//read():返回读入的一个字符。如果达到文件末尾，返回-1
@@ -105,7 +105,7 @@ public class FileReader_FileWriter {
 		FileReader fr = null;
 		try {
 			//1.File类的实例化
-			File file = new File("src\\main\\resources\\file\\hello.txt");
+			File file = new File("src\\Main\\resources\\file\\hello.txt");
 			fr = new FileReader(file);
 			//3.读入的操作
 			//read(char[] cbuffer):返回每次度日cbuffer数组中的字符个数
@@ -154,7 +154,7 @@ public class FileReader_FileWriter {
 		FileWriter fileWriter = null;//对原有文件的追加
 		try {
 			//1.提供File类的对象，指明写出到的文件
-			File file = new File("src\\main\\resources\\file\\hello2.txt");
+			File file = new File("src\\Main\\resources\\file\\hello2.txt");
 			fileWriter = new FileWriter(file, true);
 			//3.写出的操作
 			fileWriter.write("I have a dream\n");
@@ -185,8 +185,8 @@ public class FileReader_FileWriter {
 		
 		try {
 			//1.创建File类的对象，指明读入和写出的文件
-			File srcfile = new File("src\\main\\resources\\file\\hello.txt");
-			File destfile = new File("src\\main\\resources\\file\\hello3.txt");
+			File srcfile = new File("src\\Main\\resources\\file\\hello.txt");
+			File destfile = new File("src\\Main\\resources\\file\\hello3.txt");
 			fileReader = new FileReader(srcfile);
 			fileWriter = new FileWriter(destfile);
 			//3.数据的读入和写出操作

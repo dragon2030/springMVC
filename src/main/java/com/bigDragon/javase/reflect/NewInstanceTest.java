@@ -46,11 +46,11 @@ public class NewInstanceTest {
          */
         Class<Person> personClass = Person.class;
         Person person = personClass.newInstance();
-        System.out.println(person);
+        System.out.println(person);//Person{name='null', age=0}
         //public Constructor<T> getConstructor(Class<?>... parameterTypes):调用此方法,调用了运行时类的有参构造器
         Constructor<Person> constructor = personClass.getConstructor(String.class, int.class);
         Person person1 = constructor.newInstance("Tom", 12);
-        System.out.println(person1);
+        System.out.println(person1);//Person{name='Tom', age=12}
 
         //当类没有无参构造器时，报错java.lang.InstantiationException
         Class<Person2> person2Class = Person2.class;

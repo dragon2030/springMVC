@@ -41,11 +41,11 @@ public class BufferedTest {
 	public static void main(String[] args) {
 		BufferedTest bufferedTest = new BufferedTest();
 		//实现非文本文件的复制
-		bufferedTest.bufferedInputStreamTest("src\\main\\resources\\jpg\\0509-01.jpg",
-				"src\\main\\resources\\jpg\\0509-02.jpg");
+		bufferedTest.bufferedInputStreamTest("src\\Main\\resources\\jpg\\0509-01.jpg",
+				"src\\Main\\resources\\jpg\\0509-02.jpg");
 		//使用BufferedReader和BufferedWriter实现文本文件的复制
-		bufferedTest.testBufferedReaderBufferWriter("src\\main\\resources\\file\\hello.txt",
-				"src\\main\\resources\\file\\hello4.txt");
+		bufferedTest.testBufferedReaderBufferWriter("src\\Main\\resources\\file\\hello.txt",
+				"src\\Main\\resources\\file\\hello4.txt");
 	}
 	
 	/**

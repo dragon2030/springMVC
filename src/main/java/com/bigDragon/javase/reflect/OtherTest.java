@@ -59,7 +59,7 @@ public class OtherTest {
         Class<Person> personClass = Person.class;
 
         Class<? super Person> superclass = personClass.getSuperclass();
-        System.out.println(superclass);
+        System.out.println(superclass);//class com.bigDragon.javase.reflect.model.Creature
     }
 
     /**
@@ -70,7 +70,7 @@ public class OtherTest {
         Class<Person> personClass = Person.class;
 
         Type genericSuperclass = personClass.getGenericSuperclass();
-        System.out.println(genericSuperclass);
+        System.out.println(genericSuperclass);//com.bigDragon.javase.reflect.model.Creature<java.lang.String>
     }
 
     /**
@@ -86,7 +86,7 @@ public class OtherTest {
         Type[] actualTypeArguments = parameterizedType.getActualTypeArguments();
         for(Type type:actualTypeArguments){
             //方法一
-            //System.out.println(type.getTypeName());
+            System.out.println(type.getTypeName());
             //方法二
             System.out.println(((Class)type).getName());
         }

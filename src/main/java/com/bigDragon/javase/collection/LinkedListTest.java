@@ -33,5 +33,6 @@ public class LinkedListTest {
     @Test
     public void test(){
         List list = new LinkedList();
+        list.add(new Object());
     }
 }

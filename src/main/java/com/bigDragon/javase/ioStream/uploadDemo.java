@@ -121,6 +121,6 @@ public class uploadDemo extends HttpServlet {
         }
         req.setAttribute("message",message);
         //转发的方式返回数据，重新刷新页面
-        req.getRequestDispatcher("../uploadDownload/main").forward(req,resp);
+        req.getRequestDispatcher("../uploadDownload/Main").forward(req,resp);
     }
 }

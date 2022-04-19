@@ -12,7 +12,7 @@ import java.util.function.Predicate;
 /**
  * Lambda表达式
  * 一、Lambda表达式的概念
- * Lambda是一个匿名函数，我们可以把Lambda表达式理解为是一段可以传递的代码（将代码想暑假一样进行传递）。
+ * Lambda是一个匿名函数，我们可以把Lambda表达式理解为是一段可以传递的代码（将代码像数据一样进行传递）。
  * 使用它可以写出更简洁、更灵活的代码。作为一种更紧凑的代码风格，使Java的语言的语言表达能力得到提升。
  * 二、Lambda表达式的使用
  * 1.举例：(o1,o2) -> Integer.compare(o1,o2);
@@ -41,9 +41,13 @@ import java.util.function.Predicate;
  *      >lambda表达式就是一个函数式接口的实例
  * 6.java内置的4大核心函数式接口
  *      >消费型接口      Consumer<T>     void accept(T t)
+ *          参数类型：T  返回类型：void       用途：对类型为T的对象应用操作。包含方法void accept(T t)
  *      >供给型接口      Supplier<T>     T get()
+ *          参数类型：无  返回类型：T          用途：返回类型为T的对象。包含方法T get()
  *      >函数型接口      Function<T,R>   R apply(T t)
+ *          参数类型：T  返回类型：R          用途：对类型为T的对象应用操作，并返回结果，结果是R类型的对象。包含方法R apply(T t)
  *      >断定型接口      Predicate<T>    boolean test(T t)
+ *          参数类型：T  返回类型：boolean    用途：确定类型为T的对象是否满足某约束，并返回boolean值包含方法boolean test(T t)
  *
  * @author bigDragon
  * @create 2020-12-15 11:36
@@ -60,9 +64,9 @@ public class LambdaTest {
         lambdaTest.format1();
         //语法格式二：lambda需要一个参数，但是没有返回值
         lambdaTest.format2();
-        //语法格式三：数据类型可以省略，因为可由编译器推断得出，称为“类型推断”
+        //语法格式三：数据类型可以省略，因为可由编译器推断得出，称为“类型推断”（是对语法格式二的简化）
         lambdaTest.format3();
-        //语法格式四：lambda若只需要一个参数时，参数的小括号可以省略
+        //语法格式四：lambda若只需要一个参数时，参数的小括号可以省略（是对语法格式二的进一步简化）
         lambdaTest.format4();
         //语法格式五：lambda需要两个或以上的参数，多条执行语句，并且可以有返回值
         lambdaTest.format5();
@@ -152,6 +156,7 @@ public class LambdaTest {
         Consumer<String> consumer2 = (String s) -> {
             System.out.println(s);
         };
+        //Consumer<String> consumer2 = (String s) -> System.out.println(s);
         consumer2.accept("一个听的人当真了，一个说的人当真了");
     }
     /*
@@ -237,6 +242,7 @@ public class LambdaTest {
      */
     @Test
     public void functionTest1(){
+        //原本的写法，定义Consumer函数式接口的具体实现
         happyTime(500, new Consumer<Double>() {
             @Override
             public void accept(Double aDouble) {
@@ -244,6 +250,7 @@ public class LambdaTest {
             }
         });
         System.out.println("*********************************");
+        //lambda的写法，定义Consumer函数式接口的具体实现
         happyTime(500, aDouble -> System.out.println("学习太累了，去天上人间买瓶矿井水。价格："+aDouble));
     }
     public void happyTime(double money,Consumer<Double> con){

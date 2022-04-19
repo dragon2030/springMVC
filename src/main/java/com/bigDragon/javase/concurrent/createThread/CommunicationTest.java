@@ -37,8 +37,7 @@ public class CommunicationTest implements Runnable{
 		while(true){
 			//共享数据 加锁
 			synchronized(this){
-				
-				notify();
+				this.notify();
 				//notifyAll();
 				
 				if(ticket>0){
@@ -54,8 +53,8 @@ public class CommunicationTest implements Runnable{
 					
 					try {
 						//调用wait() 方法的线程进入阻塞状态
-						wait();
-					} catch (InterruptedException e) {
+						this.wait();
+					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}

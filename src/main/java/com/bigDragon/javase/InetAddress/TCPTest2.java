@@ -29,7 +29,7 @@ public class TCPTest2 {
             Socket socket = new Socket(inetAddress,8899);
             OutputStream outputStream = socket.getOutputStream();
 
-            FileInputStream fileInputStream=new FileInputStream(new File("src\\main\\resources\\jpg\\0509-01.jpg"));
+            FileInputStream fileInputStream=new FileInputStream(new File("src\\Main\\resources\\jpg\\0509-01.jpg"));
             byte[] buffer = new byte[1024];
             int len = 0;
             while ((len = fileInputStream.read(buffer)) != -1){
@@ -56,7 +56,7 @@ public class TCPTest2 {
             //获取输入流
             InputStream inputStream = socket.getInputStream();
             //读取输入流数据
-            FileOutputStream fileOutputStream = new FileOutputStream(new File("src\\main\\resources\\jpg\\0509-06.jpg"));
+            FileOutputStream fileOutputStream = new FileOutputStream(new File("src\\Main\\resources\\jpg\\0509-06.jpg"));
             byte[] buffer = new byte[1024];
             int len;
             while ((len = inputStream.read(buffer)) !=-1){

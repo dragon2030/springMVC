@@ -17,6 +17,8 @@ import java.util.TreeSet;
  * 4.定制排序中，比较两个对象是否相投的标准为：compare()返回0，不再是equals()
  *      TreeMap特点：采用红黑树的存储结构,有序，查询速度比List快
  *
+ * 整理一下java两种给集合排序的方式
+ *
  * @author bigDragon
  * @create 2020-11-16 15:04
  */
@@ -33,6 +35,7 @@ public class TreeSetTest {
     /**
      * 自然排序（实现Comparable接口）
      */
+    @Test
     public void test(){
         //LinkedHashSet测试
         Collection collection = new TreeSet();
@@ -103,7 +106,7 @@ public class TreeSetTest {
             }*/
 
             /**
-             *
+             * 泛型之后的写法
              * @param person1
              * @param person2
              * @return

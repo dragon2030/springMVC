@@ -23,7 +23,8 @@ import java.util.List;
  *      ...
  *      后续的添加和扩容操作和jdk 7无异
  *
- *  1.3 小结：jdk7中的ArrayList的对象创建类似于单例的饿汉模式，而jdk8中的ArrayList的对象的创建类似于单例的懒汉模式，延时了数组的创建，节省内存。
+ *  1.3 小结：jdk7中的ArrayList的对象创建类似于单例的饿汉模式，而jdk8中的ArrayList的对象的创建类似于单例的懒汉模式，延时了数组的创建，
+ *  节省内存。
  *
  * @author bigDragon
  * @create 2020-11-05 15:55

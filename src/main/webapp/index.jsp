@@ -22,6 +22,30 @@
 <hr>
 <a href=<%=basePath%>test/main>test page</a>
 </body>
+<input type="text" id="spc" name="spc" />
+<button onclick="function1()">按钮</button>
 <script>
+	function function1() {
+		debugger;
+		var a1 = "";
+		var a2 = null;
+		var a3 ;
+		if(a1){
+			console.info("a1: "+a1)
+		}else{
+			console.info("!a1: "+a1)
+		}
+		if(a2){
+			console.info("a2: "+a2)
+		}else{
+			console.info("!a2: "+a2)
+		}
+		if(a3){
+			console.info("a3 :"+a3)
+		}else{
+			console.info("!a3: "+a3)
+		}
+	}
+
 </script>
 </html>

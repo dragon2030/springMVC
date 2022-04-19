@@ -44,7 +44,7 @@ package com.bigDragon.javase.Annotation;
  *      元注解：对现有的注解进行解释说明的注解
  *      Retention:指定所修饰的Annotation的生命周期：SOURCE/CLASS(默认行为)/RUNTIME
  *                  只有声明为RUNTIME生命周期的注解，才能通过反射获取。
- *      Target:用于指定被修饰的Annotation弄用于修饰哪些程序元素
+ *      Target:用于指定被修饰的Annotation作用于修饰哪些程序元素
  *      *******出现的频率较低*******
  *      Documented:表示所修饰的注释在被javadoc解析时，保留下来。
  *      Inherited:被它修饰的Annotation将具有继承性。
