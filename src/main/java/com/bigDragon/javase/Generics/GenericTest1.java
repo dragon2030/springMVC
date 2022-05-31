@@ -3,7 +3,7 @@ package com.bigDragon.javase.Generics;
 import org.junit.Test;
 
 /**
- * 自定义泛型方法使用
+ * 泛型类使用
  * @author bigDragon
  * @create 2020-11-24 14:43
  */

@@ -42,6 +42,8 @@ import java.time.ZonedDateTime;
 import java.util.*;
 import java.util.function.DoubleToIntFunction;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+
 import com.bigDragon.*;
 
 /**
@@ -50,10 +52,9 @@ import com.bigDragon.*;
  */
 public class Main {
 
+
     public static void main(String[] args) {
-        Object o = null;
-        String s = (String) o;
-        System.out.println(s==null);
+
     }
 
 }

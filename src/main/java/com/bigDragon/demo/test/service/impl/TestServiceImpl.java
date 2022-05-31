@@ -25,7 +25,7 @@ public class TestServiceImpl implements TestService{
 	 * 而type属性则解析为bean的类型。所以如果使用name属性，则使用byName的自动注入策略，
 	 * 而使用type属性时则使用byType自动注入策略。如果既不指定name也不指定type属性，
 	 * 这时将通过反射机制使用byName自动注入策略。 @Resource装配顺序
-	 *                                                                  
+	 *
 	 *1.如果同时指定了name和type，则从Spring上下文中找到唯一匹配的bean进行装配，找不到则抛出异常
 	 *2.
 	 *如果指定了name，则从上下文中查找名称（id）匹配的bean进行装配，找不到则抛出异常
@@ -57,7 +57,7 @@ public class TestServiceImpl implements TestService{
 		List<Map<String,Object>> listMap=testDao.getUser();
 		return listMap;
 	}
-	
+
 	@Override
 	public List<User> getUserMsg(){
 		List<User> listMap=testDao.getUserMsg();
@@ -81,4 +81,5 @@ public class TestServiceImpl implements TestService{
 		}
 		return successNum;
 	}
+
 }

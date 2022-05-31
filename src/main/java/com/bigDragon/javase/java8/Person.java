@@ -8,8 +8,15 @@ import java.util.Objects;
  * @create 2020-12-01 15:49
  */
 public class Person {
+    private int id;
     private String name;
     public int age;
+
+    public Person(int id, String name, int age) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+    }
 
     public Person(String name, int age) {
         this.name = name;
@@ -42,10 +49,19 @@ public class Person {
         this.age = age;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "Person{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", age=" + age +
                 '}';
     }

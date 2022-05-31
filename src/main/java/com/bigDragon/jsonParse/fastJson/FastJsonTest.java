@@ -25,6 +25,7 @@ public class FastJsonTest {
         //测试生成JSONArray字符串
         String jsonText=faskJsonTest.setJSONArray();
         System.out.println(jsonText);
+        JSONObject jsonObject1 = new JSONObject();
         //测试获取JSONArray中某一值
         JSONArray jsonArray = JSON.parseArray(jsonText);
         JSONObject jsonObject=jsonArray.getJSONObject(0);
@@ -66,6 +67,7 @@ public class FastJsonTest {
             jsonObject.put("c", i+"3");
             jsonArray.add(jsonObject);
         }
+        System.out.println(jsonArray);
         return JSON.toJSONString(jsonArray);
     }
 

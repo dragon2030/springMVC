@@ -39,14 +39,17 @@ public class GenericsMain {
         genericsMain.test2();
         //自定义泛型类
         new Order();
-        //自定义泛型方法使用
+        //自定义泛型类使用
         new GenericTest1();
         //子类继承泛型类
         //由于子类在继承带泛型的父类时，指明了泛型的类型，则实例化子类对象时，不在需要指明泛型
         Order<Integer> order= new SubOrder();//不再是泛型类，只是普通类
         Order<Boolean> order2 = new SubOrder2<Boolean>();//是泛型类
         //自定义泛型方法
-        new Order().copyFromArrayToList(new String[5]);
+        new Order2().copyFromArrayToList(new String[5]);
+        String str = new Order2().genCode();
+        Integer i = new Order2().genCode();
+
         //泛型在继承方面的体现
         //通配符的使用
         //有限制条件的通配符使用

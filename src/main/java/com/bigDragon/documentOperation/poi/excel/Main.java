@@ -1,7 +1,7 @@
-package com.bigDragon.poi.excel;
+package com.bigDragon.documentOperation.poi.excel;
 
-import com.bigDragon.poi.excel.dto.AcHisTeamRptDto;
-import com.bigDragon.poi.excel.util.ExcelExportUtil;
+import com.bigDragon.documentOperation.poi.excel.dto.AcHisTeamRptDto;
+import com.bigDragon.documentOperation.poi.excel.util.ExcelExportUtil;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.VerticalAlignment;
@@ -48,6 +48,12 @@ public class Main {
             style.setVerticalAlignment(VerticalAlignment.CENTER);
             int outPutNum = 0;
 
+            //合并单元格
+            CellRangeAddress region = new CellRangeAddress(1, 5, 1, 1);
+            sheet.addMergedRegion(region);
+            CellRangeAddress region2 = new CellRangeAddress(1, 4, 1, 1);
+            sheet.addMergedRegion(region2);
+
             //基础10*10数据
             for(int i=0;i<10;i++){
                 HSSFRow row = sheet.createRow(i);
@@ -59,9 +65,9 @@ public class Main {
                 }
             }
 
-            //合并单元格
+/*            //合并单元格
             CellRangeAddress region = new CellRangeAddress(1, 5, 1, 1);
-            sheet.addMergedRegion(region);
+            sheet.addMergedRegion(region);*/
 
   /*          region = new CellRangeAddress(0, 1, 1, 1);
             sheet.addMergedRegion(region);*/

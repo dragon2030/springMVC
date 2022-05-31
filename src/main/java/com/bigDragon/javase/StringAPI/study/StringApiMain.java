@@ -1,4 +1,4 @@
-package com.bigDragon.javase.StringAPI;
+package com.bigDragon.javase.StringAPI.study;
 
 import org.junit.Test;
 

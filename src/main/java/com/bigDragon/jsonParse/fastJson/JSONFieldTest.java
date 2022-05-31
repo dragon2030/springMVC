@@ -9,6 +9,7 @@ import java.util.Date;
  * @author: bigDragon
  * @create: 2022/4/8
  * @Description:
+ *  @JSONField 注解使用
  */
 public class JSONFieldTest {
     public static void main(String[] args) {

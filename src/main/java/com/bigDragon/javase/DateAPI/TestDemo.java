@@ -12,7 +12,6 @@ import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.Date;
 
-import static netscape.security.Privilege.add;
 
 /**
  * @author: bigDragon

@@ -1,18 +1,16 @@
-package com.bigDragon.poi.excel.util;
+package com.bigDragon.documentOperation.poi.excel.util;
 
-import com.bigDragon.javase.faseToObject.interfasce.C;
-import com.bigDragon.poi.excel.Excel;
+import cn.hutool.core.collection.CollectionUtil;
+import com.bigDragon.documentOperation.poi.excel.Excel;
 import org.apache.poi.hssf.usermodel.HSSFRichTextString;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.time.chrono.MinguoDate;
 import java.util.*;
 
 /**
@@ -24,27 +22,27 @@ import java.util.*;
 public class ExcelUtil {
     /**
      * Excel导出
-     * @param title Sheet名字
+     * @param sheetName Sheet名字
      * @param pojoClass Excel对象Class类
      * @param dateCollection Excel对象数据Collection
      * @param outputStream 输出流
      * @throws Exception
      */
     //TODO 这边两个泛型是相同的，可以用泛型方法统一两个泛型的传入
-    public static void exportExcel (String title, Class<?> pojoClass, Collection<?> dateCollection, OutputStream outputStream) throws Exception{
+    public static void exportExcel (String sheetName, Class<?> pojoClass, Collection<?> dateCollection, OutputStream outputStream) throws Exception{
         //使用userModel模式实现的，当excel文档出现10万级别的大数据文件时可能导致oom内存溢出
-        exportExcelInUserModel(title,pojoClass,dateCollection,outputStream);
+        exportExcelInUserModel(sheetName,pojoClass,dateCollection,outputStream);
         //使用eventModel模式实现，可以一边读一边处理，效率较高，但实现复杂
     }
 
     //Excel导出-使用userModel模式实现
-    public static void exportExcelInUserModel(String title, Class<?> pojoClass,
+    public static void exportExcelInUserModel(String sheetName, Class<?> pojoClass,
                                               Collection<?> dateCollection, OutputStream outputStream) throws Exception{
         //数据非空验证
         if(dateCollection == null || dateCollection.size() == 0){
             throw new RuntimeException("导出数据为空！");
         }
-        if(title == null || outputStream == null || pojoClass == null){
+        if(sheetName == null || outputStream == null || pojoClass == null){
             throw new RuntimeException("传入参数不可为空！");
         }
 
@@ -52,12 +50,12 @@ public class ExcelUtil {
         //声明一个工作簿
         Workbook workbook = new HSSFWorkbook();
         //声明一个表格
-        Sheet sheet = workbook.createSheet(title);
+        Sheet sheet = workbook.createSheet(sheetName);
         // 列名标题
         ArrayList<String> exportFieldTitle = new ArrayList<>();
         // 列名宽度
         ArrayList<Integer> exportFieldWidth = new ArrayList<>();
-        // 用于拿到所有列名，对应导出字段在实体类中的get方法
+        // 用于拿到dataCollection中字段值，对应导出字段在实体类中的get方法
         ArrayList<Method> methodObject = new ArrayList<>();
         // 标注exportConvertSign的方法，key存getMethod方法名，value存getMethodConvert的Method类
         // （因为在导出列时会按照上面的methodObject遍历，此设计可以便于快速找到methodObject中某个值）
@@ -68,7 +66,6 @@ public class ExcelUtil {
         for(int i = 0; i < fields.length; i++){
             Field field = fields[i];
             Excel excel = field.getAnnotation(Excel.class);
-            //TODO 这边写的应该有问题，为空时应该return或者异常，产生空文件或者提示文件为空，不应该执行多余代码
             if(excel != null){
                 //添加到标题
                 exportFieldTitle.add(excel.exportName());
@@ -79,7 +76,6 @@ public class ExcelUtil {
                 StringBuilder getMethodName = new StringBuilder("get")
                         .append(fieldName.substring(0,1).toUpperCase())
                         .append(fieldName.substring(1));
-                //TODO 有必要写new Class[]{}?
                 Method getMethod = pojoClass.getDeclaredMethod(getMethodName.toString(),new Class[]{});
                 methodObject.add(getMethod);
                 if(excel.exportConvertSign() == 1){
@@ -92,10 +88,13 @@ public class ExcelUtil {
                 }
             }
         }
+        //实体类中未找到标注Excel注解的字段，报错,不执行后续代码
+        if(CollectionUtil.isEmpty(exportFieldTitle)){
+            throw new RuntimeException("实体类中未找到标注Excel注解的字段!");
+        }
 
         //行指针
         int index = 0;
-
         //产生标题行
         Row row = sheet.createRow(index);
         for(int i = 0; i < exportFieldTitle.size(); i++){
@@ -116,7 +115,7 @@ public class ExcelUtil {
             index++;
             row = sheet.createRow(index);
             Object dataObject = iterator.next();
-            for(int i = 0; i < methodObject.size(); i++){//循环一次设置一列数据
+            for(int i = 0; i < methodObject.size(); i++){//循环一次写入一条字段数据
                 Cell cell = row.createCell(i);
                 Method getMethod = methodObject.get(i);
                 Object value = null;
@@ -126,6 +125,7 @@ public class ExcelUtil {
                 } else {
                     value = getMethod.invoke(dataObject, new Object() {});
                 }
+                //TODO 设置值有问题，现在所有值都会设置成String类型，数值和时间格式都会执行其toString方法
                 cell.setCellValue(value == null ? "" : value.toString());
             }
         }
@@ -133,7 +133,7 @@ public class ExcelUtil {
     }
 
     /**
-     * Excel导出
+     * Excel导入
      * @param file
      * @param pojoClass
      * @return

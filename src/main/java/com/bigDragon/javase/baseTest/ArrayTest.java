@@ -7,8 +7,10 @@ import org.junit.Test;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author bigDragon
@@ -173,5 +175,21 @@ public class ArrayTest {
         //java.lang.NullPointerException:空指针异常
         String st = null;
         System.out.println(st.length());//java.lang.NullPointerException
+    }
+
+
+    /**
+     * 数组和Collection相互转换
+     */
+    @Test
+    public void test10(){
+        String[] strArray = {"1","2","3"};
+        List<String> list = new ArrayList<>(Arrays.asList(strArray));
+        System.out.println(list);
+        String[] strings = list.toArray(new String[list.size()]);
+        System.out.println(strings);
+        for(int i=0;i<strings.length;i++){
+            System.out.println(strings[i]);
+        }
     }
 }

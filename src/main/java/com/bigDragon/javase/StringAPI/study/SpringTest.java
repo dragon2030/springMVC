@@ -1,5 +1,6 @@
-package com.bigDragon.javase.StringAPI;
+package com.bigDragon.javase.StringAPI.study;
 
+import com.bigDragon.javase.StringAPI.util.Person;
 import org.junit.Test;
 
 import java.io.UnsupportedEncodingException;

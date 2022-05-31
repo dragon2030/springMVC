@@ -3,11 +3,10 @@ package com.bigDragon.javase.java8;
 import org.apache.poi.ss.formula.functions.T;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.time.LocalDateTime;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -119,12 +118,12 @@ public class StreamApiTest {
      */
     public List<Person> getList(){
         List<Person> arrayList = new ArrayList<>();
-        arrayList.add(new Person("Mike",22));
-        arrayList.add(new Person("Sam",24));
-        arrayList.add(new Person("John",31));
-        arrayList.add(new Person("Bob",28));
-        arrayList.add(new Person("Zom",40));
-        arrayList.add(new Person("Mike",22));
+        arrayList.add(new Person(1,"Mike",22));
+        arrayList.add(new Person(2,"Sam",24));
+        arrayList.add(new Person(3,"John",31));
+        arrayList.add(new Person(4,"Bob",28));
+        arrayList.add(new Person(5,"Zom",40));
+        arrayList.add(new Person(6,"Jack",34));
         System.out.println("创建ArrayList<Person>完成"+arrayList);
         return arrayList;
     }
@@ -170,8 +169,9 @@ public class StreamApiTest {
      */
     @Test
     public void test5(){
+        LocalDateTime now = LocalDateTime.now();
         List<Person> list = getList();
-        Stream<Person> stream = list.stream();
+        Stream<Person> stream = list.parallelStream().sorted(Comparator.comparing(Person::getAge));
         //Stream<T> filter(Predicate<? super T> predicate)——接收lambda，从流中排除某些元素
         stream.filter(p -> p.getAge() > 25).forEach(System.out::println);
         System.out.println("*******************************");
@@ -312,6 +312,40 @@ public class StreamApiTest {
         System.out.println("****************************************************");
         Set<Person> collect2 = list.stream().filter(person -> person.getAge() > 30).collect(Collectors.toSet());
         collect2.forEach(System.out::println);
+        System.out.println("****************************************************");
+        /**
+         * Collectors.toMap有三个重载方法
+         * toMap(Function<? super T, ? extends K> keyMapper, Function<? super T, ? extends U> valueMapper);
+         * toMap(Function<? super T, ? extends K> keyMapper, Function<? super T, ? extends U> valueMapper, BinaryOperator<U> mergeFunction);
+         * toMap(Function<? super T, ? extends K> keyMapper, Function<? super T, ? extends U> valueMapper, BinaryOperator<U> mergeFunction, Supplier<M> mapSupplier);
+         * 参数解释:
+         *
+         * keyMapper：Key 的映射函数
+         * valueMapper：Value 的映射函数
+         * mergeFunction：当 Key 冲突时，调用的合并方法
+         * mapSupplier：Map 构造器，在需要返回特定的 Map 时使用
+         *
+         * 链接：https://www.jianshu.com/p/b2d78544df64
+         */
+        //key为id，value为name
+        Map<Object,Object> map1 = list.stream().collect(Collectors.toMap(Person::getId,Person::getName));
+        System.out.println(map1);
+        //key为id，value当前对象————得到 Map的value为对象本身时，t -> t或Function.identity()
+        Map<Object,Object> map2 = list.stream().collect(Collectors.toMap(Person::getId,t -> t));
+        System.out.println(map2);
+        Map<Object,Object> map3 = list.stream().collect(Collectors.toMap(Person::getId, Function.identity()));
+        System.out.println(map3);
+        //如果 List 中 userId 有相同的，使用上面的写法会抛异常这时就需要调用第二个重载方法，传入合并函数
+        list.add(new Person(1,"Tom",19));
+        //list.stream().collect(Collectors.toMap(Person::getId, Function.identity()));
+        //java.lang.IllegalStateException: Duplicate key Person{name='Mike', age=22}
+        Map<Object,Object> map4 = list.stream().collect(Collectors.toMap(Person::getId, t -> t, (v1, v2) -> v1));
+        System.out.println(map4);
+        Map<Object,Object> map5 = list.stream().collect(Collectors.toMap(Person::getId, t -> t, (v1, v2) -> v1));
+        System.out.println(map5);
+        //第四个参数mapSupplier用于返回一个任意类型的Map实例，比如我们希望返回的Map是根据 Key 排序的
+        Map<Object,Object> map6 = list.stream().collect(Collectors.toMap(Person::getAge, t -> t, (v1, v2) -> v1, TreeMap::new));
+        System.out.println(map6);
     }
 
     //将字符串中的多个字符构成的机会转换为对应的Stream的实例
@@ -321,5 +355,15 @@ public class StreamApiTest {
             list.add(c);
         }
         return list.stream();
+    }
+
+    @Test
+    public void test100(){
+        List<Integer> list = new ArrayList<>();
+        System.out.println(list==null);
+        System.out.println(list.size());
+        List<Integer> collect = list.stream().collect(Collectors.toList());
+        System.out.println(collect==null);
+        System.out.println(collect.size());
     }
 }
