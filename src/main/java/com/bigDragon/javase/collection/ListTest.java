@@ -1,5 +1,7 @@
 package com.bigDragon.javase.collection;
 
+import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -84,5 +86,26 @@ public class ListTest {
         //List subList(int fromIndex,int toIndex):返回从fromIndex到toIndex位置(左闭右开)的子集合
         List list3=list.subList(2,5);
         System.out.println("subList(int fromIndex,int toIndex):"+list3);
+    }
+
+    //list插入元素到指定位置
+    //TODO 其实应该用linkedlist，后面再优化
+    @Test
+    public void test_20220618(){
+        List<Integer> list = new ArrayList<>();
+        for(int i=0;i<10;i++){
+            list.add(i);
+        }
+        System.out.println(list);
+//        list.add(10,2222);
+//        System.out.println(list);
+        for(int i = 0;i < list.size();i++){
+            if(list.get(i)%2 == 1){
+                //奇数则添加一行
+                list.add(i+1,2222);
+                i=i+1;
+            }
+        }
+        System.out.println(list);
     }
 }

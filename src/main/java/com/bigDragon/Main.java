@@ -15,20 +15,13 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.lang.reflect.Method;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.nio.CharBuffer;
 import java.nio.charset.Charset;
+import java.sql.SQLOutput;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -52,9 +45,30 @@ import com.bigDragon.*;
  */
 public class Main {
 
-
     public static void main(String[] args) {
+        try {
+            Main main = new Main();
+            main.method();
+        } catch (Exception e) {
+            System.out.println(exceptionPrint(e));
+            e.printStackTrace();
 
+        }
+    }
+
+    public static String exceptionPrint(Throwable e){
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        e.printStackTrace(new PrintStream(baos));
+        String exception = baos.toString();
+        return exception;
+    }
+
+
+    public void method(){
+        int i = 1;
+        int i2 = 0;
+        throw new RuntimeException("运行时异常");
+//        System.out.println(i/i2);
     }
 
 }

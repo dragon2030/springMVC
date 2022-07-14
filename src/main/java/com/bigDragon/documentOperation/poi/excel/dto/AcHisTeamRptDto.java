@@ -1,6 +1,6 @@
 package com.bigDragon.documentOperation.poi.excel.dto;
 
-import com.bigDragon.documentOperation.poi.excel.Excel;
+import com.bigDragon.documentOperation.poi.excel.annotation.Excel;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;

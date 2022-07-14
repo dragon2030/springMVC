@@ -28,6 +28,7 @@ public class MathApi {
             System.out.println(numbers);
         }
     }
+//    BigDecimal中的divide主要就是用来做除法的运算
     @Test
     public void test2(){
         //BigInteger
@@ -42,6 +43,23 @@ public class MathApi {
         //保留15位小数
         BigDecimal divide2 = bigDecimal.divide(bigDecimal1, 15, BigDecimal.ROUND_HALF_UP);
         System.out.println(divide2);//106.566283762806579
+    }
+
+//    BigDecimal.setScale()
+    @Test
+    public void case_20220615(){
+        BigDecimal b4 = new BigDecimal("4.65");
+        BigDecimal b5 = new BigDecimal("4.631");
+        BigDecimal b6 = new BigDecimal("4.654");
+        BigDecimal b7 = new BigDecimal("4.66");
+        System.out.println("4.65 保留一位小数:"+b4.setScale(2));
+        System.out.println("setScale(1,BigDecimal.ROUND_DOWN) 4.65 保留一位小数,直接删除多余的小数位:"+b4.setScale(1,BigDecimal.ROUND_DOWN));
+        System.out.println("setScale(1,BigDecimal.ROUND_UP) 4.631 进位处理:"+b5.setScale(1,BigDecimal.ROUND_UP));
+        System.out.println("setScale(1,BigDecimal.ROUND_HALF_UP) 4.631 四舍五入:"+b5.setScale(1,BigDecimal.ROUND_HALF_UP));
+        System.out.println("setScale(1,BigDecimal.ROUND_HALF_UP) 4.65 四舍五入:"+b4.setScale(1,BigDecimal.ROUND_HALF_UP));
+        System.out.println("setScale(1,BigDecimal.ROUND_HALF_DOWN) 4.65 四舍五入,如果后一位是5则向下舍:"+b4.setScale(1,BigDecimal.ROUND_HALF_DOWN));
+        System.out.println("setScale(1,BigDecimal.ROUND_HALF_DOWN) 4.66 四舍五入,如果后一位大于5则直接进位:"+b7.setScale(1,BigDecimal.ROUND_HALF_DOWN));
+        System.out.println("setScale(1,BigDecimal.ROUND_HALF_DOWN) 4.654 四舍五入，如果后一位是大于等于5，还有其他位数，则进位处理:"+b6.setScale(1,BigDecimal.ROUND_HALF_DOWN));
     }
 
     /**
