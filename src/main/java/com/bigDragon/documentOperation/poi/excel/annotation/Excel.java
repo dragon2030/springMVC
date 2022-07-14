@@ -31,4 +31,14 @@ public @interface Excel {
     //导入数据是否需要转化 及 对已有的excel，是否需要将字段转为对应的数据
     //若是sign为1，则需要再pojo中加入 void set字段名Convert（String text）
     int importConvertSign() default 0;
+
+    /**
+     * 合并单元格标志
+     *
+     * 若是sign为1,开启合并单元格，将相同的行合并为同一个单元格。
+     * 当上一个字段也需合并单元格时，认为上个单元格为此单元格父类，会根据父单元格进行合并
+     *
+     * 若是sign为0，不开启合并单元格功能
+     */
+    int mergeCellSign() default 0;
 }
