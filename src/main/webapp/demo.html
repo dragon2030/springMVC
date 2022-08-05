@@ -6,14 +6,15 @@
 </head>
 <body>
     <button id="b1" onclick="method(1)">按钮</button>
-    <form>
-        <input type="button" value="按钮2" onclick="method(1)"/>
+    <form method="post" action="http://localhost:8080/springMVC/test/demoSubmit">
+        姓名：<input type="text" name="name"/>
+    <br>
+        年龄：<input type="text" name="age"/>
+    <br/>
+        <input type="submit">提交</input>
     </form>
 </body>
 <script>
-    function method(v1){
-        console.info("method执行");
-        console.info(v1);
-    }
+
 </script>
 </html>

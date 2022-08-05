@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bigDragon.demo.test.dao.TestDao" >
+
+
+  <insert id="saveUser" parameterType="com.bigDragon.demo.test.entity.User" >
+    INSERT INTO
+    user
+    (name,age,people_des,sex_id)
+    VALUES(
+     #{user.name},
+     #{user.age},
+     #{user.peopleDes},
+     #{user.sexId}
+    )
+  </insert>
+
+  <select id="getUser" resultType="java.util.Map">
+  	select
+  	IFNULL(user_id,'') userId,IFNULL(`name`,'') name,IFNULL(age,'') age,IFNULL(people_des,'') peopleDes
+	from
+	`user`
+  </select>
+
+  <select id="selectAll" resultType="com.bigDragon.demo.test.entity.User">
+  	select
+  	*
+	from
+	`user`
+  </select>
+
+    <insert id="dataDispose" parameterType="java.lang.String">
+        INSERT INTO data_dispose (userno) values (#{userNo})
+    </insert>
+
+</mapper>

@@ -3,12 +3,16 @@ package com.bigDragon.documentOperation.poi.excel.util;
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.lang.UUID;
 import com.bigDragon.documentOperation.poi.excel.annotation.Excel;
+import com.bigDragon.documentOperation.poi.excel.enums.CellStyleEnum;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFDataFormat;
 import org.apache.poi.hssf.usermodel.HSSFRichTextString;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
+import org.apache.poi.xssf.usermodel.XSSFRichTextString;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -44,6 +48,7 @@ public class ExcelUtil {
         //使用eventModel模式实现，可以一边读一边处理，效率较高，但实现复杂
     }
 
+
     /**
      * Excel导出-使用userModel模式实现
      *
@@ -61,9 +66,6 @@ public class ExcelUtil {
     public static void exportExcelInUserModel(String sheetName, Class<?> pojoClass, List<?> dateList,
                                               OutputStream outputStream, String[] excludeColumn, Workbook wk) throws Exception{
         //数据非空验证
-        if(dateList == null || dateList.size() == 0){
-            throw new RuntimeException("导出数据为空！");
-        }
         if(sheetName == null || outputStream == null || pojoClass == null){
             throw new RuntimeException("传入参数不可为空！");
         }
@@ -71,17 +73,17 @@ public class ExcelUtil {
         //变量初始化
         //声明一个工作簿
         //TODO 需要改造为xlsx格式
-        Workbook workbook = new HSSFWorkbook();
+        Workbook workbook = new XSSFWorkbook();
         //声明一个表格
         Sheet sheet = workbook.createSheet(sheetName);
         // 唯一字段名列表：主要用于字段上的特殊限制，如合并标识，后续存入此唯一值在set/map数据插入时开启判断
-        ArrayList<String> uniqueFieldName = new ArrayList<>();
+        List<String> uniqueFieldName = new ArrayList<>();
         // 列名标题
-        ArrayList<String> exportFieldTitle = new ArrayList<>();
+        List<String> exportFieldTitle = new ArrayList<>();
         // 列名宽度
-        ArrayList<Integer> exportFieldWidth = new ArrayList<>();
+        List<Integer> exportFieldWidth = new ArrayList<>();
         // 用于拿到dataCollection中字段值，对应导出字段在实体类中的get方法
-        ArrayList<Method> methodObject = new ArrayList<>();
+        List<Method> methodObject = new ArrayList<>();
         // 标注mergeCellSign的方法，存唯一字段名（便于快速找到）
         Set<String> mergeCellSet = new HashSet<>();
         //初始化一个二维数组，记录此excel合并单元格位置信息，与导入date位置一一对应，行为导出excel字段长度，列为导出数据最大长度,当值为1时，此位置对应的date数据需要合并单元格
@@ -89,6 +91,8 @@ public class ExcelUtil {
         String[][] mergeSiteArray = null;
         //excludeColumn转换为set
         Set<String> excludeColumnSet = excludeColumn!=null?Arrays.stream(excludeColumn).collect(Collectors.toSet()):new HashSet<>();
+        //自定义数据格式map，key为唯一字段名列表uniqueFieldName
+        Map<String,String> selfFormatMap = new HashMap<>();
 
         //得到目标类的所有字段列表
         Field[] fields = pojoClass.getDeclaredFields();
@@ -116,6 +120,9 @@ public class ExcelUtil {
                 if(excel.mergeCellSign() == 1){
                     mergeCellSet.add(field.getName());
                 }
+                if(StringUtils.isNotBlank(excel.selfFormat())){
+                    selfFormatMap.put(field.getName(), excel.selfFormat());
+                }
             }
         }
 
@@ -126,7 +133,7 @@ public class ExcelUtil {
         //二维数组动态初始化
         mergeSiteArray = new String[dateList.size()][uniqueFieldName.size()];
         //设置样式
-        HSSFCellStyle[] cellStyleArray = createCellStyleArray(workbook);
+        CellStyle[] cellStyleArray = createCellStyleArray(workbook,wk);
 
         //行指针，根据此指针createRow
         int index = 0;
@@ -141,7 +148,7 @@ public class ExcelUtil {
             row = sheet.createRow(index);
             for(int i = 0; i < exportFieldTitle.size(); i++){
                 Cell cell = row.createCell(i);
-                HSSFRichTextString text = new HSSFRichTextString(exportFieldTitle.get(i));
+                RichTextString text = new XSSFRichTextString((exportFieldTitle.get(i)));
                 text.applyFont(titleFont);
                 cell.setCellValue(text);
                 cell.setCellStyle(cellStyleArray[0]);
@@ -172,11 +179,12 @@ public class ExcelUtil {
                 Object value = getMethod.invoke(dataObject);
 //                String strValue = value == null ? "" : value.toString();
 //                cell.setCellValue(strValue);
-                if(wk == null){
-                    setCellValueByObject(cell, value, cellStyleArray);
-                } else {
-                    setCellValueByOtherWorkbook(cell, value, cellStyleArray);
-                }
+                String selfFormat = selfFormatMap.get(uniqueFieldName.get(j));
+//                if(wk == null){
+                setCellValueByObject(cell, value, cellStyleArray, selfFormat);
+//                } else {
+//                    setCellValueByOtherWorkbook(cell, value, cellStyleArray, selfFormat);
+//                }
 
                 //合并单元格判断:当前列是否属于标记合并的列 && 第一行或在之前行判断中此cell不为合并单元格 && 【判断下一行】不是最后一行且和下一个行的值相同
                 if(mergeCellSet.contains(uniqueFieldName.get(j)) &&
@@ -231,7 +239,7 @@ public class ExcelUtil {
                     if(mergeNum > 1){
                         CellRangeAddress region = new CellRangeAddress(i+titleRows, i+mergeNum-1+titleRows, j, j);
                         sheet.addMergedRegion(region);
-                        cn.hutool.core.lang.UUID uuid = UUID.randomUUID();
+                        UUID uuid = UUID.randomUUID();
                         for(int site = i; site < i+mergeNum; site++){
                             mergeSiteArray[site][j] = uuid.toString();
                         }
@@ -242,55 +250,71 @@ public class ExcelUtil {
         workbook.write(outputStream);
         //todo 测试
 //        String format = new SimpleDateFormat("yyyyMMddHHmmSS").format(new Date());
-//        File file=new File("C:\\Users\\bigDragon\\Desktop\\work\\先锋\\广投项目\\九期\\购供气管理\\报表\\"+format+".xls");
+//        File file=new File("C:\\Users\\bigDragon\\Desktop\\work\\先锋\\报表\\"+format+".xls");
 //        file.createNewFile();
 //        OutputStream out2 = new FileOutputStream(file);
 //        workbook.write(out2);
     }
 
     //获取cell样式数组，0索引为string可惜，1索引为日期类型,2索引为整型，3索引为浮点型
-    public static HSSFCellStyle[] createCellStyleArray(Workbook workbook){
-        HSSFWorkbook hssfWorkbook = (HSSFWorkbook)workbook;
-        ArrayList<HSSFCellStyle> hssfCellStyles = new ArrayList<>();
+    public static CellStyle[] createCellStyleArray(Workbook workbook, Workbook importWorkbook){
+        if(importWorkbook!=null){
+            workbook=importWorkbook;
+        }
+        List<CellStyle> cellStyles = new ArrayList<>();
 
         //字符串
-        HSSFCellStyle style_str = hssfWorkbook.createCellStyle();
+        CellStyle style_str = workbook.createCellStyle();
         style_str.setAlignment(HorizontalAlignment.CENTER); // 创建一个居中格式
         style_str.setVerticalAlignment(VerticalAlignment.CENTER);
-        hssfCellStyles.add(style_str);
+        cellStyles.add(CellStyleEnum.STRING_CELL_STYLE.getCode(),style_str);
 
         //日期
-        HSSFCellStyle style_date = hssfWorkbook.createCellStyle();
-        HSSFDataFormat dataFormat= hssfWorkbook.createDataFormat();
+        CellStyle style_date = workbook.createCellStyle();
+        DataFormat dataFormat= workbook.createDataFormat();
         style_date.setDataFormat(dataFormat.getFormat("yyyy-mm-dd h:mm:ss"));
         style_date.setAlignment(HorizontalAlignment.CENTER);
         style_date.setVerticalAlignment(VerticalAlignment.CENTER);
-        hssfCellStyles.add(style_date);
+        cellStyles.add(CellStyleEnum.DATE_CELL_STYLE.getCode(),style_date);
 
         //整型
-        HSSFCellStyle intStyle = hssfWorkbook.createCellStyle();
-        HSSFDataFormat intFormat= hssfWorkbook.createDataFormat();
+        CellStyle intStyle = workbook.createCellStyle();
+        DataFormat intFormat= workbook.createDataFormat();
         intStyle.setDataFormat(intFormat.getFormat("0"));
         intStyle.setAlignment(HorizontalAlignment.CENTER);
         intStyle.setVerticalAlignment(VerticalAlignment.CENTER);
-        hssfCellStyles.add(intStyle);
+        cellStyles.add(CellStyleEnum.INTEGER_CELL_STYLE.getCode(),intStyle);
 
         //浮点型
-        HSSFCellStyle doubleStyle = hssfWorkbook.createCellStyle();
-        HSSFDataFormat doubleFormat= hssfWorkbook.createDataFormat();
+        CellStyle doubleStyle = workbook.createCellStyle();
+        DataFormat doubleFormat= workbook.createDataFormat();
         doubleStyle.setDataFormat(doubleFormat.getFormat("0.00"));
         doubleStyle.setAlignment(HorizontalAlignment.CENTER);
         doubleStyle.setVerticalAlignment(VerticalAlignment.CENTER);
-        hssfCellStyles.add(doubleStyle);
+        cellStyles.add(CellStyleEnum.DOUBLE_CELL_STYLE.getCode(),doubleStyle);
 
-        return hssfCellStyles.toArray(new HSSFCellStyle[hssfCellStyles.size()]);
+        //日期2
+        CellStyle style_date2 = workbook.createCellStyle();
+        DataFormat dataFormat2= workbook.createDataFormat();
+        style_date2.setDataFormat(dataFormat2.getFormat("yyyy-mm-dd"));
+        style_date2.setAlignment(HorizontalAlignment.CENTER);
+        style_date2.setVerticalAlignment(VerticalAlignment.CENTER);
+        cellStyles.add(CellStyleEnum.DATE_CELL_STYLE2.getCode(),style_date2);
+
+        return cellStyles.toArray(new CellStyle[cellStyles.size()]);
     }
+
 
     /**
      * 设置单元格值
      * 根据值类型，设置单元格值
+     * @param cell 单元格对象
+     * @param value 输入值
+     * @param cellStyleArray cellStyle数值，预赋值，不用重复创建
+     * @param selfFormat 特殊文本格式，没用则为null
      */
-    public static void setCellValueByObject(Cell cell, Object value, HSSFCellStyle[] cellStyleArray) {
+    public static void setCellValueByObject(Cell cell, Object value, CellStyle[] cellStyleArray,
+                                            String selfFormat) {
         if (value == null){
             cell.setCellValue("");
             return;
@@ -298,20 +322,24 @@ public class ExcelUtil {
         if (value instanceof String){//字符串
             String strValue = value.toString();
             cell.setCellValue(strValue);
-            cell.setCellStyle(cellStyleArray[0]);
+            cell.setCellStyle(cellStyleArray[CellStyleEnum.STRING_CELL_STYLE.getCode()]);
         } else if (value instanceof Date){//日期
             Date dateValue = (Date)value;
             cell.setCellValue(dateValue);
-            cell.setCellStyle(cellStyleArray[1]);
+            if(Objects.equals(selfFormat,"yyyy-mm-dd")){
+                cell.setCellStyle(cellStyleArray[CellStyleEnum.DATE_CELL_STYLE2.getCode()]);
+            } else{//自定义规则
+                cell.setCellStyle(cellStyleArray[CellStyleEnum.DATE_CELL_STYLE.getCode()]);
+            }
         } else if (value instanceof Integer){//整型
             Integer integer = (Integer)value;
             cell.setCellValue(integer);
-            cell.setCellStyle(cellStyleArray[2]);
+            cell.setCellStyle(cellStyleArray[CellStyleEnum.INTEGER_CELL_STYLE.getCode()]);
         } else if (value instanceof BigDecimal){//浮点型
             BigDecimal bigDecimal = (BigDecimal)value;
             double doubleValue = bigDecimal.doubleValue();
             cell.setCellValue(doubleValue);
-            cell.setCellStyle(cellStyleArray[3]);
+            cell.setCellStyle(cellStyleArray[CellStyleEnum.DOUBLE_CELL_STYLE.getCode()]);
         } else {
             throw new RuntimeException("此单元格数据类型无法解析，请联系管理员: " + value.toString());
         }
@@ -322,7 +350,8 @@ public class ExcelUtil {
      * 设置单元格值
      * 根据值类型，设置单元格值
      */
-    public static void setCellValueByOtherWorkbook(Cell cell, Object value, HSSFCellStyle[] cellStyleArray) {
+    public static void setCellValueByOtherWorkbook(Cell cell, Object value, CellStyle[] cellStyleArray,
+                                                   String selfFormat) {
         if (value == null){
             cell.setCellValue("");
             return;
@@ -330,11 +359,17 @@ public class ExcelUtil {
         if (value instanceof String){//字符串
             String strValue = value.toString();
             cell.setCellValue(strValue);
-            cell.getCellStyle().cloneStyleFrom(cellStyleArray[0]);
+            CellStyle cellStyle = cell.getCellStyle();
+            cellStyle.cloneStyleFrom(cellStyleArray[0]);
+            cell.setCellStyle(cellStyle);
         } else if (value instanceof Date){//日期
             Date dateValue = (Date)value;
             cell.setCellValue(dateValue);
-            cell.getCellStyle().cloneStyleFrom(cellStyleArray[1]);
+            if(Objects.equals(selfFormat,"yyyy-mm-dd")){
+                cell.getCellStyle().cloneStyleFrom(cellStyleArray[CellStyleEnum.DATE_CELL_STYLE2.getCode()]);
+            } else{//自定义规则
+                cell.getCellStyle().cloneStyleFrom(cellStyleArray[CellStyleEnum.DATE_CELL_STYLE.getCode()]);
+            }
         } else if (value instanceof Integer){//整型
             Integer integer = (Integer)value;
             cell.setCellValue(integer);
@@ -348,6 +383,91 @@ public class ExcelUtil {
             throw new RuntimeException("此单元格数据类型无法解析，请联系管理员: " + value.toString());
         }
     }
+
+    /**
+     * 空数据时，返回完整表头的excel数据
+     * 于exportExcelInUserModel方法中提取
+     * @param sheetName Sheet名字
+     * @param pojoClass Excel对象Class类
+     * @param outputStream 输出流
+     * @param excludeColumn 需要动态排除的列
+     * @param wk 设置表头，主要针对于需要合并同类项的多行表头
+     */
+    public static void exportExcelTitle(String sheetName, Class<?> pojoClass,
+                                        OutputStream outputStream, String[] excludeColumn, Workbook wk) throws Exception{
+        if(sheetName == null || outputStream == null || pojoClass == null){
+            throw new RuntimeException("传入参数不可为空！");
+        }
+        //变量初始化
+        //声明一个工作簿
+        Workbook workbook = new XSSFWorkbook();
+        //声明一个表格
+        Sheet sheet = workbook.createSheet(sheetName);
+        // 唯一字段名列表：主要用于字段上的特殊限制，如合并标识，后续存入此唯一值在set/map数据插入时开启判断
+        ArrayList<String> uniqueFieldName = new ArrayList<>();
+        // 列名标题
+        ArrayList<String> exportFieldTitle = new ArrayList<>();
+        // 列名宽度
+        ArrayList<Integer> exportFieldWidth = new ArrayList<>();
+        //excludeColumn转换为set
+        Set<String> excludeColumnSet = excludeColumn!=null?Arrays.stream(excludeColumn).collect(Collectors.toSet()):new HashSet<>();
+
+        //得到目标类的所有字段列表
+        Field[] fields = pojoClass.getDeclaredFields();
+        for(int i = 0; i < fields.length; i++){
+            Field field = fields[i];
+            Excel excel = field.getAnnotation(Excel.class);
+            if(excel != null){
+                //判断excludeColumn排除列
+                if(excludeColumnSet.contains(field.getName())){
+                    continue;
+                }
+                //添加到唯一字段名列表
+                uniqueFieldName.add(field.getName());
+                //添加到标题
+                exportFieldTitle.add(excel.exportName());
+                //添加到标题的列宽
+                exportFieldWidth.add(excel.exportFieldWidth());
+            }
+        }
+
+        //实体类中未找到标注Excel注解的字段，报错,不执行后续代码
+        if(CollectionUtil.isEmpty(uniqueFieldName)){
+            throw new RuntimeException("实体类中未找到标注Excel注解的字段!");
+        }
+        //设置样式
+        CellStyle[] cellStyleArray = createCellStyleArray(workbook,wk);
+
+        //行指针，根据此指针createRow
+        int index = 0;
+
+        if(wk == null){
+            //产生标题行
+            Font titleFont = workbook.createFont();
+            titleFont.setBold(true);
+            Row row = sheet.createRow(index);
+            for(int i = 0; i < exportFieldTitle.size(); i++){
+                Cell cell = row.createCell(i);
+                HSSFRichTextString text = new HSSFRichTextString(exportFieldTitle.get(i));
+                text.applyFont(titleFont);
+                cell.setCellValue(text);
+                cell.setCellStyle(cellStyleArray[0]);
+            }
+        } else {
+            //替换的标题行
+            workbook = wk;
+            sheet = workbook.getSheetAt(0);
+        }
+
+        //设置标题行列宽
+        for(int i = 0; i < exportFieldWidth.size(); i++){
+            //256=65280/255
+            sheet.setColumnWidth(i,256 * exportFieldWidth.get(i));
+        }
+        workbook.write(outputStream);
+    }
+
+
 
     /**
      * Excel导入

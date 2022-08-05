@@ -21,12 +21,6 @@ public interface TestService {
 	List<Map<String,Object>> getUser();
 
 	/**
-	 * 获取用户数据List<User>
-	 * @return
-	 */
-	List<User> getUserMsg();
-
-	/**
 	 * 数据处理
 	 * @return
 	 */

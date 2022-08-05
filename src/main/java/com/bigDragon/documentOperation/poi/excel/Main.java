@@ -26,11 +26,10 @@ import java.util.List;
  */
 public class Main {
     public static void main(String[] args) {
-        HttpServletResponse response = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getResponse();
         List<AcHisTeamRptDto> acHisTeamRptDtos = new ArrayList<>();
 
-        ExcelExportUtil.checkAndExport(response,acHisTeamRptDtos,"还款类历史团队报表.xls","Sheet",
-                AcHisTeamRptDto.class,"还款类历史团队报表导出失败！");
+        ExcelExportUtil.checkAndExport("还款类历史团队报表.xls","Sheet",
+                AcHisTeamRptDto.class, acHisTeamRptDtos,null,null);
     }
 
     //测试合并单元格

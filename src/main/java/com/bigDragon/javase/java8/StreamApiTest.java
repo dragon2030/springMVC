@@ -263,6 +263,7 @@ public class StreamApiTest {
         //练习：返回年龄年龄的员工年龄/员工信息
         Optional<Integer> max = list.stream().map(person -> person.getAge()).max(Integer::compareTo);//方法一
         System.out.println(max);
+        System.out.println(max.get());//输出值
         Optional<Person> max1 = list.stream().max((person1, person2) -> Integer.compare(person1.getAge(), person2.getAge()));//方法二
         System.out.println(max1);
         //Optional<T> min(Comparator<? super T> comparator)——返回流中最小值

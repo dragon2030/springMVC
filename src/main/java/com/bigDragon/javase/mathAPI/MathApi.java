@@ -45,7 +45,11 @@ public class MathApi {
         System.out.println(divide2);//106.566283762806579
     }
 
-//    BigDecimal.setScale()
+ /**
+  * BigDecimal.setScale()
+  * 保留n为小数
+  */
+
     @Test
     public void case_20220615(){
         BigDecimal b4 = new BigDecimal("4.65");
@@ -91,5 +95,15 @@ public class MathApi {
         System.out.println(bigDecimal6);
         BigDecimal bigDecimal7 = bigDecimal.setScale(2, BigDecimal.ROUND_UNNECESSARY);
         System.out.println(bigDecimal7);*/
+    }
+
+    /**
+     * 整数加上保留的小数位
+     */
+    @Test
+    public void case_20220725(){
+        BigDecimal bigDecimal = new BigDecimal("0");
+        BigDecimal bigDecimal5 = bigDecimal.setScale(2, BigDecimal.ROUND_HALF_UP);
+        System.out.println(bigDecimal5);
     }
 }

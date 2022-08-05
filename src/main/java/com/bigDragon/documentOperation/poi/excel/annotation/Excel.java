@@ -26,10 +26,12 @@ public @interface Excel {
     //导出时是否进行字段转换 例如性别用int存储，导出时可能转换为男，女
     //若Sign为1，则需要再pojo中加入一个方法get 字段名 Convert 例如字段sex，需要加入public String getSexCovert()
     //若是sign为0，则不生效
+    @Deprecated
     int exportConvertSign() default 0;
 
     //导入数据是否需要转化 及 对已有的excel，是否需要将字段转为对应的数据
-    //若是sign为1，则需要再pojo中加入 void set字段名Convert（String text）
+    //若是sign为1，则需要再pojo中加入 void set字段名Convert（String text）4
+    @Deprecated
     int importConvertSign() default 0;
 
     /**
@@ -41,4 +43,9 @@ public @interface Excel {
      * 若是sign为0，不开启合并单元格功能
      */
     int mergeCellSign() default 0;
+
+    /**
+     * 自定义格式
+     */
+    String selfFormat() default "yyyy-mm-dd";
 }

@@ -1,8 +1,10 @@
 package com.bigDragon.demo.test.controller;
 
+import java.io.BufferedReader;
 import java.io.PrintWriter;
 import java.net.URLDecoder;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Map;
 
@@ -38,8 +40,8 @@ public class TestContorller {
 	public TestService testService;
 
 
-	
-	@RequestMapping(value = "/main")
+
+	@RequestMapping(value = "/demo")
 	public ModelAndView testJsp(){
 		ModelAndView modelAndView=new ModelAndView();
 		modelAndView.setViewName("demo");
@@ -59,6 +61,57 @@ public class TestContorller {
 		modelAndView.setViewName("demo2");
 		return modelAndView;
 	}
+
+	/**
+	 * 结合demo.html，测试不同请求方式的接收url 方法类型 请求体内容
+	 * @param request
+	 * @param response
+	 */
+	@RequestMapping(value = "/demoSubmit")
+	@ResponseBody
+	public void demoSubmit(HttpServletRequest request, HttpServletResponse response){
+		try {
+			//**组装请求参数开始
+
+			logger.info("request.getMethod(): "+request.getMethod());
+			logger.info("request.getRequestURI(): "+request.getRequestURI());
+			logger.info("Character Encoding: " + request.getCharacterEncoding());
+			logger.info("HEAD: ");
+			Enumeration headerNames = request.getHeaderNames();
+			while (headerNames.hasMoreElements()) {
+				String key = (String) headerNames.nextElement();
+				String value = request.getHeader(key);
+				logger.info(key+": "+ value);
+			}
+			//request.getInputStream() request.getReader() request.getParameter()三方法同时只可用一种
+			//getInputStream返回请求内容字节流，多用于文件上传 getReader()是对前者返回内容的封装，可以让调用者更方便字符内容的处理
+			BufferedReader br = request.getReader();
+			String str, wholeStr = "";
+			while((str = br.readLine()) != null){
+				wholeStr += str;
+			}
+			logger.info("BODY: "+wholeStr);
+
+
+//			String decode = URLDecoder.decode(wholeStr, "utf-8");
+//			//请求数据的中文乱码问题
+//			request.setCharacterEncoding("UTF-8");//客户端网页我们控制为UTF-8
+//			String name = request.getParameter("name");
+//			String sex = request.getParameter("sex");
+///*			String name = URLDecoder.decode(request.getParameter("name"), "utf-8");
+//			String sex = URLDecoder.decode(request.getParameter("sex"), "utf-8");*/
+//			String returnVal = "name: "+name+" sex: "+sex;
+//			logger.info(returnVal);
+//			//获取数据正常，输出数据时可以查阅不同码表
+//			response.setCharacterEncoding("gb2312");//通知服务器发送数据时查阅的码表
+//			response.setContentType("text/html;charset=gb2312");//通知浏览器以何种码表打开
+//			PrintWriter out = response.getWriter();
+//			out.write(returnVal);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	//测试结论：get、post方式的编码详解：https://www.cnblogs.com/keyi/p/6365649.html
 	//另外tomcat
 	@RequestMapping(value = "/demo2_post",method = RequestMethod.POST)
@@ -128,7 +181,7 @@ public class TestContorller {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@RequestMapping(value = "/ajaxtest1")
 	@ResponseBody
 	public String ajaxtest1(@RequestBody String json){
@@ -195,13 +248,7 @@ public class TestContorller {
 		return "总条数："+list.size()+" 成功插入："+successNum;
 	}
 
-	@RequestMapping(value = "/getUsers")
-	@ResponseBody
-	public String getUsers(){
-		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("users",testService.getUserMsg());
-		return JSON.toJSONString(jsonObject);
-	}
+
 
 	@RequestMapping("/success2")
 	public String success2(Map<String,Object> map){

@@ -13,8 +13,6 @@ import lombok.experimental.Accessors;
 public class Student {
     private String name;
     private int sort;
+    private Student student;
 
-    public static void main(String[] args) {
-        new Student().setName("Mike").setSort(1);
-    }
 }

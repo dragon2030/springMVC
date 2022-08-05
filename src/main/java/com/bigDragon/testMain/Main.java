@@ -13,7 +13,19 @@ import java.util.stream.Collectors;
 public class Main {
 
     public static void main(String[] args) {
-        new Student().setName("Mike").setSort(1);
+//        Student student = new Student();
+//        student.setStudent(student);
+//        student.setName("Mike");
+//        student.setSort(22);
+//        System.out.println(student);
+        List<InfoDto> infoDtos = new ArrayList<>();
+        int i = 0;
+        while (true){
+            i++;
+            infoDtos.add(new InfoDto(i));
+            System.out.println(i);
+        }
+
     }
 
 }

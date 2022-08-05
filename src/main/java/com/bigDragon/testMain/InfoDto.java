@@ -1,5 +1,6 @@
 package com.bigDragon.testMain;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -10,7 +11,8 @@ import lombok.experimental.Accessors;
  */
 
 @Data
+@AllArgsConstructor
 public class InfoDto {
-    private Student student;
-
+//    private Student student;
+    private Integer info;
 }

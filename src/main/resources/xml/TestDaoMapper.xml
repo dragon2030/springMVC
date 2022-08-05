@@ -22,7 +22,7 @@
 	`user`
   </select>
 
-  <select id="getUserMsg" resultType="com.bigDragon.demo.test.entity.User">
+  <select id="selectAll" resultType="com.bigDragon.demo.test.entity.User">
   	select
   	*
 	from

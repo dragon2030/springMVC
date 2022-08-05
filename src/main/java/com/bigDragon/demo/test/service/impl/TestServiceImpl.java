@@ -3,6 +3,7 @@ package com.bigDragon.demo.test.service.impl;
 import java.util.List;
 import java.util.Map;
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +15,11 @@ import com.bigDragon.demo.test.dao.TestDao;
 import com.bigDragon.demo.test.entity.User;
 import com.bigDragon.demo.test.service.TestService;
 
+import javax.annotation.Resource;
+
 @Service
 @Transactional(propagation= Propagation.REQUIRED)
+@Slf4j
 public class TestServiceImpl implements TestService{
 	private static final Logger logger = LoggerFactory.getLogger(TestServiceImpl.class);
 	/**
@@ -35,8 +39,8 @@ public class TestServiceImpl implements TestService{
 	 *如果既没有指定name，又没有指定type，则自动按照byName方式进行装配；如果没有匹配，则回退为一个原始类型进行匹配，如果匹配则自动装配；
 	 */
 
-	@Autowired
-	public TestDao testDao;
+	@Resource
+	TestDao testDao;
 
 	@Override
 	public int saveUser(User user){
@@ -55,12 +59,6 @@ public class TestServiceImpl implements TestService{
 	@Override
 	public List<Map<String,Object>> getUser(){
 		List<Map<String,Object>> listMap=testDao.getUser();
-		return listMap;
-	}
-
-	@Override
-	public List<User> getUserMsg(){
-		List<User> listMap=testDao.getUserMsg();
 		return listMap;
 	}
 

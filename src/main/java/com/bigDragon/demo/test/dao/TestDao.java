@@ -11,25 +11,25 @@ import tk.mybatis.mapper.common.Mapper;
 
 @Repository
 public interface TestDao extends Mapper<User> {
-	
+
 	/**
 	 * 插入用户数据
 	 * @param user
 	 * @return
 	 */
 	Integer saveUser(@Param("user") User user);
-	
+
 	/**
 	 * 获取用户数据List<map<String,Object>>
 	 * @return
 	 */
 	List<Map<String,Object>> getUser();
-	
+
 	/**
 	 * 获取用户数据List<User>
 	 * @return
 	 */
-	List<User> getUserMsg();
+	List<User> selectAll();
 
 
 	/**

@@ -55,15 +55,15 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
 	<!-- 加载mybatis的文件 -->
-        <!--<property name="mapperLocations" value="com/bigDragon/demo/dao/*.xml" />-->
         <!-- 该配置文件用来指定Mapper映射文件的位置 ，如果映射文件与相应的接口同名，且在同一路径下，那么可以不配置该选项-->
-<!--        <property name="mapperLocations">
+        <property name="mapperLocations">
             <list>
-                <value>classpath:mappers/*.xml</value>
+                <value>classpath:xml/*.xml</value>
+                <value>com/bigDragon/demo/test/dao/xml/*.xml</value>
             </list>
-        </property>-->
+        </property>
 	<!-- MyBatis配置文件 -->
-        <!--<property name="configLocation" value="classpath:mybatis-config.xml"></property>-->
+        <property name="configLocation" value="classpath:mybatis-config.xml"></property>
     </bean>
 	<!-- mapper扫描器 -->
     <bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
