@@ -325,8 +325,9 @@
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
-            <version>5.8.0.M2</version>
+            <version>5.8.5</version>
         </dependency>
+
         <!--itext 7-->
         <!-- always needed -->
         <dependency>

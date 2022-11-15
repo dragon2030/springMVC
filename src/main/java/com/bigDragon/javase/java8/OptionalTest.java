@@ -92,4 +92,14 @@ public class OptionalTest {
         Girl girl2 = optionalGirl2.orElse(new Girl("波波"));
         System.out.println(girl2);
     }
+
+    //生产案例ofNullable orElse
+    //优雅的规避空指针
+    @Test
+    public void case_20221024(){
+        String meterNum=null;
+        String virMeterNum="12345";
+        String s = Optional.ofNullable(meterNum).orElse(virMeterNum);
+        System.out.println(s);
+    }
 }

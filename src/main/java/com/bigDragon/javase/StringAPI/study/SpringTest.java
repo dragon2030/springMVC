@@ -1,10 +1,13 @@
 package com.bigDragon.javase.StringAPI.study;
 
+import cn.hutool.core.collection.CollUtil;
 import com.bigDragon.javase.StringAPI.util.Person;
 import org.junit.Test;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Spring类
@@ -344,5 +347,21 @@ public class SpringTest {
         System.out.println(stringBuffer.charAt(3));//z
         stringBuffer.setCharAt(3,(char)64);//gfzdcaq
         System.out.println(stringBuffer);
+    }
+
+    //去掉最后一个逗号
+    @Test
+    public void ccase_20221025(){
+        List<String> strings = new ArrayList<>(Arrays.asList(new String[] {"AA","BB","CC","DD"}));//AA,BB,CC,DD
+//        List<String> strings = null;//无异常
+
+        StringBuilder stringBuilder = new StringBuilder();
+        if(CollUtil.isNotEmpty(strings)){
+            for (String s : strings){
+                stringBuilder.append(s).append(",");
+            }
+            stringBuilder.deleteCharAt(stringBuilder.length()-1);
+        }
+        System.out.println(stringBuilder.toString());
     }
 }

@@ -1,27 +1,26 @@
 package com.bigDragon.javase.reflect.model;
 
+import lombok.Data;
+
+import java.util.List;
+
 /**
  * @author bigDragon
  * @create 2020-12-08 16:44
  */
 @MyAnnotation(value = "hi")
+@Data
 public class Person extends Creature<String> implements Comparable<String>,MyInterface{
     private String name;
     int age;
     public int id;
     public static int sex = 1;
-
-    public Person() {
-    }
+    private List<Student> studentList;
+    private Student student;
 
     @MyAnnotation(value = "abc")
     private Person(String name) {
         this.name = name;
-    }
-
-    Person(String name, int age) {
-        this.name = name;
-        this.age = age;
     }
 
     @MyAnnotation
@@ -48,13 +47,5 @@ public class Person extends Creature<String> implements Comparable<String>,MyInt
         System.out.println("我是一个可爱的人");
     }
 
-    @Override
-    public String toString() {
-        return "Person{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                ", id=" + id +
-                ", weight=" + weight +
-                '}';
-    }
+
 }

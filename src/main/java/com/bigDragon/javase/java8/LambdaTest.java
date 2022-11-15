@@ -64,9 +64,9 @@ public class LambdaTest {
         lambdaTest.format1();
         //语法格式二：lambda需要一个参数，但是没有返回值
         lambdaTest.format2();
-        //语法格式三：数据类型可以省略，因为可由编译器推断得出，称为“类型推断”（是对语法格式二的简化）
+        //语法格式二+：数据类型可以省略，因为可由编译器推断得出，称为“类型推断”（是对语法格式二的简化）
         lambdaTest.format3();
-        //语法格式四：lambda若只需要一个参数时，参数的小括号可以省略（是对语法格式二的进一步简化）
+        //语法格式二++：lambda若只需要一个参数时，参数的小括号可以省略（是对语法格式二的进一步简化）
         lambdaTest.format4();
         //语法格式五：lambda需要两个或以上的参数，多条执行语句，并且可以有返回值
         lambdaTest.format5();

@@ -1,6 +1,9 @@
 package com.bigDragon.testMain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 /**
@@ -10,9 +13,10 @@ import lombok.experimental.Accessors;
  */
 @Accessors(chain = true)
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Student {
     private String name;
     private int sort;
-    private Student student;
 
 }

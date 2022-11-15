@@ -27,7 +27,7 @@ public class FileInputOutputStreamTest {
 		//使用字节流处理文本文件
 		fStreamTest.testFileInputStream();
 		//非文本文件的输入输出（复制）
-		fStreamTest.testFileInputStreamFileOutputStream();
+//		fStreamTest.testFileInputStreamFileOutputStream();
 	}
 
 	/**

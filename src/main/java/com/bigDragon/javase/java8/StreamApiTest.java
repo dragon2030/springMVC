@@ -3,6 +3,7 @@ package com.bigDragon.javase.java8;
 import org.apache.poi.ss.formula.functions.T;
 import org.junit.Test;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -225,8 +226,19 @@ public class StreamApiTest {
         //sorted()——自然排序
         List<String> list = Arrays.asList("12", "34", "76", "-7","0");
         list.stream().sorted().forEach(System.out::println);
+        //倒序
+        list.stream().sorted(Comparator.reverseOrder()).forEach(System.out::println);
         //sorted(Comparator com)——定制排序
-        getList().stream().sorted((e1,e2) -> Integer.compare(e1.getAge(),e2.getAge())).forEach(System.out::println);
+        List<Person> getList = getList();
+        getList.stream().sorted((e1,e2) -> Integer.compare(e1.getAge(),e2.getAge())).forEach(System.out::println);
+        System.out.println("*******");
+        getList.stream().sorted(Comparator.comparingInt(Person::getAge)).forEach(System.out::println);
+        System.out.println("*******");
+        //倒序
+        getList.stream().sorted((e1,e2) -> -Integer.compare(e1.getAge(),e2.getAge())).forEach(System.out::println);
+        System.out.println("*******");
+        getList.stream().sorted(Comparator.comparingInt(Person::getAge).reversed()).forEach(System.out::println);
+
     }
 
     /*
@@ -295,6 +307,21 @@ public class StreamApiTest {
         System.out.println(reduce1);
         Optional<Integer> reduce2 = getList().stream().map(person -> person.getAge()).reduce((i1,i2) -> i1+i2);
         System.out.println(reduce2);
+    }
+
+    //归约测试，BigDecimal
+    @Test
+    public void case_20221012(){
+        ArrayList<BigDecimal> bigDecimals = new ArrayList<>();
+        bigDecimals.add(new BigDecimal("1"));
+        bigDecimals.add(new BigDecimal("2"));
+        bigDecimals.add(new BigDecimal("3"));
+        BigDecimal bigDecimal = bigDecimals.stream().reduce(BigDecimal.ZERO,(i1, i2) -> i1.add(i2));
+        System.out.println(bigDecimal);
+        Optional<BigDecimal> reduce = bigDecimals.stream().reduce((i1, i2) -> i1.add(i2));
+        System.out.println(reduce);
+        BigDecimal bigDecimal1 = reduce.get();
+        System.out.println(bigDecimal1);
     }
 
     /*
@@ -366,5 +393,46 @@ public class StreamApiTest {
         List<Integer> collect = list.stream().collect(Collectors.toList());
         System.out.println(collect==null);
         System.out.println(collect.size());
+    }
+
+    //groupingBy
+    //https://www.jianshu.com/p/077108043a77
+    @Test
+    public void case_20220815(){
+        List<Integer> intList = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 1, 2, 3);
+        Map<Integer, List<Integer>> collect = intList.stream().collect(Collectors.groupingBy(e -> e%2));
+        System.out.println(collect);
+    }
+
+    //Peek
+    //https://blog.csdn.net/weixin_42218169/article/details/117357054
+    @Test
+    public void case_20220815_2(){
+        List<Integer> list = Arrays.asList(4, 7, 9, 11, 12);
+        list.stream()
+                .peek(x -> System.out.println("stream: " + x))
+                .map(x -> x + 2)
+                .peek(x -> System.out.println("map: " + x))
+                .filter(x -> x % 2 != 0)
+                .peek(x -> System.out.println("filter: " + x))
+                .limit(2)
+                .peek(x -> System.out.println("limit: " + x))
+                .collect(Collectors.toList());
+    }
+
+//    获取重复数据
+    @Test
+    public void case_20221027(){
+        List<String> strings = new ArrayList<>();
+        strings.add("1");
+        strings.add("1");
+        strings.add("2");
+        strings.add("3");
+        List<String> collect = strings.stream().collect(Collectors.toMap(e -> e, e -> 1, (a, b) -> a + b)) // 获得元素出现频率的 Map，键为元素，值为元素出现的次数
+                .entrySet().stream() // 所有 entry 对应的 Stream
+                .filter(entry -> entry.getValue() > 1) // 过滤出元素出现次数大于 1 的 entry
+                .map(entry -> entry.getKey()) // 获得 entry 的键（重复元素）对应的 Stream
+                .collect(Collectors.toList());// 转化为 List
+        System.out.println(collect);
     }
 }

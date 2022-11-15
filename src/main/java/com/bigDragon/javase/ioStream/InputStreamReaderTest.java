@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.bigDragon.javase.ioStream;
 
@@ -15,10 +15,10 @@ import java.io.OutputStreamWriter;
  * 		InputStreamReader：将一个字节的输入流转换为字符的输入流
  * 		OutputStreamWriter：将一个字符的输出流转换为字节的输出流
  * 2.作用：提供字节流与字符流之间的转换
- * 
+ *
  * 3.解码：字节、字节数组 ---->字符数组、字符串
  * 	 编码：字符数组、字符串----> 字节、字节数组
- * 
+ *
  * 4.字符集
  * ASCII：美国标准信息交换码。用一个字节的7位可以表示,0(0000 0000)-127(0111 1111)共128位.
  * ISO8859-1：拉丁码表，欧洲码表，用一个字节的8位表示。
@@ -28,11 +28,11 @@ import java.io.OutputStreamWriter;
  * 		UTF-8:变长的字符集，通常用1-4个字节表示一个字符
  * ANSI：ANSI编码，美国国家标准协会,通常指的是平台的默认编码，例如英文操作系统中是ISO8859-1,中午系统是GBK
  * Unicode字符集只是定义了字符的集合和唯一编号。Unicode编码，则是对UTF-8,UTF-16等具体编码方案的统称而已，并不是具体的编码方案
- * 
- * 
+ *
+ *
  * @author: bigDragon
  * @date: 2020年8月28日
- * 
+ *
  */
 public class InputStreamReaderTest {
 
@@ -44,14 +44,14 @@ public class InputStreamReaderTest {
 		//使用转换流将文件写入控制台
 		iTest.characterPrint("src\\Main\\resources\\file\\hello.txt");
 		//使用转换流将文件复制
-		iTest.characterConvert("src\\Main\\resources\\file\\hello.txt",
-				"src\\Main\\resources\\file\\hello5.txt");
+//		iTest.characterConvert("src\\Main\\resources\\file\\hello.txt",
+//				"src\\Main\\resources\\file\\hello5.txt");
 	}
-	
+
 	public void characterConvert(String srcStr,String destStr){
 		InputStreamReader isr = null;
 		OutputStreamWriter osw = null;
-		
+
 		try {
 			//1.创建文件、创建流
 			File file1 = new File(srcStr);
@@ -65,7 +65,7 @@ public class InputStreamReaderTest {
 			int len;
 			while ((len = isr.read(cbuf)) != -1) {
 				osw.write(cbuf, 0, len);
-			} 
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally{
@@ -85,7 +85,7 @@ public class InputStreamReaderTest {
 		}
 
 	}
-	
+
 	/**
 	 * 使用转换流将文件写入控制台
 	 * InputStreamReader的使用，实现字节的输入流到字符的输入流的转换
@@ -103,7 +103,7 @@ public class InputStreamReaderTest {
 			while ((len = isr.read(cbuf)) != -1) {
 				String str = new String(cbuf, 0, len);
 				System.out.println(str);
-			} 
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally{

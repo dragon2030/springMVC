@@ -1,10 +1,14 @@
 package com.bigDragon.javase.reflect;
 
 import com.bigDragon.javase.reflect.model.Person;
+import com.bigDragon.javase.reflect.model.Student;
 import org.junit.Test;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.util.Objects;
 
 /**
  * 获取运行时类的完整结构
@@ -19,6 +23,7 @@ public class FieldTest {
         fieldTest.test1();
         //权限修饰符、数据类型、变量名
         fieldTest.test2();
+        //
     }
     /**
      * 获取属性结构
@@ -61,5 +66,37 @@ public class FieldTest {
 
             System.out.println();
         }
+    }
+
+    /**
+     * 泛型
+     * 20221010
+     */
+    @Test
+    public void test3(){
+        Class clazz = Person.class;
+        //获取属性结构
+        Field[] fields = clazz.getDeclaredFields();
+        for(Field f : fields){
+
+            //获取属性类private List<Student> studentList;
+            if(Objects.equals(f.getName(),"studentList")){
+                System.out.println("************************测试主体**************************");
+                Type genericType = f.getGenericType();
+                System.out.println(genericType);
+                ParameterizedType pt = (ParameterizedType) genericType;
+                Class<?> actualTypeArgument = (Class<?>) pt.getActualTypeArguments()[0];
+                System.out.println(actualTypeArgument);
+            }
+            //获取属性类private Student student;
+            if(Objects.equals(f.getName(),"student")){
+                System.out.println("************************测试主体**************************");
+                Type genericType = f.getGenericType();
+                System.out.println(genericType);
+            }
+
+            System.out.println(f);
+        }
+
     }
 }

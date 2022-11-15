@@ -1,9 +1,13 @@
 package com.bigDragon.testMain;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import com.alibaba.fastjson.JSONObject;
+
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -13,19 +17,25 @@ import java.util.stream.Collectors;
 public class Main {
 
     public static void main(String[] args) {
-//        Student student = new Student();
-//        student.setStudent(student);
-//        student.setName("Mike");
-//        student.setSort(22);
-//        System.out.println(student);
-        List<InfoDto> infoDtos = new ArrayList<>();
-        int i = 0;
-        while (true){
-            i++;
-            infoDtos.add(new InfoDto(i));
-            System.out.println(i);
-        }
+        Student student = new Student();
+        System.out.println(student.getSort()+1);
+    }
 
+
+    public List<Student> test() {
+        List<Student> students = new ArrayList<>();
+        students.add(new Student("Mike",1));
+        students.add(new Student("Sam",2));
+        students.add(new Student("Tom",3));
+        return students;
+    }
+
+    public Map<String, Student> test2() {
+        Map<String, Student> stringStudentHashMap = new HashMap<>();
+        stringStudentHashMap.put("1",new Student("Mike",1));
+        stringStudentHashMap.put("2",new Student("Sam",2));
+        stringStudentHashMap.put("3",new Student("Tom",3));
+        return stringStudentHashMap;
     }
 
 }
