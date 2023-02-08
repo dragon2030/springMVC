@@ -162,34 +162,41 @@ public class MapMain {
      *  int size():返回map中key-value对的个数
      *  boolean isEmpty():判断当前map是否为空
      *  boolean equals(Object obj):判断当前map和参数对象obj是否相等
+     *  getOrDefault：Returns the value to which the specified key is mapped, or defaultValue if this map contains no mapping for the key.
      */
     @Test
     public void test2(){
-        Map map = new HashMap();
+        Map<Integer,String> map = new HashMap<Integer,String>();
         map.put(123,"AA");
         map.put(234,"BB");
         map.put(345,"CC");
-        //Object get(Object key)：获取指定key对应的value
-        System.out.println(map.get(123));//AA
+//        //Object get(Object key)：获取指定key对应的value
+//        System.out.println(map.get(123));//AA
+//
+//        //boolean containsKey(Object key)：是否包含指定的key
+//        System.out.println(map.containsKey(123));//true
+//
+//        //boolean containsValue(Object value):是否包含指定的value
+//        System.out.println(map.containsValue("AA"));//true
+//
+//        //int size():返回map中key-value对的个数
+//        System.out.println(map.size());//3
+//
+//        //boolean isEmpty():判断当前map是否为空
+//        System.out.println(map.isEmpty());//false
+//
+//        //boolean equals(Object obj):判断当前map和参数对象obj是否相等
+//        Map map2 = new HashMap();
+//        map2.put(123,"AA");
+//        map2.put(234,"BB");
+//        map2.put(345,"CC");
+//        System.out.println(map.equals(map2));//false
 
-        //boolean containsKey(Object key)：是否包含指定的key
-        System.out.println(map.containsKey(123));//true
-
-        //boolean containsValue(Object value):是否包含指定的value
-        System.out.println(map.containsValue("AA"));//true
-
-        //int size():返回map中key-value对的个数
-        System.out.println(map.size());//3
-
-        //boolean isEmpty():判断当前map是否为空
-        System.out.println(map.isEmpty());//false
-
-        //boolean equals(Object obj):判断当前map和参数对象obj是否相等
-        Map map2 = new HashMap();
-        map2.put(123,"AA");
-        map2.put(234,"BB");
-        map2.put(345,"CC");
-        System.out.println(map.equals(map2));//false
+        //Returns the value to which the specified key is mapped, or defaultValue if this map contains no mapping for the key.
+        String st = map.getOrDefault(123, new String("abc"));
+        System.out.println(st);
+        String st2 = map.getOrDefault(456, new String("abc"));
+        System.out.println(st2);
     }
 
     /**

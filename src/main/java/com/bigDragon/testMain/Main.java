@@ -1,6 +1,10 @@
 package com.bigDragon.testMain;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.bigDragon.util.SnowFlakeUtil;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.FileReader;
@@ -15,27 +19,16 @@ import java.util.stream.Collectors;
  * @create 2020-12-09 20:31
  */
 public class Main {
-
-    public static void main(String[] args) {
-        Student student = new Student();
-        System.out.println(student.getSort()+1);
-    }
-
-
-    public List<Student> test() {
-        List<Student> students = new ArrayList<>();
-        students.add(new Student("Mike",1));
-        students.add(new Student("Sam",2));
-        students.add(new Student("Tom",3));
-        return students;
-    }
-
-    public Map<String, Student> test2() {
-        Map<String, Student> stringStudentHashMap = new HashMap<>();
-        stringStudentHashMap.put("1",new Student("Mike",1));
-        stringStudentHashMap.put("2",new Student("Sam",2));
-        stringStudentHashMap.put("3",new Student("Tom",3));
-        return stringStudentHashMap;
+    public static void main(String[] args) throws JsonProcessingException {
+        String file1Name ="sys_dict_470000_470005.yml";
+        int i1 = file1Name.lastIndexOf("_");
+        String substring = file1Name.substring(0, i1);
+        System.out.println(substring);
+        int i = substring.lastIndexOf("_");
+        String substring2 = file1Name.substring(0, i);
+        System.out.println(substring2);
+//        String substring = file1Name.substring(0,  );
+//        System.out.println(substring);
     }
 
 }

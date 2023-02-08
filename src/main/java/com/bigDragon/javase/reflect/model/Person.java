@@ -1,6 +1,7 @@
 package com.bigDragon.javase.reflect.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
@@ -10,6 +11,7 @@ import java.util.List;
  */
 @MyAnnotation(value = "hi")
 @Data
+@NoArgsConstructor
 public class Person extends Creature<String> implements Comparable<String>,MyInterface{
     private String name;
     int age;

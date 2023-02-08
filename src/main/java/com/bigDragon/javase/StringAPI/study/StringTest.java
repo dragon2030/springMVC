@@ -15,24 +15,28 @@ import java.util.List;
  * @author bigDragon
  * @create 2020-12-25 16:10
  */
-public class SpringTest {
+public class StringTest {
     public static void main(String[] args) throws UnsupportedEncodingException {
-        SpringTest springTest = new SpringTest();
+        StringTest stringTest = new StringTest();
 
         //String类
         //String的概念及不可变性
-        springTest.test1();
+        stringTest.test1();
         //String实例化方式
-        springTest.test2();
+        stringTest.test2();
         //String不同拼接方式的对比(内存中的特点)
-        springTest.test3();
+        stringTest.test3();
         //String的常用方法
-        springTest.StringMethod();
+        stringTest.StringMethod();
         //涉及到String类与其他结构之前的转换
-        springTest.StringConvert();
+        stringTest.StringConvert();
 
         //StringBuilder类 和 StringBuffer类
-        springTest.StringBuilderStringBufferTest();
+        stringTest.StringBuilderStringBufferTest();
+        //stringBuilder去掉最后一个逗号
+        stringTest.stringBuilder_deleteLastSign();
+        //String join()
+        stringTest.String_join();
     }
     /*String的概念及不可变性
     String:字符串，使用一对""引起来表示
@@ -349,9 +353,9 @@ public class SpringTest {
         System.out.println(stringBuffer);
     }
 
-    //去掉最后一个逗号
+    //stringBuilder去掉最后一个逗号
     @Test
-    public void ccase_20221025(){
+    public void stringBuilder_deleteLastSign(){
         List<String> strings = new ArrayList<>(Arrays.asList(new String[] {"AA","BB","CC","DD"}));//AA,BB,CC,DD
 //        List<String> strings = null;//无异常
 
@@ -363,5 +367,72 @@ public class SpringTest {
             stringBuilder.deleteCharAt(stringBuilder.length()-1);
         }
         System.out.println(stringBuilder.toString());
+    }
+
+    /**
+     * join() 方法返回使用指定分隔符拼接一个字符串。在join() 方法中，为每个元素添加了分隔符。
+     * 此方法比StringBuild拼接然后deleteCharAt更加优雅
+     * 如果为null元素，则添加“null”
+     * 从JDK 1.8开始，Java字符串才包含join() 方法。
+     * Java字符串中有两种join()方法。
+     * public static String join(CharSequence delimiter, CharSequence... elements)
+     * 或
+     * public static String join(CharSequence delimiter, Iterable<? extends CharSequence> elements)
+     */
+    @Test
+    public void String_join(){
+        String date = String.join("/","01","25","2020");
+        System.out.println(date);//01/25/2020
+
+        String[] array = new String[]{"welcome","to","yiidian"};
+        List<String> list = new ArrayList<>(Arrays.asList(array));
+        String joinString1=String.join("-",list);
+        System.out.println(joinString1);//welcome-to-yiidian
+    }
+
+    /**
+     * format()方法
+     * 在运用字符串的时候，我们常常会用到String.fromat()函数来对字符串进行加工，得到我们想要的格式
+     * String.format()函数相当于将括号内的量，按照自己的想要的格式拼接成一个字符串，然后输出
+     * 参考博客：https://blog.csdn.net/wujian_csdn_csdn/article/details/113844887
+     */
+    @Test
+    public void String_format(){
+        String url = "字符串：我叫%s,今年%s岁。";
+        String name = "小明";
+        String age = "28";
+        url = String.format(url,name,age);
+        System.out.println(url);
+        String str;
+        str = String.format("Hello %s%c","world",'!');
+        System.out.println(str);
+        //%b
+        str = String.format("%b", 10>3);
+        System.out.println(str);
+        str = String.format("%b", 2>=3);
+        System.out.println(str);
+        //%d %x %o
+        str = String.format("十进制：%d", 10);
+        System.out.println(str);
+        str = String.format("十六进制：%x", 10);
+        System.out.println(str);
+        str = String.format("八进制：%o", 10);
+        System.out.println(str);
+        //%f %a %g %e
+        str = String.format("浮点数：%f", 3.14159);
+        System.out.println(str);
+        str = String.format("十六进制浮点数：%a", 3.14159);
+        System.out.println(str);
+        str = String.format("通用浮点类型：%g", 3.1415926);
+        System.out.println(str);
+        str = String.format("指数形式：%e", 3.14159);
+        System.out.println(str);
+        //%h %% %n
+        str = String.format("散列码：%h", "123456");
+        System.out.println(str);
+        str = String.format("百分之九十：%d%%", 90);
+        System.out.println(str);
+        str = String.format("测试到此结束！%n");
+        System.out.println(str);
     }
 }

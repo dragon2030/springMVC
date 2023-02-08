@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.bigDragon.demo.test.service.TestService;
-import com.bigDragon.javase.ioStream.ExcelTest;
+import com.bigDragon.javase.ioStream.excel.ExcelSimpleDemo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -216,8 +216,8 @@ public class TestContorller {
 		JSONObject jsonObject = JSONObject.parseObject(json);
 		String filePath=(String)jsonObject.get("filePath");
 		//String filePath = "D:\\disposeExcel.xls";
-		ExcelTest excelTest= new ExcelTest();
-		List<String>list = excelTest.excelDispose(filePath);
+		ExcelSimpleDemo excelSimpleDemo = new ExcelSimpleDemo();
+		List<String>list = excelSimpleDemo.excelDispose(filePath);
 		logger.info("获取文件内容成功，条数："+list.size());
 		int successNum = 0;
 		for (String str:list){
@@ -240,8 +240,8 @@ public class TestContorller {
 		JSONObject jsonObject = JSONObject.parseObject(json);
 		String filePath=(String)jsonObject.get("filePath");
 		//String filePath = "D:\\disposeExcel.xls";
-		ExcelTest excelTest= new ExcelTest();
-		List<String>list = excelTest.excelDispose(filePath);
+		ExcelSimpleDemo excelSimpleDemo = new ExcelSimpleDemo();
+		List<String>list = excelSimpleDemo.excelDispose(filePath);
 		logger.info("获取文件内容成功，条数："+list.size());
 		int successNum = testService.dataDispose2(list);
 		logger.info("总条数："+list.size()+" 成功插入："+successNum);

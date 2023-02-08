@@ -1,6 +1,5 @@
-package com.bigDragon.documentOperation.itext7;
+package com.bigDragon.javase.ioStream.pdf.itext7;
 
-import com.itextpdf.io.image.ImageData;
 import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;

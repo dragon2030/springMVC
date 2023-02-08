@@ -16,6 +16,8 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.*;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
@@ -36,33 +38,27 @@ import java.time.Period;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.DoubleToIntFunction;
 import java.util.function.Function;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import com.bigDragon.*;
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
 
 /**
  * @author bigDragon
  * @create 2020-12-09 20:31
  */
 public class Main {
-    public static void main(String[] args) throws InterruptedException, IOException {
-        String s1="INSERT INTO `sys_role_permission` (`id`, `role_id`, `permission_id`, `data_rule_ids`, `operate_date`, `operate_ip`) VALUES ('{0}', f6817f48af4fb3af11b9e8bf182f618b, 1588070063412510721, NULL, 2022-11-15 13:14:57, 115.236.0.2);\n" +
-                "INSERT INTO `sys_role_permission` (`id`, `role_id`, `permission_id`, `data_rule_ids`, `operate_date`, `operate_ip`) VALUES ({1}, f6817f48af4fb3af11b9e8bf182f618b, 1588070497451671554, NULL, 2022-11-15 13:14:57, 115.236.0.2);\n" +
-                "INSERT INTO `sys_role_permission` (`id`, `role_id`, `permission_id`, `data_rule_ids`, `operate_date`, `operate_ip`) VALUES ({2}, f6817f48af4fb3af11b9e8bf182f618b, 1588070852365287426, NULL, 2022-11-15 13:14:57, 115.236.0.2);\n" +
-                "INSERT INTO `sys_role_permission` (`id`, `role_id`, `permission_id`, `data_rule_ids`, `operate_date`, `operate_ip`) VALUES ({3}, f6817f48af4fb3af11b9e8bf182f618b, 1588071450938605570, NULL, 2022-11-15 13:14:57, 115.236.0.2);\n" +
-                "INSERT INTO `sys_role_permission` (`id`, `role_id`, `permission_id`, `data_rule_ids`, `operate_date`, `operate_ip`) VALUES ({4}, f6817f48af4fb3af11b9e8bf182f618b, 1588072096341327874, NULL, 2022-11-15 13:14:57, 115.236.0.2);\n" +
-                "INSERT INTO `sys_role_permission` (`id`, `role_id`, `permission_id`, `data_rule_ids`, `operate_date`, `operate_ip`) VALUES ({5}, f6817f48af4fb3af11b9e8bf182f618b, 1588072897579220994, NULL, 2022-11-15 13:14:57, 115.236.0.2);";
-        String snowflakeStr0 = SnowFlakeUtil.getSnowflakeStr();
-        String snowflakeStr1 = SnowFlakeUtil.getSnowflakeStr();
-        String snowflakeStr2 = SnowFlakeUtil.getSnowflakeStr();
-        String snowflakeStr3 = SnowFlakeUtil.getSnowflakeStr();
-        String snowflakeStr4 = SnowFlakeUtil.getSnowflakeStr();
-        String snowflakeStr5 = SnowFlakeUtil.getSnowflakeStr();
-        String s2 = MessageFormat.format(s1,snowflakeStr0,snowflakeStr1,snowflakeStr2,
-                snowflakeStr3,snowflakeStr4,snowflakeStr5);
-        System.out.println(s2);
+    private static final ConcurrentHashMap<String, String> APP_CID_MAP = new ConcurrentHashMap<>();
+
+    public static void main(String[] args) {
+        ArrayList<String> strings = new ArrayList<>();
+        List<String> collect = strings.stream().collect(Collectors.toList());
+        System.out.println(collect);
     }
+
 }

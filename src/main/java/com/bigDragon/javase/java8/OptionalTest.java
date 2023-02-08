@@ -5,7 +5,10 @@ import org.apache.poi.ss.formula.functions.T;
 import org.junit.Test;
 import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Optional类:为了在程序中避免出现空指针异常而创建的
@@ -41,6 +44,13 @@ public class OptionalTest {
         optionalTest.test2();
         //获取Optional容器的对象
         optionalTest.test3();
+
+
+        //生产案例ofNullable orElse
+        //优雅的规避空指针
+        optionalTest.case_20221024();
+        //获取流中第一个值
+        optionalTest.case_20230207();
     }
     /*
     创建Optional类对象的方法
@@ -97,9 +107,23 @@ public class OptionalTest {
     //优雅的规避空指针
     @Test
     public void case_20221024(){
-        String meterNum=null;
-        String virMeterNum="12345";
-        String s = Optional.ofNullable(meterNum).orElse(virMeterNum);
+        Integer meterNum=12;
+        Integer virMeterNum=12345;
+        Integer s = Optional.ofNullable(meterNum).orElse(virMeterNum);
         System.out.println(s);
+    }
+
+    //获取流中第一个值
+    @Test
+    public void case_20230207(){
+        List<String> strings = new ArrayList<>();
+        strings.add("1");
+        strings.add("2");
+        strings.add("3");
+        Optional<String> first = strings.stream().findFirst();
+        System.out.println(first.isPresent());
+        if(first.isPresent()){
+            System.out.println(first.get());
+        }
     }
 }

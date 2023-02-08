@@ -1,4 +1,4 @@
-package com.bigDragon.javase.ioStream;
+package com.bigDragon.javase.ioStream.excel;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFCell;
@@ -15,7 +15,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -26,9 +25,9 @@ import java.util.List;
  * @author bigDragon
  * @create 2020-09-08 15:59
  */
-public class ExcelTest {
+public class ExcelSimpleDemo {
     public static void main(String[] args){
-        ExcelTest excelTest = new ExcelTest();
+        ExcelSimpleDemo excelSimpleDemo = new ExcelSimpleDemo();
         String Path1 = "src\\Main\\resources\\excel\\testExcel.xls";
         String Path2 = "src\\Main\\resources\\excel\\testExcel2.xls";
         String Path3 = "src\\Main\\resources\\excel\\testExcel3.xlsx";
@@ -36,18 +35,18 @@ public class ExcelTest {
 
 
        //excel操作 97-2003 xls(读取数据)
-        System.out.println(excelTest.readXls(Path1));
+        System.out.println(excelSimpleDemo.readXls(Path1));
         //处理文件类型--Microsoft Excel 97-2003 工作表.xls （写入数据）
-        excelTest.writeXls(Path2);
+        excelSimpleDemo.writeXls(Path2);
 
         //excel操作  xlsx
         //处理文件类型--Microsoft Excel 工作表.xlsx (读取数据)
-        System.out.println(excelTest.readXlsx(Path3));
+        System.out.println(excelSimpleDemo.readXlsx(Path3));
         //处理文件类型--Microsoft Excel 工作表.xlsx (写入数据)
-        excelTest.writeXlsx(Path4);
+        excelSimpleDemo.writeXlsx(Path4);
 
         //excel读取文件xls/xlsx
-        System.out.println(excelTest.readExcel(Path4));
+        System.out.println(excelSimpleDemo.readExcel(Path4));
 
 
     }
