@@ -3,6 +3,7 @@ package com.bigDragon.javase.collection;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -30,7 +31,66 @@ import java.util.List;
  * @create 2020-11-05 15:55
  */
 public class ArrayListTest {
+    public static void main(String[] args) {
+        ArrayListTest test = new ArrayListTest();
+        //java集合(Collection)中的一种错误机制:fail-fast 机制核心变量modCount
+        //多线程修改时的报错场景
+//        test.modCountTest1();
+        //这边用的是arrayList内部类Itr中的remove方法，会修改modCount也修改expectedModCount
+//        test.modCountTest2();
+        //这边用的是arrayList中的remove方法，只会修改modCount不修改expectedModCount
+        test.modCountTest3();
+    
+    }
     public void method(){
         List list = new ArrayList();
+    }
+    
+    public void modCountTest1(){
+        List<String> strList = new ArrayList<>();
+        strList.add("a");
+        strList.add("b");
+        strList.add("c");
+        Iterator<String> iterator = strList.iterator();
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        new Thread(() -> strList.add("d")).start();
+        while (iterator.hasNext()) {
+            String str = iterator.next();
+            System.out.println(str);
+        }
+    }
+    
+    public void modCountTest2(){
+        List<String> strList = new ArrayList<>();
+        strList.add("AA");
+        strList.add("aa");
+        strList.add("aa");
+        strList.add("CC");
+        Iterator<String> iterator = strList.iterator();
+        while (iterator.hasNext()) {
+            if ("aa".equals(iterator.next())) {
+                iterator.remove();
+            }
+        }
+        System.out.println(strList);
+    }
+    
+    public void modCountTest3(){
+        List<String> strList = new ArrayList<>();
+
+        strList.add("AA");
+        strList.add("aa");
+        strList.add("BB");
+        strList.add("CC");
+        for (String str : strList) {
+            if ("aa".equals(str)) {
+                strList.remove(str);
+            }
+        }
+        System.out.println(strList);
     }
 }

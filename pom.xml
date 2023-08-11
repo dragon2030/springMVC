@@ -118,6 +118,12 @@
             <version>1.1.10</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>easyexcel</artifactId>
+            <version>2.2.6</version>
+        </dependency>
+
 <!--        &lt;!&ndash; jackson &ndash;&gt;
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -397,6 +403,33 @@
             <artifactId>log4j-api</artifactId>
             <version>2.17.1</version>
         </dependency>
+
+
+        <!--单元测试依赖-->
+<!--        <dependency>-->
+<!--            <groupId>junit</groupId>-->
+<!--            <artifactId>junit</artifactId>-->
+<!--            <version>4.11</version>-->
+<!--            <scope>test</scope>-->
+<!--        </dependency>-->
+        <!--lombok依赖-->
+<!--        <dependency>-->
+<!--            <groupId>org.projectlombok</groupId>-->
+<!--            <artifactId>lombok</artifactId>-->
+<!--            <version>1.18.28</version>-->
+<!--        </dependency>-->
+        <!--mybatis依赖-->
+<!--        <dependency>-->
+<!--            <groupId>org.mybatis</groupId>-->
+<!--            <artifactId>mybatis</artifactId>-->
+<!--            <version>3.5.12</version>-->
+<!--        </dependency>-->
+        <!--mysql驱动-->
+<!--        <dependency>-->
+<!--            <groupId>mysql</groupId>-->
+<!--            <artifactId>mysql-connector-java</artifactId>-->
+<!--            <version>8.0.30</version>-->
+<!--        </dependency>-->
     </dependencies>
     <build>
         <plugins>

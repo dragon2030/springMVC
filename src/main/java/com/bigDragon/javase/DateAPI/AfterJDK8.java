@@ -221,7 +221,7 @@ public class AfterJDK8 {
         System.out.println(localDate2);//2021-03-04
         // 获取LocalTime
         LocalTime localTime2 = localDateTime.toLocalTime();
-        System.out.println(localTime2);//16:53:30.329
+        System.out.println(localTime2);//16:53:g30.329
     }
     //查询相隔时间的计算
     @Test

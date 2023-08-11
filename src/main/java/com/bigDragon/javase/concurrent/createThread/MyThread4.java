@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.bigDragon.javase.concurrent.createThread;
 
@@ -13,7 +13,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * 创建线程的方式四：使用线程池
- * 
+ *
  * 背景：经常创建和销毁，使用量特别大的资源，比如并发情况的线程，对性能影响很大。
  * 思路：提前创建好多个线程，放入线程池中，使用时直接获取，使用完放回池中。可以避免频繁
  * 			创建销毁、实现重复利用。类似生活中的公共交通工具
@@ -25,10 +25,10 @@ import java.util.concurrent.ThreadPoolExecutor;
  * 			maximumPoolSize:最大线程数
  * 			keepAliceTime：线程没有任务时最多保存多少时间后会终止
  * 			...
- * 			
+ *
  * @author: bigDragon
  * @date: 2020年8月14日
- * 
+ *
  */
 class NumberThread implements Runnable{
 
@@ -98,8 +98,9 @@ public class MyThread4 {
 		
 		//2.执行指定的线程操作。需要提供实现Runnable接口或Callable接口实现的对象
 		//executorService.execute(new NumberThread());//适合使用于Runnable
-		//executorService.execute(new NumberThread1());
+//		executorService.execute(new NumberThread1());
 		Future<Integer> submit = executorService.submit(new NumberThread2());//适合使用于Callable
+//		((ThreadPoolExecutor) executorService).getQueue()
 		FutureTask<Integer> futureTask= (FutureTask<Integer>) submit;//适合使用与Callable
 		try {
 			System.out.println(futureTask.get());

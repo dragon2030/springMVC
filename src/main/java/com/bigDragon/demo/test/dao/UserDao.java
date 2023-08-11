@@ -13,4 +13,5 @@ import java.util.List;
 @Repository
 public interface UserDao {
     List<User> selectAll();
+    
 }

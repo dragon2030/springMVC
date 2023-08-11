@@ -3,10 +3,7 @@ package com.bigDragon.demo.test.controller;
 import java.io.BufferedReader;
 import java.io.PrintWriter;
 import java.net.URLDecoder;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import com.bigDragon.demo.test.service.TestService;
 import com.bigDragon.javase.ioStream.excel.ExcelSimpleDemo;
@@ -48,10 +45,16 @@ public class TestContorller {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/test")
+	@RequestMapping(value = "/testGet")
+	public ModelAndView test(){
+		ModelAndView modelAndView=new ModelAndView();
+		modelAndView.setViewName("test");
+		return modelAndView;
+	}
+	@RequestMapping(value = "/testAjax")
 	@ResponseBody
-	public String test(HttpServletRequest request, HttpServletResponse response){
-		System.out.println(JSON.toJSONString(request));
+	public String test(Date dateTime){
+		System.out.println(dateTime);
 		return "success";
 	}
 

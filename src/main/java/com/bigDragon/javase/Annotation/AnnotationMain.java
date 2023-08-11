@@ -48,6 +48,7 @@ package com.bigDragon.javase.Annotation;
  *      *******出现的频率较低*******
  *      Documented:表示所修饰的注释在被javadoc解析时，保留下来。
  *      Inherited:被它修饰的Annotation将具有继承性。
+ *          我们在定义一个作用于类的注解时候，如果希望该注解也作用于其子类，那么可以用@Inherited 来进行修饰。（https://blog.csdn.net/sunnyzyq/article/details/119736442）
  *
  *  五、通过反射获取注解信息
  *

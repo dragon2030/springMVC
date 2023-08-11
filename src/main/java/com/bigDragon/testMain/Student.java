@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
+import java.util.List;
+
 /**
  * @author: bigDragon
  * @create: 2022/4/8
@@ -22,4 +24,6 @@ public class Student {
     private String IDCard;
     private String phoneNo;
     private Integer sort;
+    private Dog dog;
+    private List<String> children;
 }

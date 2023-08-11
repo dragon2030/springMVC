@@ -18,17 +18,17 @@ public class GenerateCanalConfigurationFiles {
         GenerateCanalConfigurationFiles main = new GenerateCanalConfigurationFiles();
 
         //遍历获取文件夹下的文件通过获取的文件决定选择，集团-》子公司，子公司-》集团
-        String templatePath = "D:\\documentOperation\\txt\\template";//rdb解压后的模板
-        String outPutPath = "D:\\documentOperation\\txt\\upload";//需要上传的文件
+        String templatePath = "D:\\documentOperation\\txt\\template2";//rdb解压后的模板
+        String outPutPath = "D:\\documentOperation\\txt\\upload2";//需要上传的文件
         String outSpecificPrefix = "merge";//输出文件前缀内容，用于区分不同集团-子公司库关系，如merge_biz_addr_470004_470000.yml
         String separator = "_";//文件名中的分隔符
         String groupCompanyCode = "470000";//集团公司code
         String subCompanyCode = "470004";//子公司code
         //application.yml新增的库属性，也是每个表.yml文中需要修改的熟悉
-        String groupCompany_source = "hh_gt_merge_source_470000";//集团公司的源
-        String subCompany_source = "hh_gt_merge_source_470004";//子公司的源
-        String groupCompany_target = "hh_gt_merge_source_outer_470000";//集团公司的同步配置
-        String subCompany_target = "hh_gt_merge_source_outer_470004";//子公司的同步配置
+        String groupCompany_source = "defaultDEV470000";//集团公司的源
+        String subCompany_source = "defaultDEV470004";//子公司的源
+        String groupCompany_target = "mysqldev470000";//集团公司的同步配置
+        String subCompany_target = "mysqldev470004";//子公司的同步配置
         String groupCompany_database_name = "innover_ibs_470000";//集团公司数据库
         String subCompany_database_name = "innover_ibs_470004";//子公司数据库
 

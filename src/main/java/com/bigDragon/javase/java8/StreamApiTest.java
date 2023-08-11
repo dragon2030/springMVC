@@ -103,6 +103,7 @@ public class StreamApiTest {
         //测试用ArrayList集合
         streamApiTest.getList();
     }
+//    DictModelDetail detail = dictDetailList.stream().filter(dict -> dict.getValue().equals(workorderType)).findFirst().orElseThrow(() -> new JeecgBootException("未找到对应字典项"));
     /*
     创建Stream方式一：通过集合
      */
@@ -219,7 +220,7 @@ public class StreamApiTest {
     }
     /*
     Stream的中间操作
-    3.排序
+    3.排序 默认正序
      */
     @Test
     public void test7(){
@@ -235,7 +236,7 @@ public class StreamApiTest {
         getList.stream().sorted(Comparator.comparingInt(Person::getAge)).forEach(System.out::println);
         System.out.println("*******");
         //倒序
-        getList.stream().sorted((e1,e2) -> -Integer.compare(e1.getAge(),e2.getAge())).forEach(System.out::println);
+        getList.stream().sorted((e1,e2) -> Integer.compare(e1.getAge(),e2.getAge())).forEach(System.out::println);
         System.out.println("*******");
         getList.stream().sorted(Comparator.comparingInt(Person::getAge).reversed()).forEach(System.out::println);
 
@@ -299,6 +300,7 @@ public class StreamApiTest {
         //T reduce(T identity, BinaryOperator<T> accumulator)——可以将流中元素反复结合起来，得到一个值。
         //联系：计算1-10的自然数的和
         List<Integer> list = Arrays.asList(1,2,3,4,5,6,7,8,9,10);
+        //identity 单位
         Integer reduce = list.stream().reduce(0, Integer::sum);
         System.out.println(reduce);
         //Optional<T> reduce(BinaryOperator<T> accumulator)——可以将流中元素反复结合起来，得到一个值，返回Optional<T>

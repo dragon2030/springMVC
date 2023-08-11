@@ -193,7 +193,7 @@ public class HttpClientUtil {
 	 * 发送 get请求
 	 * @param httpUrl
 	 */
-	public String sendHttpGet(String httpUrl) {
+	public String sendHttpGet (String httpUrl) {
 		HttpGet httpGet = new HttpGet(httpUrl);// 创建get请求
 		return sendHttpGet(httpGet);
 	}

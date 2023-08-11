@@ -106,4 +106,14 @@ public class MathApi {
         BigDecimal bigDecimal5 = bigDecimal.setScale(2, BigDecimal.ROUND_HALF_UP);
         System.out.println(bigDecimal5);
     }
+
+    @Test
+    public void absAndNegate(){
+        BigDecimal amount = new BigDecimal("-12.12");
+        BigDecimal absAmount = amount.abs();
+        System.out.println(absAmount);
+        BigDecimal negateAmount = absAmount.negate();
+        System.out.println(negateAmount);
+    }
+
 }

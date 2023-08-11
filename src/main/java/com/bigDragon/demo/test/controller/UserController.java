@@ -31,15 +31,4 @@ public class UserController {
         List<User> users = userService.selectAll();
         return users;
     }
-
-    @RequestMapping(value = "/test")
-    @ResponseBody
-    public void test(){
-        long count = 0;
-        List<Object> list = new ArrayList<>();
-        while (true){
-            list.add(new Object());
-            System.out.println("count: " + ++count);
-        }
-    }
 }

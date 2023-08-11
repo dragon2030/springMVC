@@ -14,7 +14,9 @@ class  ProxyFactory{
         //绑定被代理类对象到代理类工厂的obj属性中
         handler.bind(obj);
         //返回代理类实例
-        return Proxy.newProxyInstance(obj.getClass().getClassLoader(),obj.getClass().getInterfaces()
+        return Proxy.newProxyInstance(
+                obj.getClass().getClassLoader(),
+                obj.getClass().getInterfaces()
                 ,handler);
     }
 }

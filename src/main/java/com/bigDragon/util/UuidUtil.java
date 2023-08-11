@@ -12,15 +12,18 @@ import java.util.UUID;
 public class UuidUtil {
     public static String generate(){
         UUID uuid = UUID.randomUUID();
-        System.out.println(uuid);
+//        System.out.println(uuid);
         String uuidString = uuid.toString();
         String replaceAll = uuidString.replaceAll("-", "");
         System.out.println(replaceAll);
-        System.out.println(replaceAll.length());
+//        System.out.println(replaceAll.length());
         return replaceAll;
     }
 
     public static void main(String[] args) {
-        UuidUtil.generate();
+        for(int i=0;i<10;i++){
+            UuidUtil.generate();
+        }
+
     }
 }

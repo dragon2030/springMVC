@@ -23,7 +23,7 @@ public class SnowFlakeUtil {
         for (int i = 0;i < 10;i++){
             String snowflakeStr = getSnowflakeStr();
             System.out.println(snowflakeStr);
-            //System.out.println(snowflakeStr.length());
+            //System.out.println(snowflakeStr.len@gth());
         }
     }
 }

@@ -18,27 +18,28 @@ import java.io.IOException;
 public class SubCompanyNeedExecuteSqlUtil {
     public static void main(String[] args) {
         SubCompanyNeedExecuteSqlUtil main = new SubCompanyNeedExecuteSqlUtil();
-
+        System.out.println("******************************************************************");
         //获取sql模本
-        String sqlTemplate = main.readerSqlTemplate();
-        System.out.println("获取sql模本:"+sqlTemplate);
-        System.out.println("*********************************");
+        String sqlTemplate = main.readerSqlTemplate("D:\\io_test\\sql_template.txt");
+        System.out.println("获取sql模本:\n"+sqlTemplate);
+        System.out.println("******************************************************************");
         //获取所有分公司
-        String allCompany = main.readerAllCompany();
-        System.out.println("获取所有分公司:"+allCompany);
-        System.out.println("*********************************");
+        String allCompany = main.readerAllCompany("D:\\io_test\\all_subcompany.txt");
+        System.out.println("获取所有分公司:\n"+allCompany);
+        System.out.println("******************************************************************");
         //组装成需执行的sql
         String executeSql = main.dateProcess(sqlTemplate, allCompany);
-        System.out.println("组装成需执行的sql:"+executeSql.toString());
+        System.out.println("组装成需执行的sql:\n"+executeSql.toString());
         //输出
-        main.writerOut(executeSql);
+        main.writerOut(executeSql,"D:\\io_test\\needExecuteSql.txt");
+        System.out.println("******************************************************************");
     }
 
-    public String readerSqlTemplate() {
+    public String readerSqlTemplate(String pathName) {
         FileReader fr = null;
         StringBuffer sqlTemplate = new StringBuffer();
         try {
-            File file = new File("D:\\io_test\\subcompany_sql.txt");
+            File file = new File(pathName);
             fr = new FileReader(file);
 
             char[] cbuffer = new char[1024];
@@ -61,11 +62,11 @@ public class SubCompanyNeedExecuteSqlUtil {
         return sqlTemplate.toString();
     }
 
-    public String readerAllCompany() {
+    public String readerAllCompany(String pathName) {
         FileReader fr = null;
         StringBuffer allCompany = new StringBuffer();
         try {
-            File file = new File("D:\\io_test\\all_subcompany.txt");
+            File file = new File(pathName);
             fr = new FileReader(file);
 
             char[] cbuffer = new char[1024];
@@ -95,24 +96,25 @@ public class SubCompanyNeedExecuteSqlUtil {
         //去除分公司行间空行
         String noLineBreak = allCompany.replace("\n","");
         noLineBreak = noLineBreak.replace("\r","");
-        System.out.println("去除分公司行间空行:"+noLineBreak);
-        System.out.println("*********************************");
+        noLineBreak = noLineBreak.replace("\\","");
+        System.out.println("去除分公司行间空行:\n"+noLineBreak);
+        System.out.println("******************************************************************");
         String[] split = noLineBreak.split(",");
         //
         for(String subCompany : split){
             String operationSubCompany = subCompany.trim();
             execute_sql.append("-- ").append(operationSubCompany).append("\r\n");
             String new_sqlTemplate = sqlTemplate.replace("000000",operationSubCompany);
-            execute_sql.append(new_sqlTemplate).append("\r\n");
+            execute_sql.append(new_sqlTemplate).append("\r\n").append("\r\n");
         }
         return execute_sql.toString();
     }
 
-    public void writerOut(String executeSql) {
+    public void writerOut(String executeSql,String pathName) {
         FileWriter fileWriter = null;//对原有文件的追加
         try {
             //1.提供File类的对象，指明写出到的文件
-            File file = new File("D:\\io_test\\needExecuteSql.txt");
+            File file = new File(pathName);
             fileWriter = new FileWriter(file, true);
             //3.写出的操作
             fileWriter.write(executeSql);
