@@ -6,7 +6,7 @@ import net.sf.cglib.proxy.MethodProxy;
 import java.lang.reflect.Method;
 
 /**
- * 方法拦截器
+ * 方法
  * @author bigDragon
  * @create 2021-01-06 18:49
  */
