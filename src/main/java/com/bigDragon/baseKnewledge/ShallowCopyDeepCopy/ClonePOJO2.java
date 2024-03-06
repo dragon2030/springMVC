@@ -1,5 +1,8 @@
 package com.bigDragon.baseKnewledge.ShallowCopyDeepCopy;
 
+import java.math.BigDecimal;
+import java.util.Date;
+
 /**
  * 浅拷贝
  * @author bigDragon
@@ -10,6 +13,12 @@ public class ClonePOJO2 implements Cloneable{
     private String Str1;
     private int int1;
     private User user;
+
+    private Date date1;
+
+    private BigDecimal decimal1;
+
+
 
     public String getStr1() {
         return Str1;
@@ -35,6 +44,22 @@ public class ClonePOJO2 implements Cloneable{
         this.user = user;
     }
 
+    public Date getDate1() {
+        return date1;
+    }
+
+    public void setDate1(Date date1) {
+        this.date1 = date1;
+    }
+
+    public BigDecimal getDecimal1() {
+        return decimal1;
+    }
+
+    public void setDecimal1(BigDecimal decimal1) {
+        this.decimal1 = decimal1;
+    }
+
     /**
      *  重写clone()方法
      * @return
@@ -49,12 +74,15 @@ public class ClonePOJO2 implements Cloneable{
             return null;
         }
     }
+
     @Override
     public String toString() {
-        return "ClonePOJO"+this.hashCode()+"{" +
+        return "ClonePOJO2{" +
                 "Str1='" + Str1 + '\'' +
                 ", int1=" + int1 +
                 ", user=" + user +
+                ", date1=" + date1 +
+                ", decimal1=" + decimal1 +
                 '}';
     }
 }

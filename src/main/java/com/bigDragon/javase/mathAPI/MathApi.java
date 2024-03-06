@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.text.DecimalFormat;
 import java.util.Random;
 
 /**
@@ -114,6 +115,16 @@ public class MathApi {
         System.out.println(absAmount);
         BigDecimal negateAmount = absAmount.negate();
         System.out.println(negateAmount);
+    }
+
+
+    @Test
+    public void case_20231010(){
+        DecimalFormat df =new DecimalFormat("#.000");
+
+        BigDecimal bigDecimal = new BigDecimal("12.345678");
+        BigDecimal bigDecimal1 = new BigDecimal(df.format(bigDecimal.doubleValue()));
+        System.out.println(bigDecimal1);
     }
 
 }

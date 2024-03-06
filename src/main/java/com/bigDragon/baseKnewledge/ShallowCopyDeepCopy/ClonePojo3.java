@@ -1,5 +1,8 @@
 package com.bigDragon.baseKnewledge.ShallowCopyDeepCopy;
 
+import java.math.BigDecimal;
+import java.util.Date;
+
 /**
  * 深拷贝
  * @author bigDragon
@@ -9,6 +12,7 @@ public class ClonePojo3 implements Cloneable{
 
     private String Str1;
     private int int1;
+
     private User2 user2;
 
     public String getStr1() {

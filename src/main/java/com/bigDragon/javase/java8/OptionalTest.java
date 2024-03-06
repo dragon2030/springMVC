@@ -1,5 +1,6 @@
 package com.bigDragon.javase.java8;
 
+import com.bigDragon.model.User;
 import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import org.apache.poi.ss.formula.functions.T;
 import org.junit.Test;
@@ -99,8 +100,31 @@ public class OptionalTest {
         //T orElse(T other)——如果有值则将其返回，否则返回指定的other对象(与Optional.ofNullable()对应，不清楚是否为空时使用)
         girl = null;
         Optional<Girl> optionalGirl2 = Optional.ofNullable(girl);
-        Girl girl2 = optionalGirl2.orElse(new Girl("波波"));
+        Girl girl2 = optionalGirl2.orElse(new Girl("bb"));
         System.out.println(girl2);
+    }
+
+    @Test
+    public void case_20231205(){
+//        .empty()： 创建一个空的Optional实例\
+        Optional<Object> empty = Optional.empty();
+//        System.out.println(empty.get());//java.util.NoSuchElementException: No value present
+//        .of(T t): 创建一个Optional 实例，为null时报异常
+        User user = new User();
+        Optional<User> user1 = Optional.of(user);
+        System.out.println(user1.get());//User1468357786{userId=0, age='null', name='null', peopleDes='null', sexId='null'}
+//        .ofNullable(T t): 若t 不为null,创建Optional 实例,否则创建空实例
+        User user2 = null;
+        User user3 = Optional.ofNullable(user2).orElse(new User());
+        System.out.println(user3);
+//        isPresent(): 判断容器中是否有值
+//        ifPresent(Consume lambda)： 容器若不为空则执行括号中的Lambda表达式
+//        orElse(T t): 获取容器中的元素，若容器为空则返回括号中的默认值
+//        orElseGet(Supplier s): 如果调用对象包含值，返回该值，否则返回s 获取的值
+//        orElseThrow(): 如果为空，就抛出定义的异常，如果不为空返回当前对象
+//        map(Function f): 如果有值对其处理，并返回处理后的Optional，否则返回Optional.empty()
+//        flatMap(Function mapper): 与map 类似，要求返回值必须是Optional
+//        T get()： 获取容器中的元素，若容器为空则抛出NoSuchElement异常
     }
 
     //生产案例ofNullable orElse

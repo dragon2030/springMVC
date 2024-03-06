@@ -8,12 +8,15 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.bigDragon.common.CommonValue;
+import com.bigDragon.demo.test.entity.User;
 import com.bigDragon.javase.faseToObject.interfasce.B;
+import com.bigDragon.javase.ioStream.caseRecord.CommonUtil;
 import com.bigDragon.javase.ioStream.excel.poi.excel.common.CommonConstant;
 import com.bigDragon.testMain.Student;
 import com.bigDragon.util.HttpClientUtil;
 import com.bigDragon.util.SnowFlakeUtil;
 import com.fasterxml.jackson.core.JsonParser;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.ss.formula.functions.T;
@@ -67,11 +70,13 @@ import org.w3c.dom.NodeList;
  * @author bigDragon
  * @create 2020-12-09 20:31
  */
+@Slf4j
 public class Main {
+    public static void main(String[] args) throws UnsupportedEncodingException {
+        String text = "#entity";
+        if(text.indexOf("#")>=0 || text.indexOf("=")==-1){
+            System.out.println(1);
+        }
 
-    public static void main(String[] args) throws Exception {
-        Date date = new Date(1690905600000l);
-        System.out.println(date);
     }
-    
 }

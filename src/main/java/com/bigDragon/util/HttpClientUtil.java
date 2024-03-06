@@ -171,7 +171,8 @@ public class HttpClientUtil {
 			// 执行请求
 			response = httpClient.execute(httpPost);
 			entity = response.getEntity();
-			responseContent = EntityUtils.toString(entity, "GBK");
+			responseContent = EntityUtils.toString(entity, "UTF-8");
+			EntityUtils.consume(entity);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

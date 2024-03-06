@@ -10,6 +10,15 @@ import java.util.UUID;
  * @Description:
  */
 public class UuidUtil {
+    public static String generateCompletion(){
+        UUID uuid = UUID.randomUUID();
+//        System.out.println(uuid);
+        String uuidString = uuid.toString();
+//        String replaceAll = uuidString.replaceAll("-", "");
+        System.out.println(uuidString);
+//        System.out.println(replaceAll.length());
+        return uuidString;
+    }
     public static String generate(){
         UUID uuid = UUID.randomUUID();
 //        System.out.println(uuid);

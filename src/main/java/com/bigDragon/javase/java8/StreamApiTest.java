@@ -148,6 +148,8 @@ public class StreamApiTest {
     @Test
     public void test3(){
         Stream<Integer> integerStream = Stream.of(1, 2, 3, 4, 5);
+        List<Integer> collect = integerStream.collect(Collectors.toList());
+        System.out.println(collect);
     }
     /*
     创建Stream方式四：创建无限流

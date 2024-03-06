@@ -18,5 +18,7 @@ public class GenericTest1 {
 
         //建议:实例化时指明类的泛型
         Order<String> order2 = new Order<>("11",101,"123");
+        String orderT = order2.getOrderT();
+
     }
 }

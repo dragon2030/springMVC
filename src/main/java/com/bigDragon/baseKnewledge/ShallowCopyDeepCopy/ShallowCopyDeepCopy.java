@@ -3,6 +3,10 @@ package com.bigDragon.baseKnewledge.ShallowCopyDeepCopy;
 
 import org.junit.Test;
 
+import java.io.*;
+import java.math.BigDecimal;
+import java.util.Date;
+
 /**
  * Java 浅拷贝和深拷贝
  *
@@ -67,21 +71,30 @@ public class ShallowCopyDeepCopy {
         //拷贝user1到user2中
         ClonePOJO2 clonePOJO2 = new ClonePOJO2();
         clonePOJO2.setStr1("str1");
-        clonePOJO2.setInt1(1);
+        clonePOJO2.setInt1(0);
+        clonePOJO2.setDate1(new Date(123,01,01));
+        clonePOJO2.setDecimal1(BigDecimal.ZERO);
+        //user属性
         User user1 = new User();
         user1.setName("Mike");
         user1.setAge("22");
         clonePOJO2.setUser(user1);
         ClonePOJO2 cloneTest2 = (ClonePOJO2)clonePOJO2.clone();
+
+        System.out.println("修改前-目标对象:"+ clonePOJO2);
+        System.out.println("修改前-拷贝结果对象:"+cloneTest2);
         //改变user2属性
-        cloneTest2.setStr1("已久修改对象");
-        cloneTest2.setInt1(0);
+        cloneTest2.setStr1("已修改对象");
+        cloneTest2.setInt1(1);
+        Date date_change = clonePOJO2.getDate1();
+        date_change.setTime(0l);
+        clonePOJO2.setDate1(date_change);
         User user2=cloneTest2.getUser();
-        user2.setName("name已久修改对象");
-        user2.setAge("age已久修改对象");
+        user2.setName("name已修改对象");
+        user2.setAge("age已修改对象");
         cloneTest2.setUser(user2);
-        System.out.println("目标对象:"+ clonePOJO2);
-        System.out.println("拷贝结果对象:"+cloneTest2);
+        System.out.println("修改后-目标对象:"+ clonePOJO2);
+        System.out.println("修改后-拷贝结果对象:"+cloneTest2);
     }
 
     /**
@@ -98,13 +111,30 @@ public class ShallowCopyDeepCopy {
         clonePojo3.setUser2(user2);
         ClonePojo3 cloneTest3 = (ClonePojo3)clonePojo3.clone();
         //改变user2属性
-        cloneTest3.setStr1("已久修改对象");
+        cloneTest3.setStr1("已修改对象");
         cloneTest3.setInt1(0);
         User2 user3=cloneTest3.getUser2();
-        user3.setName("name已久修改对象");
-        user3.setAge("age已久修改对象");
+        user3.setName("name已修改对象");
+        user3.setAge("age已修改对象");
         cloneTest3.setUser2(user3);
         System.out.println("目标对象:"+ clonePojo3);
         System.out.println("拷贝结果对象:"+cloneTest3);
     }
+
+
+    //项目中的深拷贝
+//    public FeeReciveQuery clone() throws CloneNotSupportedException {
+//        try {
+//            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+//            ObjectOutputStream oos = new ObjectOutputStream(bos);
+//            oos.writeObject(this);
+//
+//            ByteArrayInputStream bis = new ByteArrayInputStream(bos.toByteArray());
+//            ObjectInputStream ois = new ObjectInputStream(bis);
+//            return (FeeReciveQuery) ois.readObject();
+//        } catch (IOException | ClassNotFoundException e) {
+//            e.printStackTrace();
+//            throw new JeecgBootException("操作失败,请联系管理员");
+//        }
+//    }
 }
