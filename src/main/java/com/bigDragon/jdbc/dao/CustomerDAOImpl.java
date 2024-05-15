@@ -1,10 +1,10 @@
 package com.bigDragon.jdbc.dao;
 
+import com.bigDragon.jdbc.dto.Customer;
+
 import java.sql.Connection;
 import java.sql.Date;
 import java.util.List;
-
-import com.bigDragon.jdbc.dto.Customer;
 
 public class CustomerDAOImpl extends BaseDAO implements CustomerDAO{
 

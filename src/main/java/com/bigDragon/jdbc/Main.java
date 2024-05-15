@@ -1,10 +1,13 @@
 package com.bigDragon.jdbc;
 
+import com.bigDragon.jdbc.dBUtils.QueryRunnerTest;
 import com.bigDragon.jdbc.dao.BaseDAO;
-import com.bigDragon.jdbc.dao.BaseDAO2;
-import com.bigDragon.jdbc.dao.CustomerDAO;
 import com.bigDragon.jdbc.dao.CustomerDAOImpl;
+import com.bigDragon.jdbc.dao.CustomerDAOImpl2;
 import com.bigDragon.jdbc.dao.junit.CustomerDAOImplTest;
+import com.bigDragon.jdbc.dateSource.C3P0Test;
+import com.bigDragon.jdbc.dateSource.DBCPTest;
+import com.bigDragon.jdbc.dateSource.DruidTest;
 import com.bigDragon.jdbc.preparedStatement.crud.CustomerForQuery;
 import com.bigDragon.jdbc.preparedStatement.crud.OrderForQuery;
 import com.bigDragon.jdbc.preparedStatement.crud.PreparedStatementQueryTest;
@@ -52,5 +55,25 @@ public class Main {
 
         //BaseDAO2为BaseDAO升级——通过泛型类和反射，解决了调用方法时还需要传入对象关系映射类
         Class.forName("com.bigDragon.jdbc.dao.BaseDAO2");
+        new CustomerDAOImpl2();
+
+        //数据库连接池
+        //C3P0数据源
+        new C3P0Test();
+        JDBCUtils.getConnection_c3p0();
+        //DBCP数据源
+        new DBCPTest();
+        JDBCUtils.getConnection_dbcp();
+        //Druid数据源
+        new DruidTest();
+        JDBCUtils.getConnection_druid();
+
+         //commons-dbutils 是 Apache 组织提供的一个开源 JDBC工具类库,封装了针对于数据库的增删改查操作
+         //其核心源码等同于com.bigDragon.jdbc.dao.BaseDAO2,健壮性有所提升
+        new QueryRunnerTest();
+        //DbUtil关闭连接
+        JDBCUtils.closeResource1(null,null,null);
     }
+
+
 }

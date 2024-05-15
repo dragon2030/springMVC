@@ -1,10 +1,10 @@
 package com.bigDragon.jdbc.dao;
 
+import com.bigDragon.jdbc.dto.Customer;
+
 import java.sql.Connection;
 import java.sql.Date;
 import java.util.List;
-
-import com.bigDragon.jdbc.dto.Customer;
 
 /*
  * 此接口用于规范针对于customers表的常用操作

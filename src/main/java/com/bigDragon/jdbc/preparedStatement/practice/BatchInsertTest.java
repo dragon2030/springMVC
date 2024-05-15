@@ -1,11 +1,10 @@
 package com.bigDragon.jdbc.preparedStatement.practice;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-
 import com.bigDragon.jdbc.util.JDBCUtils;
 import org.junit.Test;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 
 
 /*

@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.bigDragon.demo.jsonParse.controller.JsonParseController;
 import com.bigDragon.demo.test.entity.User;
+import com.bigDragon.jsonParse.dto.Data;
 import com.bigDragon.jsonParse.dto.SmsZX;
 import org.junit.Test;
 
@@ -132,6 +133,33 @@ public class FastJsonTest {
         String jsonStr = JSON.toJSONString(list);
         List<User> users = JSON.parseArray(jsonStr, User.class);
         System.out.println(users);
+    }
+
+    @Test
+    public void case_20240412(){
+        List<Data> dataList = new ArrayList<>();
+        dataList.add(new Data("回复3",1607343727778l,"2001183465308160","15372050554"));
+        dataList.add(new Data("回复2",1607343727778l,"2001183465308160","15372050555"));
+        dataList.add(new Data("回复1",1607343727778l,"2001183465308160","15372050556"));
+        SmsZX smsZX1 = new SmsZX();
+        smsZX1.setCode(00000);
+        smsZX1.setMsg("运行正常");
+        smsZX1.setData(new Data("单条数据",112565665264l,"454985846254551","13357181732"));
+        smsZX1.setDataList(dataList);
+        String jsonString = JSON.toJSONString(smsZX1);
+        System.out.println("smsZX1:"+smsZX1);
+        System.out.println("jsonString:"+jsonString);
+        /*
+        jsonString:{"code":0,"data":{"content":"单条数据","moTime":112565665264,"msgId":"454985846254551",
+        "phone":"13357181732"},"dataList":[{"content":"回复3","moTime":1607343727778,"msgId":"2001183465308160",
+        "phone":"15372050554"},{"content":"回复2","moTime":1607343727778,"msgId":"2001183465308160",
+        "phone":"15372050555"},{"content":"回复1","moTime":1607343727778,"msgId":"2001183465308160",
+        "phone":"15372050556"}],"msg":"运行正常"}
+         */
+        //数据录入完成
+        SmsZX smsZX=JSONObject.parseObject(jsonString, SmsZX.class);
+//        JSONObject.parseObject(smsZX.getData(),Data.class);
+        System.out.println("smsZX:"+smsZX);
     }
 
 

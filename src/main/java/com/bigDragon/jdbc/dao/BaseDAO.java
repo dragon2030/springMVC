@@ -1,16 +1,11 @@
 package com.bigDragon.jdbc.dao;
 
-import java.lang.reflect.Field;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-
 import com.bigDragon.jdbc.util.JDBCUtils;
+
+import java.lang.reflect.Field;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /*
  * DAO: data(base) access object————数据库访问对象

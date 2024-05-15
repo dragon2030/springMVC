@@ -1,18 +1,11 @@
 package com.bigDragon.jdbc.preparedStatement.crud;
 
-import java.lang.reflect.Field;
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-
+import com.bigDragon.jdbc.dto.Customer;
 import com.bigDragon.jdbc.util.JDBCUtils;
 import org.junit.Test;
 
-import com.bigDragon.jdbc.dto.Customer;
-import com.bigDragon.jdbc.util.JDBCUtils;
+import java.lang.reflect.Field;
+import java.sql.*;
 
 /**
  *

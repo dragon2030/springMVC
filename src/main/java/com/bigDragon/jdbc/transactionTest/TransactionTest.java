@@ -1,15 +1,11 @@
 package com.bigDragon.jdbc.transactionTest;
 
-import java.lang.reflect.Field;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-
+import com.bigDragon.jdbc.util.JDBCUtils;
 import org.junit.Test;
 
-import com.bigDragon.jdbc.util.JDBCUtils;
+import java.lang.reflect.Field;
+import java.sql.*;
+
 /*
  * 1.什么叫数据库事务？
  * 事务：一组逻辑操作单元,使数据从一种状态变换到另一种状态。

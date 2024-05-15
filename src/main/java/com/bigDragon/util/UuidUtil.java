@@ -12,27 +12,28 @@ import java.util.UUID;
 public class UuidUtil {
     public static String generateCompletion(){
         UUID uuid = UUID.randomUUID();
-//        System.out.println(uuid);
         String uuidString = uuid.toString();
-//        String replaceAll = uuidString.replaceAll("-", "");
-        System.out.println(uuidString);
-//        System.out.println(replaceAll.length());
         return uuidString;
     }
-    public static String generate(){
+    public static String generateNoIntervalSymbol(){
         UUID uuid = UUID.randomUUID();
-//        System.out.println(uuid);
         String uuidString = uuid.toString();
         String replaceAll = uuidString.replaceAll("-", "");
-        System.out.println(replaceAll);
-//        System.out.println(replaceAll.length());
         return replaceAll;
+    }
+    public static String generate(){
+        return generateNoIntervalSymbol();
+    }
+
+    public static void generateBatchNoIntervalSymbol(){
+        for(int i=0;i<10;i++){
+            System.out.println(generateNoIntervalSymbol());
+        }
     }
 
     public static void main(String[] args) {
         for(int i=0;i<10;i++){
-            UuidUtil.generate();
+            System.out.println(generateNoIntervalSymbol());
         }
-
     }
 }

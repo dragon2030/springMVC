@@ -1,17 +1,13 @@
 package com.bigDragon.jdbc.dao.junit;
 
-import static org.junit.Assert.*;
+import com.bigDragon.jdbc.dao.CustomerDAOImpl;
+import com.bigDragon.jdbc.dto.Customer;
+import com.bigDragon.jdbc.util.JDBCUtils;
+import org.junit.Test;
 
 import java.sql.Connection;
 import java.sql.Date;
 import java.util.List;
-
-import com.bigDragon.jdbc.dao.CustomerDAOImpl;
-import org.junit.Test;
-
-import com.bigDragon.jdbc.util.JDBCUtils;
-import com.bigDragon.jdbc.dto.Customer;
-import com.bigDragon.jdbc.dao.CustomerDAOImpl;
 
 public class CustomerDAOImplTest {
 

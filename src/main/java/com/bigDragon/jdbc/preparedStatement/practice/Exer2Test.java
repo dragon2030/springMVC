@@ -1,5 +1,8 @@
 package com.bigDragon.jdbc.preparedStatement.practice;
 
+import com.bigDragon.jdbc.util.JDBCUtils;
+import org.junit.Test;
+
 import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,11 +10,6 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.util.Scanner;
 
-import javax.swing.plaf.synth.SynthStyle;
-
-import org.junit.Test;
-
-import com.bigDragon.jdbc.util.JDBCUtils;
 //课后练习2
 public class Exer2Test {
 

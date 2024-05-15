@@ -1,21 +1,18 @@
 package com.bigDragon.jdbc.dao;
 
+import com.bigDragon.jdbc.util.JDBCUtils;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.bigDragon.jdbc.util.JDBCUtils;
 
 /*
  * DAO: data(base) access object
  * 封装了针对于数据表的通用的操作
+ * BaseDAO2为BaseDAO升级——通过泛型类和反射，解决了调用方法时还需要传入对象关系映射类
  */
 public abstract class BaseDAO2<T> {
 
@@ -173,5 +170,9 @@ public abstract class BaseDAO2<T> {
 		}
 		return null;
 
+	}
+
+	public void insert(Connection conn, T t){
+		System.out.println("默认的添加方法");
 	}
 }

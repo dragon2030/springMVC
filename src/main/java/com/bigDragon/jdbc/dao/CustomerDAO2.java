@@ -1,13 +1,14 @@
 package com.bigDragon.jdbc.dao;
 
+import com.bigDragon.jdbc.dto.Customer;
+
 import java.sql.Connection;
 import java.sql.Date;
 import java.util.List;
 
-import com.bigDragon.jdbc.dto.Customer;
-
 /*
  * 此接口用于规范针对于customers表的常用操作
+ * BaseDAO2为BaseDAO升级——通过泛型类和反射，解决了调用方法时还需要传入对象关系映射类
  */
 public interface CustomerDAO2 {
 	/**

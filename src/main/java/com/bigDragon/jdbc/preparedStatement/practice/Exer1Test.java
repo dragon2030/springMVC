@@ -1,12 +1,12 @@
 package com.bigDragon.jdbc.preparedStatement.practice;
 
+import com.bigDragon.jdbc.util.JDBCUtils;
+import org.junit.Test;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.Scanner;
 
-import org.junit.Test;
-
-import com.bigDragon.jdbc.util.JDBCUtils;
 //课后练习1
 //练习1：从控制台向数据库的表customers中插入一条数据
 public class Exer1Test {

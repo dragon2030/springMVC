@@ -31,7 +31,8 @@ public class SubCompanyNeedExecuteSqlUtil {
         String executeSql = main.dateProcess(sqlTemplate, allCompany);
         System.out.println("组装成需执行的sql:\n"+executeSql.toString());
         //输出
-        main.writerOut(executeSql,"D:\\io_test\\needExecuteSql.txt");
+//        main.writerOut(executeSql,"D:\\io_test\\needExecuteSql.txt");
+        CommonUtil.writerOut(executeSql,"D:\\io_test\\needExecuteSql.txt",false);
         System.out.println("******************************************************************");
     }
 
@@ -90,6 +91,10 @@ public class SubCompanyNeedExecuteSqlUtil {
     }
 
     public String dateProcess(String sqlTemplate, String allCompany){
+        //sql模版验证
+        if(sqlTemplate.indexOf("ibs_000000")==-1){
+            throw new RuntimeException("未指定样例库名ibs_000000");
+        }
 
         //要输出的字符串
         StringBuffer execute_sql = new StringBuffer();

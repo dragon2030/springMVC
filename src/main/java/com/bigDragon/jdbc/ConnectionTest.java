@@ -1,6 +1,5 @@
 package com.bigDragon.jdbc;
 
-import org.apache.ibatis.jdbc.SQL;
 import org.junit.Test;
 
 import java.io.InputStream;
@@ -16,6 +15,7 @@ import java.util.Properties;
  * @Description:
  */
 public class ConnectionTest {
+    //连接接口模板
     @Test
     public void testConnection1_20220623_2132() throws SQLException{
         //驱动

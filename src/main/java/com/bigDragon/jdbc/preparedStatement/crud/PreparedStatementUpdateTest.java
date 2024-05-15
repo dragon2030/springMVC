@@ -1,20 +1,12 @@
 package com.bigDragon.jdbc.preparedStatement.crud;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Properties;
-
+import com.bigDragon.jdbc.util.JDBCUtils;
 import org.junit.Test;
 
-import com.bigDragon.jdbc.util.JDBCUtils;
+import java.io.InputStream;
+import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.util.Properties;
 
 /*
  * 使用PreparedStatement来替换Statement,实现对数据表的增删改操作

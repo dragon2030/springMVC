@@ -15,6 +15,7 @@ import com.bigDragon.javase.ioStream.excel.poi.excel.common.CommonConstant;
 import com.bigDragon.testMain.Student;
 import com.bigDragon.util.HttpClientUtil;
 import com.bigDragon.util.SnowFlakeUtil;
+import com.bigDragon.util.UuidUtil;
 import com.fasterxml.jackson.core.JsonParser;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
@@ -72,11 +73,7 @@ import org.w3c.dom.NodeList;
  */
 @Slf4j
 public class Main {
-    public static void main(String[] args) throws UnsupportedEncodingException {
-        String text = "#entity";
-        if(text.indexOf("#")>=0 || text.indexOf("=")==-1){
-            System.out.println(1);
-        }
+    public static void main(String[] args) {
 
     }
 }
