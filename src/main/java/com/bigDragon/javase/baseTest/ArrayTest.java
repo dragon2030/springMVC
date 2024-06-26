@@ -101,7 +101,7 @@ public class ArrayTest {
     public void test4(){
         int[][] arr1= {{1, 2, 3}, {4, 5, 6}};
         System.out.println(arr1[0]);//[I@33833882——地址值
-        System.out.println(arr1[0][0]);//1
+        System.out.println(arr1[1][0]);//1
         System.out.println(arr1);//[[I@200a570f
         int[][] arr2 = new int[2][];
         System.out.println(arr2[1]);//null

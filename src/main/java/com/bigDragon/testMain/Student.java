@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,5 +26,6 @@ public class Student {
     private String phoneNo;
     private Integer sort;
     private Dog dog;
+    private Date createTime;
     private List<String> children;
 }

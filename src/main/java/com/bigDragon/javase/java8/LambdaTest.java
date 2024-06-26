@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 /**
@@ -234,7 +235,7 @@ public class LambdaTest {
         };
         System.out.println(comparator.compare(12,21));
         System.out.println("********************************");
-        Comparator<Integer> comparator2 = (o1, o2) -> o1.compareTo(o2);
+        Comparator<Integer> comparator2 = Integer::compareTo;
         System.out.println(comparator2.compare(12,6));
     }
     /*
@@ -253,9 +254,11 @@ public class LambdaTest {
         //lambda的写法，定义Consumer函数式接口的具体实现
         happyTime(500, aDouble -> System.out.println("学习太累了，去天上人间买瓶矿井水。价格："+aDouble));
     }
+
     public void happyTime(double money,Consumer<Double> con){
         con.accept(money);
     }
+
     /*
     java内置的4大核心函数式接口:断定型接口 Predicate<T> boolean test(T t)
      */
@@ -273,6 +276,8 @@ public class LambdaTest {
         List<String> filterStrs2 = filterString(list, s -> s.contains("京"));
         System.out.println(filterStrs2);
     }
+
+    //todo 剩下的两个核心函数式接口
     //根据给定的规则，过滤集合中的字符串。此规则由Predicate的方法决定
     public List<String> filterString(List<String>list, Predicate<String> pre){
         ArrayList<String> filterList = new ArrayList<>();

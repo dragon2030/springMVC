@@ -26,10 +26,8 @@ public class Main {
         private static Map<String, Thread> taskThreadMap = new ConcurrentHashMap<>();
         
         public static void main(String[] args) {
-            Student student = new Student();
-            student.setName(null);
-            student.setAge(null);
-            System.out.println(student);
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("1");
         }
 
 }

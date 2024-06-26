@@ -17,6 +17,7 @@ import com.bigDragon.util.HttpClientUtil;
 import com.bigDragon.util.SnowFlakeUtil;
 import com.bigDragon.util.UuidUtil;
 import com.fasterxml.jackson.core.JsonParser;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -25,6 +26,7 @@ import org.junit.Test;
 import org.omg.CORBA.SystemException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.util.Assert;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -74,6 +76,12 @@ import org.w3c.dom.NodeList;
 @Slf4j
 public class Main {
     public static void main(String[] args) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("abc");
+        String string = stringBuilder.toString();
 
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append("abc");
+        String string2 = stringBuffer.toString();
     }
 }

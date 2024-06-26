@@ -92,8 +92,8 @@ public class SubCompanyNeedExecuteSqlUtil {
 
     public String dateProcess(String sqlTemplate, String allCompany){
         //sql模版验证
-        if(sqlTemplate.indexOf("ibs_000000")==-1){
-            throw new RuntimeException("未指定样例库名ibs_000000");
+        if(sqlTemplate.indexOf("000000")==-1){
+            throw new RuntimeException("未指定样例库名000000");
         }
 
         //要输出的字符串
