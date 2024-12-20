@@ -7,6 +7,7 @@ import java.util.*;
 
 import com.bigDragon.demo.test.service.TestService;
 import com.bigDragon.javase.ioStream.excel.ExcelSimpleDemo;
+import com.bigDragon.lombok.printCase.People8;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -259,6 +260,18 @@ public class TestContorller {
 		return "success2";
 	}
 
+	@RequestMapping("/testCase")
+	@ResponseBody
+	public People8 m1(){
+		People8 people8 = new People8();
+		people8.setName("John");
+		people8.setAge(29);
+		people8.setHobby("play computer game");
+		people8.setfName("fName");
+		System.out.print("本身是pojo父类是pojo:  ");
+		System.out.println(people8);
+		return people8;
+	}
 /*	public void testMethod(HttpServletRequest request,HttpServletResponse response){
 
 	}*/

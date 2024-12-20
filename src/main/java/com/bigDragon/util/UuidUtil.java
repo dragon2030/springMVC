@@ -25,13 +25,11 @@ public class UuidUtil {
         return generateNoIntervalSymbol();
     }
 
-    public static void generateBatchNoIntervalSymbol(){
-        for(int i=0;i<10;i++){
-            System.out.println(generateNoIntervalSymbol());
-        }
-    }
-
     public static void main(String[] args) {
+        for(int i=0;i<10;i++){
+            System.out.println(generateCompletion());
+        }
+        System.out.println("*****************************************");
         for(int i=0;i<10;i++){
             System.out.println(generateNoIntervalSymbol());
         }

@@ -8,7 +8,12 @@ import lombok.Data;
  * @Description:
  */
 @Data
-public class Dog {
+public class Dog implements Animal {
     private String name;
     private Integer age;
+
+    @Override
+    public void eat() {
+
+    }
 }

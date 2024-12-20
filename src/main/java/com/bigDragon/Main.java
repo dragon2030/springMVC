@@ -75,13 +75,10 @@ import org.w3c.dom.NodeList;
  */
 @Slf4j
 public class Main {
-    public static void main(String[] args) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("abc");
-        String string = stringBuilder.toString();
 
-        StringBuffer stringBuffer = new StringBuffer();
-        stringBuffer.append("abc");
-        String string2 = stringBuffer.toString();
+
+    public static void main(String[] args) {
+        Date date = new Date(1724211301239l);
+        System.out.println(date);
     }
 }

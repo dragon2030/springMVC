@@ -102,6 +102,7 @@ public class SubCompanyNeedExecuteSqlUtil {
         String noLineBreak = allCompany.replace("\n","");
         noLineBreak = noLineBreak.replace("\r","");
         noLineBreak = noLineBreak.replace("\\","");
+        noLineBreak = noLineBreak.replace(" ","");
         System.out.println("去除分公司行间空行:\n"+noLineBreak);
         System.out.println("******************************************************************");
         String[] split = noLineBreak.split(",");
@@ -115,25 +116,4 @@ public class SubCompanyNeedExecuteSqlUtil {
         return execute_sql.toString();
     }
 
-    public void writerOut(String executeSql,String pathName) {
-        FileWriter fileWriter = null;//对原有文件的追加
-        try {
-            //1.提供File类的对象，指明写出到的文件
-            File file = new File(pathName);
-            fileWriter = new FileWriter(file, true);
-            //3.写出的操作
-            fileWriter.write(executeSql);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }finally{
-            //4.流资源关闭
-            try {
-                if(fileWriter != null)
-                    fileWriter.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-    }
 }
