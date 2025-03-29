@@ -30,14 +30,22 @@ public class Nio {
         //测试Path类使用
         nio.testPath();
         //测试Files类使用
-        nio.testFiles();
+//        nio.testFiles();
+    
+        //适用场景建议：
+        //小文件/低频场景：BIO 代码简单，易于维护。
+        //大文件/高并发场景：必须使用 NIO 或更高级框架（如 Netty）。
+    
+        //NIO
+        new com.bigDragon.javase.InetAddress.NioClient();
+        new com.bigDragon.javase.InetAddress.NioServer();
     }
 
     /**
      * 测试Path类使用
      */
     public void testPath(){
-        //Path可以看成File类的升级版本
+        
         Path path = Paths.get("src\\Main\\resources\\file\\hello.txt");
         System.out.println(path);
         //判断是否以path路径开始
@@ -47,8 +55,5 @@ public class Nio {
         Path newPath = file.toPath();//file--->Path
     }
 
-    /**
-     * 测试Files类使用
-     */
-    public void testFiles(){}
+
 }

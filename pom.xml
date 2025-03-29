@@ -403,12 +403,7 @@
             <artifactId>log4j-api</artifactId>
             <version>2.17.1</version>
         </dependency>
-        <!--自己的jdbc项目-->
-        <dependency>
-            <groupId>com.bigDragon</groupId>
-            <artifactId>jdbc</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
+
 
         <!--itext5-->
         <dependency>

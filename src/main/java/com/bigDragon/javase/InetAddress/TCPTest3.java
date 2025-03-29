@@ -35,7 +35,7 @@ public class TCPTest3 {
             while ((len = fileInputStream.read(buffer)) != -1){
                 outputStream.write(buffer,0,len);
             }
-            //关闭数据的输出，不在发送数据，使服务端阻塞的方法中止
+            //关闭数据的输出，不再发送数据，使服务端阻塞的方法中止
             socket.shutdownOutput();
             System.out.println("数据推送成功");
 

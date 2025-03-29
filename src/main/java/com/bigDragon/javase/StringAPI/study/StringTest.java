@@ -35,6 +35,8 @@ public class StringTest {
         stringTest.StringBuilderStringBufferTest();
         //stringBuilder去掉最后一个逗号
         stringTest.stringBuilder_deleteLastSign();
+        //join() 方法返回使用指定分隔符拼接一个字符串。在join() 方法中，为每个元素添加了分隔符。
+        stringTest.String_join();
         //String join()
         stringTest.String_join();
     }
@@ -245,7 +247,7 @@ public class StringTest {
         System.out.println(Arrays.asList(s1.split("o",2)));//[hell, World]
     }
     /*
-    涉及到String类与其他结构之前的转换
+    涉及到String类与其他结构之间的转换
 
     String 与 基本数据类型、包装类之间的转换
         String --> 基本数据类型、包装类：调用包装类的静态方法：parseXxx(str)
@@ -404,33 +406,38 @@ public class StringTest {
         url = String.format(url,name,age);
         System.out.println(url);
         String str;
+        //%s字符串类型 %c字符类型
         str = String.format("Hello %s%c","world",'!');
         System.out.println(str);
-        //%b
+        //%b boolean类型
         str = String.format("%b", 10>3);
         System.out.println(str);
         str = String.format("%b", 2>=3);
         System.out.println(str);
-        //%d %x %o
+        //%d 十进制 %x 十六进制 %o 八进制
         str = String.format("十进制：%d", 10);
         System.out.println(str);
         str = String.format("十六进制：%x", 10);
         System.out.println(str);
         str = String.format("八进制：%o", 10);
         System.out.println(str);
-        //%f %a %g %e
-        str = String.format("浮点数：%f", 3.14159);
+        //%f 浮点数 %a %g %e
+        str = String.format("浮点数：%f", 3.1415926);
+        String result1 = String.format("%.2f", 3.1415926);
+        String result2 = String.format("%.3f", 3.1415926);
         System.out.println(str);
+        System.out.println(result1);
+        System.out.println(result2);
         str = String.format("十六进制浮点数：%a", 3.14159);
         System.out.println(str);
         str = String.format("通用浮点类型：%g", 3.1415926);
         System.out.println(str);
         str = String.format("指数形式：%e", 3.14159);
         System.out.println(str);
-        //%h %% %n
+        //%h 散列码 %% 百分之 %n 换行
         str = String.format("散列码：%h", "123456");
         System.out.println(str);
-        str = String.format("百分之九十：%d%%", 90);
+        str = String.format("百分之：%d%%", 90);
         System.out.println(str);
         str = String.format("测试到此结束！%n");
         System.out.println(str);
