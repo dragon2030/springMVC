@@ -6,3 +6,7 @@ com.bigDragon.javase
         例子1：客户端发送信息给服务端，服务端将数据显示在控制台上
         例题2：客户端发送文件给服务端，服务端将文件保存在本地
         例题3：从客户端发送文件给服务端，服务端保存到本地，并返回“发送成功”给客户端。
+    com.bigDragon.StringTest（String StringBuffer StringBuild）
+    com.bigDragon.javase.ioStream（io流）
+    
+    

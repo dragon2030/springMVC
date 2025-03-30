@@ -11,6 +11,7 @@ import java.util.*;
 /**
  * @author yinsheng
  * @date 2024/11/13
+ * 先锋-尹盛 写用于按照数据库元数据生成doc产品文档
  */
 public class Main {
     public static void main(String[] args) throws Exception{

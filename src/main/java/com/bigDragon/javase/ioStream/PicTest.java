@@ -12,6 +12,9 @@ import java.io.FileOutputStream;
  * @author: bigDragon
  * @date: 2020年8月27日
  * 
+ * 问题：异或运算就能实现简单加密，再异或运算就能返回图片本身 原理
+ * 假设有一个字节的数据是A，用密钥B进行异或，得到A^B。然后再用B异或一次的话，(A^B)^B就等于A^(B^B)，而B^B的结果是0，所以A^0就是A本身。
+ * 		所以两次异或同一个密钥就能恢复原始数据。
  */
 public class PicTest {
 

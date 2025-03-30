@@ -28,18 +28,17 @@ public class Main {
 	由这四个类派生处理的子类名称都以其父类名作为子类名的后缀
 
 	二、流的体系结构(主要必学)
-	抽象基类				节点流（或文件流）		缓冲流（处理流的一种） 	转换流（处理流的一种）	对象流（处理流的一种）
+	抽象基类				节点流（或文件流）			缓冲流（处理流的一种） 		转换流（处理流的一种）		对象流（处理流的一种）
 	InputStream			FileInputStream			BufferedInputStream								ObjectInputStream
 	OutputStream		FileOutputStream		BufferedOutputStream							ObjectOutputStream
 	Reader				FileReader				BufferedReader			InputStreamReader
 	Writer				FileWriter				BufferedWeiter			OutputStreamWriter
 
 	需做需补练习与知识点：
-	1.read(char cbuf[])源码解析 明白为什么返回的字符可以被char类型接收
 	2.RandomAccessFileTest断点续传功能与MD5验证文件功能
-	3.微软word excel等文件javaIO读写
 	3.文件上传下载实例（NIO传输，io流源码理解与不同io方式比对，传输过程的监听，el表达式，jstl）
 
+	java文件上传和下载 jsp和java代码实现文件上传下载 io nio
 	https://www.cnblogs.com/liubin1988/p/8003848.html
 
  */
@@ -47,13 +46,13 @@ public class Main {
 		//File类的使用和理解
 		FileTest.main(args);
 
-		//节点流
-		//文件的写入写出字符流
+		//节点流（或文件流）	
+		//文件的写入写出 字符流
 		FileReader_FileWriter.main(args);
 		//文件的写入写出字节流
 		FileInputOutputStreamTest.main(args);
 
-		//处理流之一：缓冲流的使用
+		//缓冲流（处理流的一种） 	
 		BufferedTest.main(args);
 		//图片加密解密
 		PicTest.main(args);
@@ -79,7 +78,8 @@ public class Main {
 
 		//文件上传
 		new uploadDemo();
-
+		//管道流
+		new PipedStreamTest();
 		//测试练习
 	}
 

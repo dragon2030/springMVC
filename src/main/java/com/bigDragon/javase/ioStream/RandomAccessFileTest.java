@@ -6,13 +6,17 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 
 /**
- * 随机存取文件流
- * RandomAccessFile的使用
- * 1.RandomAccessFile直接继承与java.lang.Object类，实现了DataInput和DataOutput接口
- * 2.RandomAccessFile既可以作为一个输入流，又可以作为一个输出流
- * 3.如果RandomAccessFile作为输出流时，写出到的文件如果不存在，则在执行过程中创建
+ * 随机访问文件流
+ * 1、RandomAccessFile是什么？
+ * RandomAccessFile 是 Java 中用于对文件进行随机访问的类。与普通的输入输出流不同，RandomAccessFile 允许在文件中任意位置读写数据。
+ * 学习博客 RandomAccessFile学习笔记 实现了断点续传功能（后面有用到可以搭建）
+ * https://blog.csdn.net/qq_66345100/article/details/134629811
+ * 2、RandomAccessFile的使用
+ * 2.1.RandomAccessFile直接继承与java.lang.Object类，实现了DataInput和DataOutput接口
+ * 2.2.RandomAccessFile既可以作为一个输入流，又可以作为一个输出流
+ * 2.3.如果RandomAccessFile作为输出流时，写出到的文件如果不存在，则在执行过程中创建
  *   如果写出到文件存在，则会对原有文件内容进行覆盖。（默认情况下重头覆盖）
- * 4.可以通过相关的操作，实现RandomAccessFile“插入”数据的效果
+ * 2.4.可以通过相关的操作，实现RandomAccessFile“插入”数据的效果
  *
  * 练习：
  * 用RandomAccessFile实现视频断点传输功能
@@ -24,9 +28,9 @@ public class RandomAccessFileTest {
     public static void main(String[] args){
         RandomAccessFileTest raf= new RandomAccessFileTest();
         //RandomAccessFile对文件的复制
-        //raf.test("src\\Main\\resources\\jpg\\0509-01.jpg","src\\Main\\resources\\jpg\\0509-05.jpg");
+        raf.test("src\\Main\\resources\\jpg\\0509-01.jpg","src\\Main\\resources\\jpg\\0509-05.jpg");
         //RandomAccessFile文件的写入
-        //raf.test2("src\\Main\\resources\\file\\hello6.txt");
+        raf.test2("src\\Main\\resources\\file\\hello6.txt");
         //RandomAccessFile文件的“插入”数据
         raf.test3("src\\Main\\resources\\file\\hello6.txt");
     }

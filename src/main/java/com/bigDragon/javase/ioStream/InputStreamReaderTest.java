@@ -11,13 +11,24 @@ import java.io.OutputStreamWriter;
 
 /**
  * 处理流之二：转换流的使用
+ * 简介：
+ * 在 Java I/O 中，转换流（Conversion Streams）主要用于在字节流和字符流之间进行转换，同时可以指定字符编码格式。核心的转换流类是 
+ * 		InputStreamReader 和 OutputStreamWriter。
  * 1.转换流
- * 		InputStreamReader：将一个字节的输入流转换为字符的输入流
- * 		OutputStreamWriter：将一个字符的输出流转换为字节的输出流
- * 2.作用：提供字节流与字符流之间的转换
+ * 		InputStreamReader：将字节的输入流转换为字符的输入流
+ * 		OutputStreamWriter：将字符的输出流转换为字节的输出流
+ * 		
+ * 2.作用：
+ * 转换流的作用就是在字节流和字符流之间搭桥，特别是处理字符编码的时候。比如，读取字节流的时候，如果用不同的字符集解码成字符，这时候就需要
+ * 		InputStreamReader。同样，输出的时候用OutputStreamWriter可以指定字符集编码成字节。
+ * 		
+ * 3、什么时候需要用到转换流
+ * 在处理文件的时候遇到了乱码问题，或者需要处理不同编码的文本文件。比如，读取一个UTF-8的文件，而系统默认编码是GBK，这时候用FileReader可能会出错，而应该用InputStreamReader包装FileInputStream并指定UTF-8编码。
  *
- * 3.解码：字节、字节数组 ---->字符数组、字符串
- * 	 编码：字符数组、字符串----> 字节、字节数组
+ * 4. 为什么要用转换流？
+ * 避免乱码：直接使用 FileReader 或 FileWriter 会依赖系统默认编码，可能导致跨平台乱码。
+ * 编码可控：通过 InputStreamReader 和 OutputStreamWriter 显式指定编码（如 UTF-8、GBK）。
+ * 灵活适配：在处理网络传输、HTTP 请求等场景时，字节流和字符流需按需转换。
  *
  * 4.字符集
  * ASCII：美国标准信息交换码。用一个字节的7位可以表示,0(0000 0000)-127(0111 1111)共128位.
@@ -44,8 +55,8 @@ public class InputStreamReaderTest {
 		//使用转换流将文件写入控制台
 		iTest.characterPrint("src\\Main\\resources\\file\\hello.txt");
 		//使用转换流将文件复制
-//		iTest.characterConvert("src\\Main\\resources\\file\\hello.txt",
-//				"src\\Main\\resources\\file\\hello5.txt");
+		iTest.characterConvert("src\\Main\\resources\\file\\hello.txt",
+				"src\\Main\\resources\\file\\hello5.txt");
 	}
 
 	public void characterConvert(String srcStr,String destStr){
@@ -58,7 +69,9 @@ public class InputStreamReaderTest {
 			File file2 = new File(destStr);
 			FileInputStream fis = new FileInputStream(file1);
 			FileOutputStream fos = new FileOutputStream(file2);
+			//读取文件（字节流 → 字符流）
 			isr = new InputStreamReader(fis, "utf-8");
+			//写入文件（字符流 → 字节流）
 			osw = new OutputStreamWriter(fos, "gbk");
 			//2.读写过程
 			char[] cbuf = new char[20];
@@ -95,8 +108,9 @@ public class InputStreamReaderTest {
 		InputStreamReader isr = null;
 		try {
 			FileInputStream fis = new FileInputStream(srcStr);
-			//InputStreamReader isr = new InputStreamReader(fis);//使用系统默认的字符集
-			//具体使用哪个字符集，取决于文件保存时使用的字符集
+			//InputStreamReader isr = new InputStreamReader(fis);//使用系统默认的字符集 而系统默认编码是GBK
+			//读取文件（字节流 → 字符流）
+			//具体使用哪个字符集，取决于文件保存时使用的字符集 
 			isr = new InputStreamReader(fis, "utf-8");
 			char[] cbuf = new char[20];
 			int len;

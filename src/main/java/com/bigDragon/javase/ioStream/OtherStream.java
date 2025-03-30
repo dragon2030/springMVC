@@ -48,17 +48,30 @@ import com.bigDragon.regular.RegularExpression;
  * 2.4 System.out返回的是PrintStream的实例
  * 
  * 3. 处理流之五：数据流
- * 3.1 DataInputStream 和 DataOutputStream
- * 3.2 作用：用于读取或写出基本数据类型的变量活字符串
- * 3.3 常用方法 
- * 		boolean readBoolean()
- * 		char readChar()
- * 		double readDouble()
- * 		long readLong()
- * 		String readUTF()
- *  	
- * @author: bigDragon
- * @date: 2020年8月31日
+ * 指 DataInputStream 和 DataOutputStream，用于按基本数据类型（如 int、double、String）读写二进制数据。
+ * 特点：
+ * 		直接操作原始数据类型（如 writeInt(int)、readDouble()）。
+ * 		数据以紧凑的二进制格式存储，适合高效读写。
+ * 		不涉及对象序列化，仅处理简单数据。
+ * 3.1 对象流和数据流 核心区别与选择依据
+ * 特性			数据流（Data Streams）				对象流（Object Streams）
+ * 处理数据类型	基本类型（int, double, String）	对象（需实现 Serializable 接口）
+ * 数据格式		紧凑的二进制，无类型元信息			包含类元数据，支持对象结构重建
+ * 性能			更高（轻量级，直接操作原始数据）		较低（涉及序列化/反序列化开销）
+ * 灵活性		需手动管理数据类型顺序和格式			自动处理对象关联和类型信息
+ * 安全性		无序列化漏洞风险					需防范反序列化攻击（如恶意对象注入）
+ * 典型场景		配置文件、简单数据传输				对象持久化、跨进程/网络传输复杂数据	
+ * 3.2 对象流和数据流 如何选择？
+ * 使用数据流：
+ * 		处理简单的基本类型数据。
+ * 		需要高性能或紧凑的二进制格式。
+ * 		无需保存对象关联关系。
+ * 使用对象流：
+ * 		需要保存或传输整个对象及其关联结构。
+ * 		数据包含复杂类型（如集合、嵌套对象）。
+ * 		接受序列化带来的性能和安全性代价。
+ * 3.3 数据流的限制
+ * 必须严格匹配读写顺序：读取数据的顺序必须与写入顺序完全一致，否则会抛出异常。	
  * 
  */
 public class OtherStream {
@@ -66,17 +79,17 @@ public class OtherStream {
 	public static void main(String[] args) {
 		OtherStream otherStream=new OtherStream();
 		//Scanner.next方法
-		//otherStream.ScannerTest1();
-		//Scanner.next方法
-		//otherStream.ScannerTest2();
-		//控制台输入方法一
-		//otherStream.ScannerTest3();
-		//控制台输入方法二
-		//otherStream.consolePrintOut();
-		//打印流
-		//otherStream.printStream();
+		otherStream.ScannerTest1();
+		//Scanner.nextLine方法
+		otherStream.ScannerTest2();
+		//控制台输入方法一 输出exit时候退出
+		otherStream.ScannerTest3();
+		//控制台输入方法二 控制台输入 转换流 缓冲流 控制台输出
+		otherStream.consolePrintOut();
+		//打印流 PritStream和PrintWriter
+		otherStream.printStream();
 		//数据流
-		//otherStream.DataStream1("src\\Main\\resources\\file\\hello5.txt");
+		otherStream.DataStream1("src\\Main\\resources\\file\\hello5.txt");
 		otherStream.DataStream2("src\\Main\\resources\\file\\hello5.txt");
 	}
 	
@@ -234,7 +247,7 @@ public class OtherStream {
 	 * 
 	 * 将文件中存储的基本类型数据变量和字符串读取到内存中，保存在变量
 	 * 
-	 * 注意点：伛不同类型的数据的顺序要与当初写入文件时，保存的数据顺序一致
+	 * 注意点：不同类型的数据的顺序要与当初写入文件时，保存的数据顺序一致
 	 * 
 	 * @throws IOException 
 	 */

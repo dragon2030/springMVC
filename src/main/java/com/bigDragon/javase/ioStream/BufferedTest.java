@@ -28,6 +28,10 @@ import java.io.IOException;
  * 
  * 3.处理流：就是“套接”在已有的流的基础上 
  * 
+ * 工作原理：
+ * 缓冲流的工作原理是将数据先写入缓冲区中，当缓冲区满时再一次性写入文件或输出流，或者当缓冲区为空时一次性从文件或输入流中读取一定量的数据。这样可以减少系统的 I/O 操作次数，提高系统的 I/O 效率，从而提高程序的运行效率。
+ * https://blog.csdn.net/zch981964/article/details/130759889?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522c38b8e69472c31f5db4aa384fea4a170%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=c38b8e69472c31f5db4aa384fea4a170&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-1-130759889-null-null.142^v102^pc_search_result_base4&utm_term=java%20%E7%BC%93%E5%86%B2%E6%B5%81&spm=1018.2226.3001.4187
+ * 
  * 
  * @author: bigDragon
  * @date: 2020年8月26日
@@ -43,7 +47,7 @@ public class BufferedTest {
 		//实现非文本文件的复制
 		bufferedTest.bufferedInputStreamTest("src\\Main\\resources\\jpg\\0509-01.jpg",
 				"src\\Main\\resources\\jpg\\0509-02.jpg");
-		//使用BufferedReader和BufferedWriter实现文本文件的复制
+		//使用BufferedReader和BufferedWriter实现文本文件的复制（重点 这个在生产中用到的非常多）
 		bufferedTest.testBufferedReaderBufferWriter("src\\Main\\resources\\file\\hello.txt",
 				"src\\Main\\resources\\file\\hello4.txt");
 	}
