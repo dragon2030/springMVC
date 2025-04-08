@@ -1,9 +1,13 @@
 package com.bigDragon.javase.collection;
 
+import com.bigDragon.javase.collection.map.CollectionsTest;
+import com.bigDragon.javase.collection.map.MapMain;
+import com.bigDragon.javase.collection.map.TreeMapTest;
+
 /**
  * 一、集合框架的概述
  *
- * 1.集合、数组都是堆多个数据进行存储操作的结构，简称Java容器
+ * 1.集合、数组都是对多个数据进行存储操作的结构，简称Java容器
  *
  * 2.1数组在存储多个数据方面的特点：
  *      一旦初始化以后，其长度就确定了。
@@ -45,5 +49,11 @@ public class Main {
         new VectorTest();
         //SetList
         new SetList();
+        //Collections:操作Collection和 Map的工具类
+        new CollectionsTest();
+        //HashMap 和 LinkedHashMap
+        new MapMain();
+        //TreeMap 自然排序 定制排序
+        new TreeMapTest();
     }
 }

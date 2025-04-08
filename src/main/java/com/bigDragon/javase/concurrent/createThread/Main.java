@@ -1,5 +1,8 @@
 package com.bigDragon.javase.concurrent.createThread;
 
+import com.bigDragon.javase.concurrent.JUCTest;
+import com.sun.org.apache.bcel.internal.generic.NEW;
+
 /**
  * java线程一章节学习
  *
@@ -53,5 +56,8 @@ public class Main {
 		//测试方法
 		//join
 		JoinMethod.main(new String[]{});
+		
+		//JUC
+		new JUCTest();
 	}
 }

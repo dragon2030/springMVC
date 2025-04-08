@@ -80,12 +80,12 @@ public class ReflectMain {
         new ProxyTest();
         //静态代理举例2
         new StaticProxyTest();
-        //jdk 动态代理
+        //jdk 动态代理实例
+        //在spring6项目中 com.atguigu.spring6.aop.example.main 有应用于日志打印更好的示例
+        //生成的类名通常是类似$ProxyN这样的格式，通过ProxyGenerator生成字节码。
         new JdkProxy();
         //CGLIB 动态代理
+        //类名通常会是TargetClass$$EnhancerByCGLIB$$加上随机字符串的形式。
         new CgLibProxy();
-
-        //java.lang.reflect.InvocationTargetException异常及处理
-        new reflectException();
     }
 }

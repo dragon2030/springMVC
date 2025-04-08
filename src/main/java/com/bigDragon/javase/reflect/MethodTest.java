@@ -50,32 +50,32 @@ public class MethodTest {
         Class<Person> personClass = Person.class;
         Method[] declaredMethod = personClass.getDeclaredMethods();
         for (Method method : declaredMethod){
+            System.out.println("methodName:"+method.getName());
             //1.获取方法声明的注解
             Annotation[] annotations = method.getAnnotations();
             for(Annotation a : annotations){
-                System.out.print(a + "\t");
+                System.out.println("annotations:"+a + "\t");
             }
-            System.out.println();
 
             //2.权限修饰符
-            System.out.print(Modifier.toString(method.getModifiers()) + "\t");
+            System.out.println("权限修饰符:"+Modifier.toString(method.getModifiers()) + "\t");
 
-            //3.返回值类型
-            System.out.print(method.getReturnType().getName() + "\t");
+            //3.权限修饰符
+            System.out.println("权限修饰符:"+method.getReturnType().getName() + "\t");
 
             //4.方法名
-            System.out.println(method.getName() + "\t");
+            System.out.println("方法名:"+method.getName() + "\t");
 
             //5.形参列表
             Class<?>[] parameterTypes = method.getParameterTypes();
             if( parameterTypes.length > 0){
-                System.out.print("(");
+                System.out.print("形参列表:(");
                 for(int i = 0;i < parameterTypes.length;i++){
                     if(i == parameterTypes.length-1){
-                        System.out.print(parameterTypes[i].getName() + "args_" + i);
+                        System.out.print(parameterTypes[i].getName() + " args_" + i);
                         break;
                     }
-                    System.out.print(parameterTypes[i].getName() + "args_" + i + ",");
+                    System.out.print(parameterTypes[i].getName() + " args_" + i + ",");
                 }
                 System.out.print(")");
             }
@@ -84,17 +84,17 @@ public class MethodTest {
             Class<?>[] exceptionTypes = method.getExceptionTypes();
             if(exceptionTypes.length > 0){
                 System.out.println();
-                System.out.print("throws ");
+                System.out.print("获取的异常:throws ");
                 for(int i = 0;i < exceptionTypes.length;i++){
                     if(i == exceptionTypes.length-1){
-                        System.out.print(exceptionTypes[i].getName() + "args_" + i);
+                        System.out.print(exceptionTypes[i].getName() + " args_" + i);
                         break;
                     }
                     System.out.print(exceptionTypes[i].getName()+",");
                 }
             }
-
             System.out.println();
+            System.out.println("************************************");
         }
     }
 }

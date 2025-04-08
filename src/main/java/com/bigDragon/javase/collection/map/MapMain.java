@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Map
@@ -38,7 +39,7 @@ import java.util.Set;
  *      HashMap map = new HashMap():
  *      在实例化以后，底层创建了长度为16的一位数组Entry[] table。
  *      map.put(kay1,value1):
- *      首先，调用key1所在类的hashCode()计算key1哈希值，此哈希值经过某种算法计算以后，得到Entry数组中的存放位置。
+ *      (hash(key))首先，调用key1所在类的hashCode()计算key1哈希值，此哈希值经过某种算法计算以后，得到Entry数组中的存放位置。
  *      如果此位置上的数据为空，此key1-value1添加成功。   ---情况1
  *      如果此位置上的数据不为空，（意味着此位置上存在一个或多少数据（以链表形式存在）），比较key1和已经存在的一个或多个数据的哈希值：
  *          如果key1的哈希值与已经存在的书的哈希值都不相同，此时key1-value1添加成功 ---情况2
@@ -107,6 +108,11 @@ public class MapMain {
         //TreeMap
         new TreeMapTest();
     }
+    
+    /**
+     put
+     
+     */
     @Test
     public void main(){
         Map map = new HashMap();
@@ -118,11 +124,15 @@ public class MapMain {
 
     @Test
     public void main2(){
-        Map map = new LinkedHashMap();
+        Map<Integer,String> map = new LinkedHashMap();
         map.put(123,"AA");
         map.put(234,"BB");
         map.put(345,"CC");
-        System.out.println(map);
+//        System.out.println(map);
+        Set<Map.Entry<Integer, String>> entries = map.entrySet();
+        for(Map.Entry<Integer,String> entry:entries){
+            System.out.println(entry.getKey()+":"+entry.getValue());
+        }
     }
 
     /**
@@ -237,5 +247,11 @@ public class MapMain {
             Object value = map.get(key);
             System.out.println(key+"--->"+value);
         }
+    }
+    
+    public void mutilSafe(){
+        ConcurrentHashMap concurrentHashMap = new ConcurrentHashMap();
+        concurrentHashMap.put("1","1");
+    
     }
 }

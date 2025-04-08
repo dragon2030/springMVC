@@ -136,5 +136,6 @@ public class CollectionsTest {
         list.add(395);
         list.add(76);
         List list1=Collections.synchronizedList(list);
+        list1.add(new Object());
     }
 }

@@ -52,6 +52,14 @@ public class ListTest {
 
     /**
      * List的常用方法
+     * void add(int index,Object element)
+     * boolean addAll(int index,Collection elements)
+     * Object get(int index)
+     * int indexOf(Object obj)
+     * int lastIndexOf(Object obj)
+     * remove(int index)
+     * Object set(int index,Object element)
+     * List subList(int fromIndex,int toIndex)
      */
     public void commonMethod(){
         List list = new ArrayList();

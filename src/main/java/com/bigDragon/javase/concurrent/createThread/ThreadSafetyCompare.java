@@ -13,18 +13,19 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class ThreadSafetyCompare {
 	/**
 	 * 线程安全解决办法 
-	 * 方法1： CollectionsTest.synchronizedList(new LinkedListTest<String>())
-	 * 方法2: LinkedList和ArrayList换成线程安全的集合，如CopyOnWriteArrayList，ConcurrentLinkedQueue......
-	 * 方法3：Vector(内部主要使用synchronized关键字实现同步)
+	 * 方法1：Vector(内部主要使用synchronized关键字实现同步)
+	 * 方法2： Collections.synchronizedList(new LinkedListTest<String>())
+	 * 方法3: LinkedList和ArrayList换成线程安全的集合，如CopyOnWriteArrayList，ConcurrentLinkedQueue......
 	 */
 	public void ArrayListAndLinkedList(){
 		List<String> list1=new LinkedList<String>();
 		List<String> list2=new ArrayList<String>();
 		list1.add("1");
 		list2.add("1");
-		List<String> list3=new CopyOnWriteArrayList<String>();
 		List<String> list4=new Vector<String>();
 		Queue<String> queue=new ConcurrentLinkedQueue<String>();
+		List<String> list3=new CopyOnWriteArrayList<String>();
+		list3.add(new String());
 	}
 	
 	/**
