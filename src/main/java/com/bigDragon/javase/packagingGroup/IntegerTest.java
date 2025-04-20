@@ -3,9 +3,7 @@ package com.bigDragon.javase.packagingGroup;
 import java.util.Objects;
 
 /**
- * @author: bigDragon
- * @create: 2022/5/29
- * @Description:
+ * 包装类
  */
 public class IntegerTest {
         //  判断Integer类型的值为null或为空

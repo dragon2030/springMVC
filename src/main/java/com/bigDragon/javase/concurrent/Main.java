@@ -1,7 +1,10 @@
-package com.bigDragon.javase.concurrent.createThread;
+package com.bigDragon.javase.concurrent;
 
-import com.bigDragon.javase.concurrent.JUCTest;
-import com.sun.org.apache.bcel.internal.generic.NEW;
+import com.bigDragon.javase.concurrent.createThread.*;
+import com.bigDragon.javase.concurrent.future.FutureTaskTest;
+import com.bigDragon.javase.concurrent.juc.JUCTest;
+import com.bigDragon.javase.concurrent.threadPoolExecutor.MyThread4;
+import com.bigDragon.javase.concurrent.threadPoolExecutor.SpringThreadPoolDemo;
 
 /**
  * java线程一章节学习
@@ -25,7 +28,7 @@ public class Main {
 		MyThread1.main(args);
 		//创建多线程方式二：实现Runnable接口
 		MyThread2.main(args);
-		//创建多线程方式三：实现Callable接口
+		//创建多线程方式三：实现Callable接口 Future接口
 		FutureTaskTest.main(args);
 		//创建多线程方式四：使用线程池
 		MyThread4.main(args);
@@ -47,10 +50,11 @@ public class Main {
 		//单例模式的线程安全问题
 		Bank.getInstance();
 		//线程通讯的例子，synchronized方式
+		//sleep()和wait()的异同
 		CommunicationTest.main(args);
 
 		//spring集成线程池测试
-		Class c=ThreadPoolDemo.class;
+		Class c= SpringThreadPoolDemo.class;
 		//工具类的线程安全解决
 		ThreadSafetyCompare.main(args);
 		//测试方法

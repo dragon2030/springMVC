@@ -1,7 +1,8 @@
-package com.bigDragon.javase.concurrent.createThread;
+package com.bigDragon.javase.concurrent.threadPoolExecutor;
 
 import javax.annotation.Resource;
 
+import com.bigDragon.javase.concurrent.createThread.MyThread;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,11 +20,12 @@ import com.alibaba.fastjson.JSONObject;
  */
 @Controller
 @RequestMapping("/threadPool")
-public class ThreadPoolDemo {
+public class SpringThreadPoolDemo {
 
 	@Resource(name="threadPool")
     private ThreadPoolTaskExecutor threadPool;
 	
+	//<bean id="threadPool2" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">  
 	@Resource(name="threadPool2")
     private ThreadPoolTaskExecutor threadPool2;
 	

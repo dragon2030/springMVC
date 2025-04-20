@@ -7,10 +7,48 @@ import java.util.HashMap;
 
 /**
  * 包装类
- * @author bigDragon
- * @create 2021-04-09 10:34
  */
 public class WrapperTest {
+    public static void main (String[] args) {
+        //Integer缓存机制 源码解析
+        new WrapperTest().integer_cash();
+        //Integer缓存机制 很实用的一道题
+        new WrapperTest().integer_cash_practice();
+    }
+    //Integer缓存机制 很实用的一道题
+    @Test
+    public void integer_cash_practice(){
+        Integer integer = new Integer("100");
+        Integer integer2 = 100;
+        Integer integer3 = Integer.valueOf("100");
+        System.out.println(integer==integer2);//false
+        System.out.println(integer2==integer3);//true
+        System.out.println(integer==100);//true
+        System.out.println(integer2==100);//true
+        Integer integer4 = Integer.valueOf("200");
+        System.out.println(integer4==(Integer)200);//false
+        /**
+         Integer 缓存机制（-128 到 127）：
+            new Integer("100") 会强制创建新对象，即使值在缓存范围内。
+            integer2 = 100 【自动装箱Integer.valueOf】和 Integer.valueOf("100") 会从缓存中获取对象（不会新建）。
+         拆箱比较：
+            当 Integer 与 int（如 100）用 == 比较时，会自动拆箱为 int，比较数值 → true。
+         特殊说明:
+            若数值不在缓存范围（如 200），integer2 = 200 会创建新对象
+         */
+    }
+    //Integer缓存机制 源码解析
+    public void integer_cash(){
+        Integer.valueOf(123);
+        /**
+         源码解析：如果 i 在 low（-128）和 high（默认 127）之间，则直接从缓存数组返回对象，否则新建 Integer 对象
+         public static Integer valueOf(int i) {
+         if (i >= IntegerCache.low && i <= IntegerCache.high)
+         return IntegerCache.cache[i + (-IntegerCache.low)];
+         return new Integer(i);
+         }
+         */
+    }
     //基本数据类型 --> 包装类：调用包装类的构造器
     @Test
     public void test1(){
@@ -133,12 +171,5 @@ public class WrapperTest {
         Object obj = b;
         System.out.println(obj instanceof Boolean);
     }
-
-
     
-
-    public static void main(String[] args) {
-        Object o1 = true ? new Integer(1) : new Double(2.0);
-        System.out.println(o1);//1.0
-    }
 }

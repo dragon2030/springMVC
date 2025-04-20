@@ -114,6 +114,7 @@ public class StreamApiTest {
         Stream<Person> stream = list.stream();
         //default Stream<E> parallelStream():返回一个并行流（多线程同时去集合中数据）
         Stream<Person> parallelStream = list.parallelStream();
+        parallelStream.forEach(i-> System.out.println(i));
     }
     /*
     测试用ArrayList集合

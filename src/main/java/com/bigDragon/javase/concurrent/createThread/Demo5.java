@@ -25,6 +25,7 @@ import java.util.concurrent.locks.ReentrantLock;
 public class Demo5 implements Runnable{
 	private static int ticket=100;
 	//当fair为true时 进入的线程按照先后顺序,为false时 进入线程无需抢占cpu执行，默认为false
+	//true if this lock should use a fair ordering policy
 	private ReentrantLock lock=new ReentrantLock(true);
 	
 	@Override

@@ -12,5 +12,6 @@ com.bigDragon.javase
     com.bigDragon.javase.Annotation.AnnotationMain（自定义注解）
     com.bigDragon.javase.assertTest.AssertMain;(断言)
     com.bigDragon.javase.collection.Main(集合)
-    
+
+com.bigDragon.javase.Generics.GenericsMain(泛型)
     

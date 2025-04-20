@@ -428,6 +428,12 @@
             <version>3.15.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.openjdk.jol</groupId>
+            <artifactId>jol-core</artifactId>
+            <version>0.17</version> <!-- 使用最新版本 -->
+        </dependency>
+
     </dependencies>
     <build>
         <plugins>
