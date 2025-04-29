@@ -25,11 +25,17 @@ import java.util.concurrent.*;
 public class FutureTaskTest {
 	public static void main(String[] args) {
 		FutureTaskTest futureTaskTest = new FutureTaskTest();
+		new FutureTaskTest().FutureDemo();
 		//futureTask执行demo
-		futureTaskTest.FutureTask();
-		//线程池使用
-		futureTaskTest.Future();
+		new FutureTaskTest().FutureTask();
+		//线程池使用(标准Future使用方式，需要配合线程池,CompletableFuture内置了默认线程池ForkJoinPool不强制)
+		new FutureTaskTest().Future();
 
+	}
+	@Test
+	public void FutureDemo() {
+		Future<Integer> future=new FutureTask<>(() -> 1);
+		new Thread((FutureTask)future).start();
 	}
 	//futureTask执行demo
 	@Test
@@ -42,17 +48,18 @@ public class FutureTaskTest {
 		};
 		
 		//public FutureTask(Callable<V> callable)
-		FutureTask<Integer> futureTask=new FutureTask<>(callable);
+		Future<Integer> future=new FutureTask<>(callable);
+		FutureTask<Integer> futureTask = (FutureTask<Integer>)future;
 		//5.将FutureTask的对象作为参数传递到Thread构造器中，创建Thread对象，并用start方法调用
-		futureTask.run(); // 同步执行，当前线程会阻塞直到任务完成
-//		new Thread(futureTask).start();// 异步执行
+//		futureTask.run(); // 同步执行，当前线程会阻塞直到任务完成，所以第一次isDone()true
+		new Thread(futureTask).start();// 异步执行，所以第一次isDone()false
 		try {
 			//6.获取Callable中call方法的返回值
 			//get方法的返回值即为FutureTask构造器参数Callable实现类重写的call返回值
 			//阻塞到线程执行结束
 			boolean done = futureTask.isDone();
 			System.out.println("get调用之前，isDone:"+done);
-			Integer sum=futureTask.get();
+			Integer sum=futureTask.get();//线程会进行阻塞
 //			Integer sum=futureTask.get(10, TimeUnit.SECONDS);//设置10秒超时 一般使用线程执行最大时间，防止线程一直阻塞
 			System.out.println("总和为："+sum);
 			boolean done2 = futureTask.isDone();
@@ -87,7 +94,7 @@ public class FutureTaskTest {
 
 		// 2. 提交任务获取Future
 		Future<String> future = executor.submit(task);
-
+		//java.util.concurrent.FutureTask@4ae82894
 		// 3. 通过Future获取结果
 		try {
 			String result = future.get();  // 获取Callable.call()的返回值

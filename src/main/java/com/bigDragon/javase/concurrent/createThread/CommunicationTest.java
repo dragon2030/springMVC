@@ -3,13 +3,16 @@
  */
 package com.bigDragon.javase.concurrent.createThread;
 
+import com.sun.org.apache.bcel.internal.generic.NEW;
+import org.junit.Test;
+
 /**
- * 线程通讯的例子，synchronized方式
+ * 线程通讯的例子
  * 
  * 涉及到的三个方法：
- * wait()：一旦执行此方法，当前线程就进入阻塞状态，并释放同步监视器
- * notify()：一旦执行此方法，就会唤醒为wait的一个线程，如果有多个方法就唤醒优先级高的
- * notifyAll()：一旦执行此方法，就会唤醒所以wait的线程
+ * wait()：方法会释放当前线程持有的 lock 对象的锁【同步监视器】，进入等待状态
+ * notify()：方法会唤醒在同一个 lock 对象上等待的一个线程（如果有多个线程在等待，哪一个被唤醒是不确定的）。
+ * notifyAll()：方法会唤醒在同一个 lock 对象上等待的全部线程
  * 
  * 说明：
  * 	1.wait()，notify()，notifyAll()三个方法必须使用在同步代码块或同步同步方法中
@@ -28,47 +31,110 @@ package com.bigDragon.javase.concurrent.createThread;
  * @date: 2020年8月13日
  * 
  */
-public class CommunicationTest implements Runnable{
-	private static int ticket=100;
-	Object obj=new Object();
-	
-	@Override
-	public void run(){
-		while(true){
-			//共享数据 加锁
-			synchronized(this){
-				this.notify();
-				//notifyAll();
-				
-				if(ticket>0){
-					try {
-						Thread.sleep(100);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					
-					System.out.println(Thread.currentThread().getName()+":卖票，票号为"+ticket);
-					ticket--;
-					
-					try {
-						//调用wait() 方法的线程进入阻塞状态
-						this.wait();
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					
-				}else{
-					break;
-				}
-			}
-		}
-	}
+public class CommunicationTest{
 	public static void main(String[] args){
-		//唯一对象
-		CommunicationTest communicationTest=new CommunicationTest();
-		new Thread(communicationTest).start(); 
-		new Thread(communicationTest).start(); 
+		//wait 和 notity 的使用
+		new CommunicationTest().wait_notify();
+	}
+	//wait 和 notity 的使用
+	@Test
+	public void wait_notify(){
+		final Object lock = new Object(); // 创建一个共享的锁对象
+		
+		// 等待线程
+		Runnable waitingRunnable =
+				() -> {
+					synchronized (lock) {
+						System.out.println(Thread.currentThread().getName()+"等待线程：进入同步块，准备等待...");
+						try {
+							lock.wait(); // 在锁对象上等待
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+						System.out.println(Thread.currentThread().getName()+"线程被唤醒后的状态:"+Thread.currentThread().getState());
+					}
+				};
+		
+		// 启动等待线程和唤醒线程
+		Thread waitingThread1 = new Thread(waitingRunnable,"waitingThread1");
+		Thread waitingThread2 = new Thread(waitingRunnable,"waitingThread2");
+		waitingThread1.start();
+		waitingThread2.start();
+		try {
+			Thread.sleep(100); // 等待，确保线程执行 执行到lock.wait()
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		System.out.println("lock.wait()后等待线程1状态："+waitingThread1.getState());
+		System.out.println("lock.wait()后等待线程2状态："+waitingThread2.getState());
+		
+		// 唤醒线程
+		Thread notifyingThread = new Thread(() -> {
+			synchronized (lock) {
+				System.out.println("唤醒线程：进入同步块，准备唤醒等待线程...");
+				lock.notify(); // 唤醒在lock对象上等待的一个线程
+				// lock.notifyAll(); // 唤醒在lock对象上等待的所有线程
+				System.out.println("唤醒线程：唤醒操作完成...");
+			}
+		});
+		notifyingThread.start();
+		//waitingThread1等待线程：进入同步块，准备等待...
+		//waitingThread2等待线程：进入同步块，准备等待...
+		//lock.wait()后等待线程1状态：WAITING
+		//lock.wait()后等待线程2状态：WAITING
+		//唤醒线程：进入同步块，准备唤醒等待线程...
+		//唤醒线程：唤醒操作完成...
+		//waitingThread1线程被唤醒后的状态:RUNNABLE
+		//【由此可见waitingThread1被唤醒了waitingThread2没有被唤醒】
+	}
+	@Test
+	public void wait_notifyAll(){
+		final Object lock = new Object(); // 创建一个共享的锁对象
+		
+		// 等待线程
+		Runnable waitingRunnable =
+				() -> {
+					synchronized (lock) {
+						System.out.println(Thread.currentThread().getName()+"等待线程：进入同步块，准备等待...");
+						try {
+							lock.wait(); // 在锁对象上等待
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+						System.out.println(Thread.currentThread().getName()+"线程被唤醒后的状态:"+Thread.currentThread().getState());
+					}
+				};
+		
+		// 启动等待线程和唤醒线程
+		Thread waitingThread1 = new Thread(waitingRunnable,"waitingThread1");
+		Thread waitingThread2 = new Thread(waitingRunnable,"waitingThread2");
+		waitingThread1.start();
+		waitingThread2.start();
+		try {
+			Thread.sleep(100); // 等待，确保线程执行 执行到lock.wait()
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		System.out.println("lock.wait()后等待线程1状态："+waitingThread1.getState());
+		System.out.println("lock.wait()后等待线程2状态："+waitingThread2.getState());
+		
+		// 唤醒线程
+		Thread notifyingThread = new Thread(() -> {
+			synchronized (lock) {
+				System.out.println("唤醒线程：进入同步块，准备唤醒等待线程...");
+				lock.notifyAll(); // 唤醒在lock对象上等待的一个线程
+				// lock.notifyAll(); // 唤醒在lock对象上等待的所有线程
+				System.out.println("唤醒线程：唤醒操作完成...");
+			}
+		});
+		notifyingThread.start();
+		//waitingThread1等待线程：进入同步块，准备等待...
+		//waitingThread2等待线程：进入同步块，准备等待...
+		//lock.wait()后等待线程1状态：WAITING
+		//lock.wait()后等待线程2状态：WAITING
+		//唤醒线程：进入同步块，准备唤醒等待线程...
+		//唤醒线程：唤醒操作完成...
+		//waitingThread2线程被唤醒后的状态:RUNNABLE
+		//waitingThread1线程被唤醒后的状态:RUNNABLE
 	}
 }
