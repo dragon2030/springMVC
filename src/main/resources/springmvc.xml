@@ -24,8 +24,12 @@
 <!-- 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 		<context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice" /> -->
 	</context:component-scan>
+<!--	测试bean生命周期-->
+	<context:component-scan base-package="springStudy.beanLifeCycle"/>
+<!--	如果只是需要扫描@Controller注解的类，通常不需要显式配置<context:include-filter>，因为：-->
+<!--	<context:component-scan>默认会扫描所有Spring注解的组件-->
 	  <!--扫描Service里面的注解-->
-    <context:component-scan base-package="com.bigDragon.demo.test.service"></context:component-scan>
+<!--    <context:component-scan base-package="com.bigDragon.demo.test.service"></context:component-scan>-->
 
     <!--使用mvc:annotation-driven代替上边注解映射器和注解适配器 配置 如果使用mvc:annotation-driven就不用配置上面的
         RequestMappingHandlerMapping和RequestMappingHandlerAdapter-->
@@ -120,5 +124,11 @@
 	     	<value>UTF-8</value>
 	    </property>
 	</bean>
-    
+	<bean id="beanLifeCycleTestBean"
+		  class="springStudy.beanLifeCycle.BeanLifeCycleTestBean"
+		  init-method="initMethod" destroy-method="destroyMethod"
+	>
+
+		<property name="name" value="Bob"></property>
+	</bean>
 </beans>

@@ -3,6 +3,7 @@
  */
 package com.bigDragon.javase.ioStream;
 
+import com.bigDragon.javase.ioStream.NIO.Nio;
 import com.bigDragon.javase.ioStream.excel.ExcelSimpleDemo;
 
 /**
@@ -32,7 +33,7 @@ public class Main {
 	InputStream			FileInputStream			BufferedInputStream								ObjectInputStream
 	OutputStream		FileOutputStream		BufferedOutputStream							ObjectOutputStream
 	Reader				FileReader				BufferedReader			InputStreamReader
-	Writer				FileWriter				BufferedWeiter			OutputStreamWriter
+	Writer				FileWriter				BufferedWriter			OutputStreamWriter
 
 	需做需补练习与知识点：
 	2.RandomAccessFileTest断点续传功能与MD5验证文件功能

@@ -14,17 +14,16 @@ public class AtomicStampedReferenceTest {
     private final static AtomicInteger num = new AtomicInteger(100);
 
     public static void main(String[] args) {
-        AtomicStampedReferenceTest test = new AtomicStampedReferenceTest();
         /**
          * 存在aba问题
          * Thread-0 修改num之后的值：100
          * Thread-1 修改num之后的值：200
          */
-        test.casProblemABA();
+        new AtomicStampedReferenceTest().casProblemABA();
         /**
-         * 解决aba问题
+         * 解决aba问题 使用了AtomicStampedReference
          */
-        test.casSolutionABA();
+        new AtomicStampedReferenceTest().casSolutionABA();
     }
 
     @Test

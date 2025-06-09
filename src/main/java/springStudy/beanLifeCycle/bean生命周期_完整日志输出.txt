@@ -1,0 +1,10 @@
+2025-05-06 22:56:32,068 [RMI TCP Connection(3)-127.0.0.1] INFO  - 【ApplicationContextAware的实现类执行方法setApplicationContext】
+2025-05-06 22:56:32,076 [RMI TCP Connection(3)-127.0.0.1] INFO  - 【BeanFactoryAware的实现类执行方法setBeanFactory】
+2025-05-06 22:56:32,080 [RMI TCP Connection(3)-127.0.0.1] INFO  - 【BeanNameAware的实现类执行方法setBeanName】
+2025-05-06 22:56:32,090 [RMI TCP Connection(3)-127.0.0.1] INFO  - 【执行带有@PostConstruct注解的方法】
+2025-05-06 22:56:32,096 [RMI TCP Connection(3)-127.0.0.1] INFO  - 【bean对象无参构造器执行】
+2025-05-06 22:56:32,097 [RMI TCP Connection(3)-127.0.0.1] INFO  - 【bean对象属性装配setName方法执行】
+2025-05-06 22:56:32,099 [RMI TCP Connection(3)-127.0.0.1] INFO  - 【BeanPostProcessor的实现类执行方法postProcessBeforeInitialization】bean名称: beanLifeCycleTestBean, 类型: springStudy.beanLifeCycle.BeanLifeCycleTestBean
+2025-05-06 22:56:32,099 [RMI TCP Connection(3)-127.0.0.1] INFO  - 【bean对象自定义init-method执行】
+2025-05-06 22:56:32,100 [RMI TCP Connection(3)-127.0.0.1] INFO  - 【BeanPostProcessor的实现类执行方法postProcessAfterInitialization】bean名称: beanLifeCycleTestBean, 类型: springStudy.beanLifeCycle.BeanLifeCycleTestBean
+2025-05-06 22:56:32,112 [RMI TCP Connection(3)-127.0.0.1] INFO  - 【InitializingBean的实现类执行方法afterPropertiesSet】

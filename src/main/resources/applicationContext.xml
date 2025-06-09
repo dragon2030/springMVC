@@ -78,4 +78,12 @@
 	<!-- 自动扫描事务注解 -->
     <tx:annotation-driven transaction-manager="transactionManager" />
 
+<!--    <bean id="beanLifeCycleTestBean" -->
+<!--          class="springStudy.beanLifeCycle.BeanLifeCycleTestBean"-->
+<!--          init-method="initMethod" destroy-method="destroyMethod"-->
+<!--    >-->
+
+<!--        <property name="name" value="Bob"></property>-->
+<!--    </bean>-->
+    
  </beans>

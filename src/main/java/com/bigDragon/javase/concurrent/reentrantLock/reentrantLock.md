@@ -1,7 +1,17 @@
+# 未解决问题
 【acquireQueued 和 addWaiter 只看懂大概,特别是节点状态流转一部分】
 【共享模式的aqs有点像同步模型，没看看吐了】
-
-# (1)lock
+# 简介
+* ReentrantLock 是 Java 提供的一个功能强大的可重入锁，比 synchronized 更灵活，适用于需要高级同步控制的场景。
+* ReentrantLock 是 Lock 接口的一个具体实现类，也是 Java 标准库中唯一直接实现 Lock 接口的类
+# ReentrantLock原理主体流程
+* 文字描述：
+  * 如果被请求的共享资源空闲，则将当前请求资源的线程设置为有效的工作线程，并将共享资源设置为锁定状态。
+  * 如果被请求的共享资源被占用，那么就需要一套线程阻塞等待以及被唤醒时锁分配的机制（AQS）
+* 伪代码：ReentrantLock（可重入独占式锁）：state初始化为0，表示未锁定状态，A线程lock()时，会调用tryAcquire()独占锁并将state+1.之后其他线程再想tryAcquire的时候就会失败，直到A线程unlock（）到state=0为止，其他线程才有机会获取该锁。A释放锁之前，自己也是可以重复获取此锁（state累加），这就是可重入的概念。
+>注意：获取多少次锁就要释放多少次锁，保证state是能回到零态的。
+# 加锁-lock
+## lock源码解析
 
 ***ReentrantLock.lock()***
 
@@ -53,6 +63,9 @@ final void lock() {
             selfInterrupt();
     }
 ```
+>     static void selfInterrupt() {
+>       Thread.currentThread().interrupt();
+>   }
 
 1. tryAcquire(1) - 尝试直接获取锁
 
@@ -279,6 +292,119 @@ final boolean acquireQueued(final Node node, int arg) {
       return false;
   }
 ```
+## 与AQS核心相关方法
+
+acquire(int arg)方法开始进入AQS核心类AbstractQueuedSynchronizer
+后执行AQS核心方法addWaiter()、acquireQueued()
+
+```
+ReentrantLock.lock()
+  → Sync.acquire(1) (AQS)
+    → tryAcquire(1) (子类实现)
+    → addWaiter(Node.EXCLUSIVE) (AQS)
+    → acquireQueued() (AQS)
+```
+
+## lock（）模板方法模式
+
+AQS底层使用了模板方法模式
+
+```
+// 需要子类实现
+protected boolean tryAcquire(int arg)
+protected boolean tryRelease(int arg)
+
+// AQS已实现
+public final void acquire(int arg)
+public final boolean release(int arg)
+```
+# 解锁-unlock
+* unlock() 是释放锁的核心方法，其实现涉及锁状态管理、线程唤醒和队列操作等多个关键并发机制。
+
+## (1)unlock
+
+**ReentrantLock.unlock()**
+
+```
+public void unlock() {
+    sync.release(1); // 委托给Sync内部类
+}
+```
+
+## (2)release
+
+**ReentrantLock.unlock()->sync.release(1)**
+
+```
+public final boolean release(int arg) {
+    if (tryRelease(arg)) {      // 尝试释放锁（子类实现）
+        Node h = head;          // 获取头节点
+        //这个条件语句的作用是在释放锁时，检查头节点的状态是否正常。如果头节点的等待状态不为正常状态，则表示当前头节点可能处于一种特殊状态
+        if (h != null && h.waitStatus != 0)
+            unparkSuccessor(h);  // 唤醒后继节点
+        return true;
+    }
+    return false;
+}
+```
+
+### (3)tryRelease
+
+**ReentrantLock.unlock()->sync.release(1)->tryRelease**
+尝试释放锁
+
+```
+protected final boolean tryRelease(int releases) {
+    int c = getState() - releases;
+    if (Thread.currentThread() != getExclusiveOwnerThread())//确保只有锁持有者能调用unlock
+        throw new IllegalMonitorStateException(); // 非持有线程调用unlock
+  
+    boolean free = false;
+    if (c == 0) {               // 完全释放锁
+        free = true;    //当state归零时才返回true
+        setExclusiveOwnerThread(null);//清owner
+    }
+    setState(c);                // 更新state（即使未完全释放）
+    return free;
+}
+```
+
+状态更新顺序：先清owner，再setState（避免指令重排问题）
+
+### (3)unparkSuccessor
+
+**ReentrantLock.unlock()->sync.release(1)->unparkSuccessor**
+唤醒后继节点
+
+```
+private void unparkSuccessor(Node node) {
+    int ws = node.waitStatus;
+    if (ws < 0) //将头节点状态从SIGNAL(-1)重置为0
+        compareAndSetWaitStatus(node, ws, 0); // 清除信号状态
+
+    Node s = node.next;
+    if (s == null || s.waitStatus > 0) { // 后继节点无效（取消或null）
+        s = null;
+        //等待队列先进先出（FIFO）的原则,从尾部开始遍历可以优先处理最早进入队列的节点
+        for (Node t = tail; t != null && t != node; t = t.prev)
+            if (t.waitStatus <= 0)      // 从尾向前找有效节点
+                s = t;
+    }
+    if (s != null)
+        LockSupport.unpark(s.thread);   // 唤醒线程
+}
+```
+
+## 与AQS核心相关方法
+
+release()方法开始进入AQS核心类AbstractQueuedSynchronizer
+
+```
+ReentrantLock.unlock()
+  → Sync.release(1) (AQS)
+    → tryRelease(1) (Sync实现)
+    → unparkSuccessor() (AQS)
+```
 
 # waitStatus字段
 
@@ -382,30 +508,28 @@ B(Head, waitStatus=0, 持锁) → C(waitStatus=1, 已取消)
 ```
 
 * 当B释放锁时，发现后继节点C状态为CANCELLED，AQS会跳过C节点，继续寻找下一个有效节点（如果有）。
-
-# 与AQS核心相关方法
-
-acquire(int arg)方法开始进入AQS核心类AbstractQueuedSynchronizer
-后执行AQS核心方法addWaiter()、acquireQueued()
-
-```
-ReentrantLock.lock()
-  → Sync.acquire(1) (AQS)
-    → tryAcquire(1) (子类实现)
-    → addWaiter(Node.EXCLUSIVE) (AQS)
-    → acquireQueued() (AQS)
-```
-
-# 模板方法模式
-
-AQS底层使用了模板方法模式
-
-```
-// 需要子类实现
-protected boolean tryAcquire(int arg)
-protected boolean tryRelease(int arg)
-
-// AQS已实现
-public final void acquire(int arg)
-public final boolean release(int arg)
-```
+# Condition
+* Condition notEmpty = lock.newCondition() 是 Java 并发编程中基于显式锁（Lock）的线程通信机制的核心实现，主要用于精细化控制线程的等待/唤醒
+>对比Object.wait()/notify()
+## 1. 基础概念
+* (1) Condition 是什么？
+  *  属于 java.util.concurrent.locks 包，必须与 Lock 配合使用（不能单独存在）。
+  *  作用：替代传统的 Object.wait()/notify()，提供更灵活的线程等待与唤醒机制。
+  *  核心方法：
+    *  await()：释放锁并等待（类比 wait()）
+    *  signal()：唤醒一个等待线程（类比 notify()）
+    *  signalAll()：唤醒所有等待线程（类比 notifyAll()）
+* (2) 典型应用场景
+  * 生产者-消费者模型（不同条件控制队列空/满）
+  *  线程池任务调度
+  *  多阶段任务协作
+##  底层实现原理
+* 与 AQS（AbstractQueuedSynchronizer）的关系
+  * 每个 Condition 对象内部维护一个条件队列（单向链表），存储调用 await() 的线程。
+  * 当调用 signal() 时，将条件队列中的线程转移到锁的同步队列（AQS 核心队列），等待获取锁。
+## 生产者-消费者模型中的实战
+LockConditionTest
+# 扩展
+## synchronized与volatile、ReentrantLock的区别
+* https://way2j.com/a/549#synchronized%E4%B8%8EReentrantLock
+> 	Lock 等待锁时可用interrupt来中断等待 synchronized不能实现

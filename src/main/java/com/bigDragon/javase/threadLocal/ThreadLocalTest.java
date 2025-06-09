@@ -9,6 +9,9 @@ import org.junit.Test;
  解决多线程的并发访问。ThreadLocal会为每一个线程提供一个独立的变量副本，从而隔离了多个线程对数据的访问冲突。
  三、ThreadLocal原理
  每个Thread对象都有一个ThreadLocalMap，当创建一个ThreadLocal的时候，就会将该ThreadLocal对象添加到该Map中，其中键就是ThreadLocal，值可以是任意类型。
+ Entry extends WeakReference<ThreadLocal<?>
+ 哈希冲突解决（开放寻址）
+ 四、内存泄漏问题
  
  */
 public class ThreadLocalTest {

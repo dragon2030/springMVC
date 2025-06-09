@@ -1,4 +1,4 @@
-package com.bigDragon.javase.StringAPI.study;
+package com.bigDragon.javase.StringAPI;
 
 import cn.hutool.core.collection.CollUtil;
 import com.bigDragon.javase.StringAPI.util.Person;

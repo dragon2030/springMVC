@@ -1,9 +1,8 @@
-package com.bigDragon.javase.collection;
+package com.bigDragon.javase.collection.list;
 
 import org.junit.Test;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * ArrayList

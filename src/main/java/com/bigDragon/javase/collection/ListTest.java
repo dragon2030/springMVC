@@ -1,10 +1,10 @@
 package com.bigDragon.javase.collection;
 
+import com.bigDragon.javase.collection.list.ArrayListTest;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
 /**

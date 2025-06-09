@@ -20,12 +20,11 @@ import org.junit.Test;
  * 		否则会出现 IllegalMonitorStateException异常
  * 	3.wait()，notify()，notifyAll()都是定义在Object类中的
  * 
- * 面试题：sleep()和wait()的异同？
- * 	1.相同点：一旦执行方法，都可以使得当前的线程进入阻塞状态
- * 	2.不同点：	1）两个的申明的位置不同：Thread类中申明sleep，Object申明wait
- * 				2）调用要求不同：sleep可以在任何需要的场景下调用，wait（）必须使用同步代码块或同步方法中
- * 				3)关于是否释放同步监视器：如果两个方法都使用在同步代码块或同步方法中，sleep方法不会释放锁，
- * 					wait会释放锁。
+面试题：sleep()和wait()的异同？
+1.相同点：一旦执行方法，都可以使得当前的线程进入阻塞状态
+2.不同点：	1）两个的申明的位置不同：Thread类中申明sleep，Object申明wait
+ 			2）调用要求不同：sleep可以在任何需要的场景下调用，wait（）必须使用同步代码块或同步方法中
+			3)关于是否释放同步监视器：如果两个方法都使用在同步代码块或同步方法中，sleep方法不会释放锁，wait会释放锁。
  * 
  * @author: bigDragon
  * @date: 2020年8月13日

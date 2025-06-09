@@ -1,4 +1,4 @@
-package com.bigDragon.javase.ioStream;
+package com.bigDragon.javase.ioStream.NIO;
 
 import java.io.File;
 import java.nio.file.Path;

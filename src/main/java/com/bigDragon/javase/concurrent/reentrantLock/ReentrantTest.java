@@ -20,6 +20,10 @@ public class ReentrantTest {
         new ReentrantTest().ReentrantLockReentrant();
         //模拟乐观锁的+1操作
         new ReentrantTest().incrementOne();
+        
+    }
+    public void m(){
+        lock.newCondition();
     }
     //模拟乐观锁的+1操作
     private final ReentrantLock lock = new ReentrantLock();//非公平锁

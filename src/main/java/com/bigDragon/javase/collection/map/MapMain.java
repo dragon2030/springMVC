@@ -128,6 +128,7 @@ public class MapMain {
         map.put(123,"AA");
         map.put(234,"BB");
         map.put(345,"CC");
+        map.get(345);
 //        System.out.println(map);
         Set<Map.Entry<Integer, String>> entries = map.entrySet();
         for(Map.Entry<Integer,String> entry:entries){

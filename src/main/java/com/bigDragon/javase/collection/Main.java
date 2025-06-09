@@ -1,5 +1,6 @@
 package com.bigDragon.javase.collection;
 
+import com.bigDragon.javase.collection.list.ArrayListTest;
 import com.bigDragon.javase.collection.map.CollectionsTest;
 import com.bigDragon.javase.collection.map.MapMain;
 import com.bigDragon.javase.collection.map.TreeMapTest;

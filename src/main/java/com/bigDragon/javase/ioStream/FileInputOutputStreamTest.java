@@ -106,7 +106,7 @@ public class FileInputOutputStreamTest {
 				e2.printStackTrace();
 			}
 			try {
-				fileOutputStream.close();
+				fileOutputStream.close(); // close()会自动调用flush()
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}

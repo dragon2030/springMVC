@@ -1,4 +1,5 @@
 【expungeStaleEntry(i);  // 清理过期条目 没看】
+【线性探测法 对哈希表操作也没看】
 # 一、ThreadLocal的概念
 
 * ThreadLocal 主要是做数据隔离，它是线程的局部变量， 是每一个线程所单独持有的，其他线程不能对其进行访问，相对隔离的。
@@ -10,7 +11,7 @@
 
 # 三、ThreadLocal原理
 * 每个Thread对象都有一个ThreadLocalMap，当创建一个ThreadLocal的时候，就会将该ThreadLocal对象添加到该Map中，其中键就是ThreadLocal，值可以是任意类型。
-
+  【当哈希冲突时使用线性探测法】
 * 以下是比较重要的几个方法
 ## get
 * public T get(）：从线程上下文环境中获取设置的值。
@@ -120,8 +121,8 @@ private static int nextIndex(int i, int len) {
   * 当到达数组末尾时跳回索引 0
   * 继续查找直到遇到 null 或找到匹配项
 
-## 底层数据结构 ThreadLocalMap
-* Entry 定义：
+# 底层数据结构 ThreadLocalMap
+## Entry 定义：
 ```
 static class Entry extends WeakReference<ThreadLocal<?>> {
    Object value;
@@ -131,9 +132,27 @@ static class Entry extends WeakReference<ThreadLocal<?>> {
    }
 }
 ```
-* 哈希冲突解决：
-   使用线性探测法（开放寻址）
-   
-   探测函数：nextIndex() 和 prevIndex()
-   
-   自动清理过期条目（key为null的entry）
+* 键的弱引用
+* 当 ThreadLocal 外部强引用消失时，key 会被 GC 回收
+* 此时 entry 变成 key=null, value≠null 的过期条目
+## 哈希冲突解决：
+* 使用线性探测法（开放寻址）
+* 探测函数：nextIndex() 和 prevIndex()
+* 自动清理过期条目（key为null的entry）
+> 在插⼊过程中，根据ThreadLocal对象的hash值，定位到table中的位置i。如果当前位置是空的，就初始化⼀个Entry对象放在位置i上；如果位置i不为空，如果这个Entry对象的key和要设置的key相等，那么就刷新Entry中的value；如果位置i的不为空，而且key不等于entry，那就找下⼀个空位置，直到为空为⽌。这样的话，在get的时候，也会根据ThreadLocal对象的hash值，定位到table中的位置，然后判断该位置Entry对象中的key是否和get的key⼀致，如果不⼀致，就判断下⼀个位置，在冲突严重的情况下，效率会比较低。
+
+# 内存泄漏问题
+**内存泄漏的根本原因**
+
+虽然 Entry 对 ThreadLocal 是弱引用，但存在两个关键问题：
+* 问题一：Value 的强引用
+  * value 是强引用：即使 ThreadLocal 对象被回收，value 仍然被 Entry 强引用
+  * 导致现象：key=null, value≠null 的过期 Entry 会持续占用内存
+* 问题二：线程生命周期问题
+  * 工作线程（特别是线程池中的线程）可能长期存活
+  * 对应的 ThreadLocalMap 也会长期存在
+  * 积累的过期 Entry 无法被自动清理
+
+建议回收自定义的ThreadLocal变量，尤其在线程池场景下，线程经常会被复用，如果不清理自定义的 ThreadLocal变量，可能会影响后续业务逻辑和造成内存泄露等问题。 尽量在代理中使用try-finally块进行回收。
+# 参考博客
+* https://cloud.tencent.com/developer/article/2001044
