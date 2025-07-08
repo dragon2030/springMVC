@@ -1,7 +1,7 @@
 # 简介
 * CompletableFuture 是 Java 8 引入的一个强大的异步编程工具，它是 Future 接口的增强实现，提供了更丰富的功能来处理异步计算和组合多个异步操作。
 * public class CompletableFuture`<T>` implements Future`<T>`, CompletionStage`<T>`
-* CompletableFuture确实具有 事件驱动 的特性，但严格来说，它 不是标准的 Reactor 模式实现，而是更接近于 Promise 模式 或 回调驱动模型。
+* CompletableFuture具有 事件驱动 的特性，但严格来说，它 不是标准的 Reactor 模式实现，而是更接近于 Promise 模式 或 回调驱动模型。
 # CompletableFuture之前线程调用存在的小问题
 
 平时多线程开发一般就是使用Runnable，Callable，Thread，FutureTask，ThreadPoolExecutor这些内容和并发编程息息相关。相对来对来说成本都不高，多多使用是可以熟悉这些内容。这些内容组合在一起去解决一些并发编程的问题时，很多时候没有办法很方便的去完成异步编程的操作。
@@ -49,6 +49,40 @@ join()方法和get()方法都是用于获取CompletableFuture的计算结果，�
 * thenApply和thenApplyAsync是用于处理CompletableFuture的两个重要方法，它们都用于处理异步操作的结果，并返回一个新的CompletableFuture，以便进行进一步的操作或处理。
   * thenApply方法用于在当前CompletableFuture完成后，对其结果进行处理，并返回一个新的CompletableFuture，该CompletableFuture的结果由该处理函数处理后的结果提供。
   * thenApplyAsync方法与thenApply类似，但它是异步执行的，它将处理函数提交给默认的ForkJoinPool或指定的Executor执行。这使得它适合处理那些不希望阻塞当前线程的操作，如IO操作或长时间的计算任务。
+
+**源码解析以thenApply()为例**
+
+```
+public <U> CompletableFuture<U> thenApply(
+    Function<? super T,? extends U> fn) {
+    return uniApplyStage(null, fn);
+}
+```
+
+**示例代码**
+
+```
+//thenApply() 和 thenApplyAsync()
+System.out.println("主线程："+Thread.currentThread());
+CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> {
+    System.out.println("supplyAsync执行线程："+Thread.currentThread());
+    return "Hello";
+});
+
+CompletableFuture<Integer> lengthFuture = future.thenApply(s -> {
+    System.out.println("thenApply执行线程："+Thread.currentThread());
+    return s.length();
+});
+
+// 等待异步任务完成并获取结果
+Integer length = lengthFuture.get();
+System.out.println("Length of 'Hello': " + length); // 输出：Length of 'Hello': 5
+//返回结果
+//主线程：Thread[main,5,main]
+//supplyAsync执行线程：Thread[ForkJoinPool.commonPool-worker-1,5,main]
+//thenApply执行线程：Thread[main,5,main]
+//Length of 'Hello': 5
+```
 
 ### thenAccept() 和 thenAcceptAsync
 
@@ -105,7 +139,7 @@ join()方法和get()方法都是用于获取CompletableFuture的计算结果，�
 
 > 同时也有对应的Async，如thenCombineAsync，为异步执行
 
-## applyToEither，acceptEither，runAfterEither（或的关系 ||）
+### applyToEither，acceptEither，runAfterEither（或的关系 ||）
 
 > 这三个方法：比如有任务A，任务B，任务C。任务A和任务B并行执行，只要任务A或者任务B执行完毕，开始执行任务C
 
@@ -124,7 +158,7 @@ join()方法和get()方法都是用于获取CompletableFuture的计算结果，�
 
 > anyOf是基于多个CompletableFuture的任务，只要有一个任务执行完毕就继续执行后续，最先执行完的任务做作为返回结果的入参
 
-## 异常处理
+## 结果和异常处理
 
 * exceptionally
   exceptionally方法用于处理异步操作中发生的异常情况。它是一种特殊的异常处理方法，允许在CompletableFuture抛出异常时执行一些处理逻辑，并返回一个默认值或恢复操作，而不是直接抛出异常。

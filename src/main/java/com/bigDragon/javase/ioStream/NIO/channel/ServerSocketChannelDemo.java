@@ -5,6 +5,11 @@ import java.nio.ByteBuffer;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 
+/**
+ ServerSocketChannel使用 建立非阻塞的SocketChannel通道
+ 不使用 Selector 的限制 1/轮询效率问题：2/代码复杂度 3/扩展性问题
+ 适用场景 连接数非常少的简单应用 或者 学习或演示 
+ */
 public class ServerSocketChannelDemo {
 
     public static void main(String[] args) throws Exception {

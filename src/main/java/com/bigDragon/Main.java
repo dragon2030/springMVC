@@ -78,9 +78,7 @@ public class Main {
 
 
     public static void main(String[] args) {
-
-        
-
-        
+        String[] array=new String[5];
+        System.out.println(array.length);
     }
 }

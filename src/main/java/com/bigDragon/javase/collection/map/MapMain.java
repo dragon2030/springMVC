@@ -2,12 +2,7 @@ package com.bigDragon.javase.collection.map;
 
 import org.junit.Test;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -107,6 +102,10 @@ public class MapMain {
         mapMain.test3();
         //TreeMap
         new TreeMapTest();
+        //多线程并发安全
+        mapMain.concurrentSafe();
+        
+        
     }
     
     /**
@@ -250,9 +249,18 @@ public class MapMain {
         }
     }
     
-    public void mutilSafe(){
-        ConcurrentHashMap concurrentHashMap = new ConcurrentHashMap();
-        concurrentHashMap.put("1","1");
+    //多线程并发安全
+    public void concurrentSafe(){
+        Hashtable hashtable = new Hashtable();
+        hashtable.put(1,1);
+        hashtable.get(0);
+        
+        Map<Object, Object> objectObjectMap = Collections.synchronizedMap(new HashMap<>());
+        objectObjectMap.put(1,1);
+        objectObjectMap.get(0);
     
+        Map<Object, Object> map = new ConcurrentHashMap<>();
+        map.put(1,1);
+        map.get(0);
     }
 }

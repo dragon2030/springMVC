@@ -6,6 +6,7 @@ import com.bigDragon.javase.ioStream.NIO.channel.*;
 import com.bigDragon.javase.ioStream.NIO.selector.SelectorDemo1;
 import com.bigDragon.javase.ioStream.NIO.selector.SelectorDemo2;
 import com.bigDragon.javase.ioStream.NIO.selector.SelectorDemo3;
+import com.bigDragon.javase.ioStream.NIO.selector.SelectorDemo4;
 
 /**
  * @author: bigDragon
@@ -40,7 +41,11 @@ public class NioMain {
         new BufferDemo2();
         //******************Selector**************************
         new SelectorDemo1();
+        //Selector示例 客户端 服务端 还有个可以通过Scanner控制多次发请求的客户端
         new SelectorDemo2();
+        //由ai书写 Selector示例 客户端 服务端 解耦度高
         new SelectorDemo3();
+        //由ai书写 完整的NIO示例，包含服务端和客户端代码，演示了 1/客户端发送数据 2/服务端接收并回应 3/客户端接收服务端响应并打印
+        new SelectorDemo4();
     }
 }

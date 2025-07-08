@@ -3,6 +3,7 @@ package com.bigDragon.javase.collection.list;
 import org.junit.Test;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * ArrayList
@@ -167,21 +168,22 @@ public class ArrayListTest {
         
         //非安全 的两种
         //非安全--for(xxx : yyy)遍历
-//        for(String s:list){
-//            if(Objects.equals(s,"b")){
-//                list.remove(s);
-//            }
-//        }
+        for(String s:list){
+            if(Objects.equals(s,"b")){
+                list.remove(s);
+            }
+        }
         /**
          java.util.ConcurrentModificationException
          原因：调用的是ArrayList的remove方法，会改变modCount，迭代器遍历元素时候发现modCount和预期对不上直接报错
+         同时是for增加
          */
         //非安全--for的下标正序遍历
-//        for(int i=0;i<list.size();i++){
-//            if(Objects.equals(list.get(i),"b")){
-//                list.remove(i);
-//            }
-//        }
+        for(int i=0;i<list.size();i++){
+            if(Objects.equals(list.get(i),"b")){
+                list.remove(i);
+            }
+        }
         /**
          结果（有的没有删除掉） [a, b, c, d] 
          原因描述：遍历到删除元素时会System.arraycopy把后面元素整体前移，而指针已经到下一个为止，所以去除后的下一个元素没法判断到
@@ -192,21 +194,21 @@ public class ArrayListTest {
         
         //正确的三种方法
         //正确的方法--for的下标倒序遍历
-//        for(int i=list.size()-1;i>=0;i--){
-//            if(Objects.equals(list.get(i),"b")){
-//                list.remove(i);
-//            }
-//        }
+        for(int i=list.size()-1;i>=0;i--){
+            if(Objects.equals(list.get(i),"b")){
+                list.remove(i);
+            }
+        }
         //正确的方法--list.stream().filter().collect()
-//        list = list.stream().filter(i -> !Objects.equals(i, "b")).collect(Collectors.toList());
+        list = list.stream().filter(i -> !Objects.equals(i, "b")).collect(Collectors.toList());
         //iterator迭代器 中的remove方法
-//        Iterator<String> it = list.iterator();
-//        while (it.hasNext()) {
-//            String s = it.next();
-//            if ("b".equals(s)) {
-//                it.remove();
-//            }
-//        }
+        Iterator<String> it = list.iterator();
+        while (it.hasNext()) {
+            String s = it.next();
+            if ("b".equals(s)) {
+                it.remove();
+            }
+        }
         list.removeIf(item -> "b".equals(item));//iterator迭代器 中的remove方法 简化后
         System.out.println(list);
     }

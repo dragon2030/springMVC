@@ -39,6 +39,7 @@ public class MyThread4 {
 	 * @param args
 	 */
 	public static void main(String[] args) throws Exception{
+		//主要线程池类型
 		ExecutorService executorService=Executors.newFixedThreadPool(10);
 		ExecutorService executorService2=Executors.newSingleThreadExecutor();
 		ExecutorService executorService3=Executors.newScheduledThreadPool(10);
@@ -59,6 +60,7 @@ public class MyThread4 {
 
 	}
 	
+	//FixedThreadPool - 固定大小线程池
 	@Test
 	public void fixedThreadPool() throws Exception{
 		//1.提供指定线程数量的线程池

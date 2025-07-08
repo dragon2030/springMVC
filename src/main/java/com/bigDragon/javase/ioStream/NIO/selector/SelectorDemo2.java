@@ -15,7 +15,7 @@ import java.util.Iterator;
 import java.util.Scanner;
 import java.util.Set;
 
-//Selector示例 客户端 服务端
+//Selector示例 客户端 服务端 还有个可以通过Scanner控制多次发请求的客户端
 public class SelectorDemo2 {
 
     //标准的 NIO 多路复用服务端

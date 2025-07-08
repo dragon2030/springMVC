@@ -1,5 +1,7 @@
 package com.bigDragon.javase.concurrent.juc;
 
+import java.util.concurrent.CopyOnWriteArrayList;
+
 /**
  * @author: bigDragon
  * @create: 2025/4/10
@@ -11,4 +13,10 @@ package com.bigDragon.javase.concurrent.juc;
  * https://www.bilibili.com/video/BV1B7411L7tE?from=search&seid=15216587814524323096&spm_id_from=333.337.0.0
  */
 public class JUCTest {
+    public static void main (String[] args) {
+        CopyOnWriteArrayList<String> list =    new CopyOnWriteArrayList<String>();
+        list.add("1");
+        list.iterator();
+        list.get(0);
+    }
 }

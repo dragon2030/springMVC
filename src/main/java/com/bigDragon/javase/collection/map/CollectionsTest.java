@@ -46,6 +46,8 @@ public class CollectionsTest {
         collectionsTest.test();
         //Collections中查找、替换操作
         collectionsTest.test2();
+        //同步控制
+        collectionsTest.synchronizedTest();
     }
 
     /**
@@ -128,7 +130,7 @@ public class CollectionsTest {
      * 同步控制
      */
     @Test
-    public void test3(){
+    public void synchronizedTest(){
         List list = new ArrayList();
         list.add(123);
         list.add(678);

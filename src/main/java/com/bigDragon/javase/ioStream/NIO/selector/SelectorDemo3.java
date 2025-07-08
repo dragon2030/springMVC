@@ -10,6 +10,10 @@ import java.util.Scanner;
 import java.util.Set;
 
 /**
+ * 由ai书写
+ * 解耦程度高
+ * 8080 9090两个通道注册到selector
+ * Scanner控制输入 最后打印到工作台
  Selector示例 客户端 服务端
  多路复用连接
  */

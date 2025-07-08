@@ -1,8 +1,7 @@
-package com.bigDragon.javase.concurrent.juc;
+package com.bigDragon.javase.concurrent.juc.cas;
 
 import org.junit.Test;
 
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicStampedReference;
 
@@ -24,6 +23,17 @@ public class AtomicStampedReferenceTest {
          * 解决aba问题 使用了AtomicStampedReference
          */
         new AtomicStampedReferenceTest().casSolutionABA();
+    }
+    
+    public void m1(){
+        AtomicStampedReference<String> asr = new AtomicStampedReference<>("A", 0);
+
+// 获取引用和版本号
+        int[] stampHolder = new int[1];
+        String currentRef = asr.get(stampHolder);
+        int currentStamp = stampHolder[0];
+    
+        System.out.println("Current Value: " + currentRef + ", Stamp: " + currentStamp);
     }
 
     @Test

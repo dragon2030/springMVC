@@ -1,5 +1,7 @@
 package com.bigDragon.javase.java8;
 
+import com.bigDragon.javase.java8.functionalProgramming.LambdaTest;
+
 /**
  * java 8 新特性
  *  目录架构

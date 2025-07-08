@@ -1,4 +1,4 @@
-package com.bigDragon.javase.concurrent.juc;
+package com.bigDragon.javase.concurrent.juc.cas;
 
 import java.util.concurrent.atomic.AtomicInteger;
 

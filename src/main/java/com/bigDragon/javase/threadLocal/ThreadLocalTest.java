@@ -19,8 +19,15 @@ public class ThreadLocalTest {
         //threadLocal使用的简单样例
         new ThreadLocalTest().threadLocalDemo();
     }
+    // java 8.0 创建一个ThreadLocal变量
+//    private static final ThreadLocal<Integer> threadLocalCount = ThreadLocal.withInitial(() -> 0);
     // 创建一个ThreadLocal变量
-    private static final ThreadLocal<Integer> threadLocalCount = ThreadLocal.withInitial(() -> 0);
+    private static ThreadLocal<Integer> threadLocalCount = new ThreadLocal<Integer>() {
+        @Override
+        protected Integer initialValue() {
+            return 0; // 初始值为0
+        }
+    };
     //threadLocal使用的简单样例
     @Test
     public void threadLocalDemo(){
