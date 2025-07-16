@@ -563,7 +563,7 @@ update user set host = '%' where user ='root';
 >   ```
 >     mysql> SELECT PLUGIN_NAME, PLUGIN_LIBRARY, PLUGIN_STATUS, LOAD_OPTION
 >     -> FROM INFORMATION_SCHEMA.PLUGINS
->           
+>             
 >     -> WHERE PLUGIN_NAME = 'validate_password';
 >     +-------------------+----------------------+---------------+----------------------+
 >     | PLUGIN_NAME | PLUGIN_LIBRARY | PLUGIN_STATUS | LOAD_OPTION |
@@ -572,11 +572,11 @@ update user set host = '%' where user ='root';
 >     FORCE_PLUS_PERMANENT |
 >     +-------------------+----------------------+---------------+----------------------+
 >     1 row in set (0.00 sec)
->           
+>             
 >     mysql> UNINSTALL PLUGIN validate_password;
 >     ERROR 1702 (HY000): Plugin 'validate_password' is force_plus_permanent
 >     and can not be unloaded
->           
+>             
 >     mysql>
 >   ```
 
