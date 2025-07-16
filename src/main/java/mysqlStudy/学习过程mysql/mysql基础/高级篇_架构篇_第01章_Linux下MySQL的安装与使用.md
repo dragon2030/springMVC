@@ -56,11 +56,11 @@
 
 * 如果存在mysql-libs的旧版本包，显示如下：
 
-[][][][][][][][][][][][][][]![image-20250710105114877](D:\PROJECT\IdeaProjects\springMVC\src\main\java\mysqlStudy\学习过程mysql\mysql基础\assets\image-20250710105114877.png)
+[][][][][][][][][][][][][][]![image-20250710105114877](https://raw.githubusercontent.com/dragon2030/springMVC/refs/heads/master/src/main/java/mysqlStudy/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8Bmysql/mysql%E5%9F%BA%E7%A1%80/assets/image-20250710105114877.png)
 
 * 如果不存在mysql-lib的版本，显示如下：
 
-![image-20250710105133069](D:\PROJECT\IdeaProjects\springMVC\src\main\java\mysqlStudy\学习过程mysql\mysql基础\assets\image-20250710105133069.png)
+![image-20250710105133069](https://raw.githubusercontent.com/dragon2030/springMVC/refs/heads/master/src/main/java/mysqlStudy/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8Bmysql/mysql%E5%9F%BA%E7%A1%80/assets/image-20250710105133069.png)
 
 ###   1.3 MySQL的卸载
 
@@ -136,18 +136,18 @@ yum list installed | grep mysql
 
   然后，点击 MySQL Community(GPL) Downloads
 
-![image-20250710110742990](D:\PROJECT\IdeaProjects\springMVC\src\main\java\mysqlStudy\学习过程mysql\mysql基础\assets\image-20250710110742990.png)
+![image-20250710110742990](https://raw.githubusercontent.com/dragon2030/springMVC/refs/heads/master/src/main/java/mysqlStudy/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8Bmysql/mysql%E5%9F%BA%E7%A1%80/assets/image-20250710110742990.png)
 
 #### **3.点击 MySQL Community Server**
 
-![image-20250710111214293](D:\PROJECT\IdeaProjects\springMVC\src\main\java\mysqlStudy\学习过程mysql\mysql基础\assets\image-20250710111214293.png)
+![image-20250710111214293](https://raw.githubusercontent.com/dragon2030/springMVC/refs/heads/master/src/main/java/mysqlStudy/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8Bmysql/mysql%E5%9F%BA%E7%A1%80/assets/image-20250710111214293.png)
 
 #### **4.在General Availability(GA) Releases中选择适合的版本**
 
   如果安装Windows 系统下MySQL ，推荐下载 MSI安装程序 ；点击 Go to
   Download Page 进行下载即可
 
-![image-20250710110823415](D:\PROJECT\IdeaProjects\springMVC\src\main\java\mysqlStudy\学习过程mysql\mysql基础\assets\image-20250710110823415.png)
+![image-20250710110823415](https://raw.githubusercontent.com/dragon2030/springMVC/refs/heads/master/src/main/java/mysqlStudy/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8Bmysql/mysql%E5%9F%BA%E7%A1%80/assets/image-20250710110823415.png)
 
 * Windows下的MySQL安装有两种安装程序
 
@@ -165,7 +165,7 @@ yum list installed | grep mysql
 
   .rpm包的一般格式：
 
-![image-20250710111019644](D:\PROJECT\IdeaProjects\springMVC\src\main\java\mysqlStudy\学习过程mysql\mysql基础\assets\image-20250710111019644.png)
+![image-20250710111019644](https://raw.githubusercontent.com/dragon2030/springMVC/refs/heads/master/src/main/java/mysqlStudy/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8Bmysql/mysql%E5%9F%BA%E7%A1%80/assets/image-20250710111019644.png)
 
   **方式2：yum命令**
 
@@ -188,15 +188,15 @@ yum list installed | grep mysql
 * https://downloads.mysql.com/archives/community/直接点Download下载RPM
     Bundle全量包。包括了所有下面的组件。不需要一个一个下载了。
 
-![image-20250710111530340](D:\PROJECT\IdeaProjects\springMVC\src\main\java\mysqlStudy\学习过程mysql\mysql基础\assets\image-20250710111530340.png)
+![image-20250710111530340](https://raw.githubusercontent.com/dragon2030/springMVC/refs/heads/master/src/main/java/mysqlStudy/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8Bmysql/mysql%E5%9F%BA%E7%A1%80/assets/image-20250710111530340.png)
 
 #### 6.下载的tar包，用压缩工具打开
 
-![image-20250710111607989](D:\PROJECT\IdeaProjects\springMVC\src\main\java\mysqlStudy\学习过程mysql\mysql基础\assets\image-20250710111607989.png)
+![image-20250710111607989](https://raw.githubusercontent.com/dragon2030/springMVC/refs/heads/master/src/main/java/mysqlStudy/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8Bmysql/mysql%E5%9F%BA%E7%A1%80/assets/image-20250710111607989.png)
 
 *  解压后rpm安装包 （红框为抽取出来的安装包）
 
-  ![image-20250710111617747](D:\PROJECT\IdeaProjects\springMVC\src\main\java\mysqlStudy\学习过程mysql\mysql基础\assets\image-20250710111617747.png)
+  ![image-20250710111617747](https://raw.githubusercontent.com/dragon2030/springMVC/refs/heads/master/src/main/java/mysqlStudy/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8Bmysql/mysql%E5%9F%BA%E7%A1%80/assets/image-20250710111617747.png)
 
 [][][][][][][][][][]
 
@@ -210,7 +210,7 @@ yum list installed | grep mysql
   chmod -R 777 /tmp
 ```
 
-![image-20250710111714458](D:\PROJECT\IdeaProjects\springMVC\src\main\java\mysqlStudy\学习过程mysql\mysql基础\assets\image-20250710111714458.png)
+![image-20250710111714458](https://raw.githubusercontent.com/dragon2030/springMVC/refs/heads/master/src/main/java/mysqlStudy/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8Bmysql/mysql%E5%9F%BA%E7%A1%80/assets/image-20250710111714458.png)
 
 #### 2.安装前，检查依赖
 
@@ -220,7 +220,7 @@ yum list installed | grep mysql
 
 如果存在libaio包如下：
 
-![image-20250710111754464](D:\PROJECT\IdeaProjects\springMVC\src\main\java\mysqlStudy\学习过程mysql\mysql基础\assets\image-20250710111754464.png)
+![image-20250710111754464](https://raw.githubusercontent.com/dragon2030/springMVC/refs/heads/master/src/main/java/mysqlStudy/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8Bmysql/mysql%E5%9F%BA%E7%A1%80/assets/image-20250710111754464.png)
 
 ```shell
   rpm -qa|grep net-tools
@@ -228,7 +228,7 @@ yum list installed | grep mysql
 
   如果存在net-tools包如下：
 
-![image-20250710111831604](D:\PROJECT\IdeaProjects\springMVC\src\main\java\mysqlStudy\学习过程mysql\mysql基础\assets\image-20250710111831604.png)
+![image-20250710111831604](https://raw.githubusercontent.com/dragon2030/springMVC/refs/heads/master/src/main/java/mysqlStudy/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8Bmysql/mysql%E5%9F%BA%E7%A1%80/assets/image-20250710111831604.png)
 
 ```shell
   rpm -qa|grep net-tools
@@ -260,11 +260,11 @@ yum list installed | grep mysql
 
 ##### 2.安装过程截图
 
-![image-20250710112207503](D:\PROJECT\IdeaProjects\springMVC\src\main\java\mysqlStudy\学习过程mysql\mysql基础\assets\image-20250710112207503.png)
+![image-20250710112207503](https://raw.githubusercontent.com/dragon2030/springMVC/refs/heads/master/src/main/java/mysqlStudy/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8Bmysql/mysql%E5%9F%BA%E7%A1%80/assets/image-20250710112207503.png)
 
   安装过程中可能的报错信息：
 
-![image-20250710112217770](D:\PROJECT\IdeaProjects\springMVC\src\main\java\mysqlStudy\学习过程mysql\mysql基础\assets\image-20250710112217770.png)
+![image-20250710112217770](https://raw.githubusercontent.com/dragon2030/springMVC/refs/heads/master/src/main/java/mysqlStudy/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8Bmysql/mysql%E5%9F%BA%E7%A1%80/assets/image-20250710112217770.png)
 
 >  一个命令：yum remove mysql-libs 解决，清除之前安装过的依赖即可
 
@@ -287,7 +287,7 @@ yum list installed | grep mysql
   rpm -qa|grep -i mysql
 ```
 
-![image-20250710112322347](D:\PROJECT\IdeaProjects\springMVC\src\main\java\mysqlStudy\学习过程mysql\mysql基础\assets\image-20250710112322347.png)
+![image-20250710112322347](https://raw.githubusercontent.com/dragon2030/springMVC/refs/heads/master/src/main/java/mysqlStudy/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8Bmysql/mysql%E5%9F%BA%E7%A1%80/assets/image-20250710112322347.png)
 
 ##### 4.服务的初始化
 
@@ -316,7 +316,7 @@ yum list installed | grep mysql
   cat /var/log/mysqld.log
 ```
 
-![image-20250710112713789](D:\PROJECT\IdeaProjects\springMVC\src\main\java\mysqlStudy\学习过程mysql\mysql基础\assets\image-20250710112713789.png)
+![image-20250710112713789](https://raw.githubusercontent.com/dragon2030/springMVC/refs/heads/master/src/main/java/mysqlStudy/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8Bmysql/mysql%E5%9F%BA%E7%A1%80/assets/image-20250710112713789.png)
 
   root@localhost: 后面就是初始化的密码
 
@@ -337,19 +337,19 @@ yum list installed | grep mysql
 >  mysqld 这个可执行文件就代表着 MySQL
 >   服务器程序，运行这个可执行文件就可以直接启动一个服务器进程。
 
-![image-20250713181659078](D:\PROJECT\IdeaProjects\springMVC\src\main\java\mysqlStudy\学习过程mysql\mysql基础\assets\image-20250713181659078.png)
+![image-20250713181659078](https://raw.githubusercontent.com/dragon2030/springMVC/refs/heads/master/src/main/java/mysqlStudy/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8Bmysql/mysql%E5%9F%BA%E7%A1%80/assets/image-20250713181659078.png)
 
   查看进程：
 
   ps -ef | grep -i mysql
 
-![image-20250713181713623](D:\PROJECT\IdeaProjects\springMVC\src\main\java\mysqlStudy\学习过程mysql\mysql基础\assets\image-20250713181713623.png)
+![image-20250713181713623](https://raw.githubusercontent.com/dragon2030/springMVC/refs/heads/master/src/main/java/mysqlStudy/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8Bmysql/mysql%E5%9F%BA%E7%A1%80/assets/image-20250713181713623.png)
 
 ##### 6.查看MySQL服务是否自启动
 
   systemctl list-unit-files|grep mysqld.service
 
-![image-20250713181741267](D:\PROJECT\IdeaProjects\springMVC\src\main\java\mysqlStudy\学习过程mysql\mysql基础\assets\image-20250713181741267.png)
+![image-20250713181741267](https://raw.githubusercontent.com/dragon2030/springMVC/refs/heads/master/src/main/java/mysqlStudy/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8Bmysql/mysql%E5%9F%BA%E7%A1%80/assets/image-20250713181741267.png)
 
   默认是enabled。
 
@@ -366,13 +366,13 @@ yum list installed | grep mysql
 
   systemctl enable mysqld.service
 
-![image-20250713181840607](D:\PROJECT\IdeaProjects\springMVC\src\main\java\mysqlStudy\学习过程mysql\mysql基础\assets\image-20250713181840607.png)
+![image-20250713181840607](https://raw.githubusercontent.com/dragon2030/springMVC/refs/heads/master/src/main/java/mysqlStudy/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8Bmysql/mysql%E5%9F%BA%E7%A1%80/assets/image-20250713181840607.png)
 
   如果希望不进行自启动，运行如下命令设置
 
   systemctl disable mysqld.service
 
-![image-20250713181854910](D:\PROJECT\IdeaProjects\springMVC\src\main\java\mysqlStudy\学习过程mysql\mysql基础\assets\image-20250713181854910.png)
+![image-20250713181854910](https://raw.githubusercontent.com/dragon2030/springMVC/refs/heads/master/src/main/java/mysqlStudy/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8Bmysql/mysql%E5%9F%BA%E7%A1%80/assets/image-20250713181854910.png)
 
 ## 3. MySQL登录
 
@@ -381,7 +381,7 @@ yum list installed | grep mysql
   通过 mysql -hlocalhost -P3306 -uroot -p 进行登录，在Enter
   password：录入初始化密码
 
-![image-20250713182043149](D:\PROJECT\IdeaProjects\springMVC\src\main\java\mysqlStudy\学习过程mysql\mysql基础\assets\image-20250713182043149.png)
+![image-20250713182043149](https://raw.githubusercontent.com/dragon2030/springMVC/refs/heads/master/src/main/java/mysqlStudy/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8Bmysql/mysql%E5%9F%BA%E7%A1%80/assets/image-20250713182043149.png)
 
 [][][][][][]
 
@@ -395,11 +395,11 @@ yum list installed | grep mysql
 
 5.7版本之后（不含5.7），mysql加入了全新的密码安全机制。设置新密码太简单会报错。
 
-![image-20250713182108711](D:\PROJECT\IdeaProjects\springMVC\src\main\java\mysqlStudy\学习过程mysql\mysql基础\assets\image-20250713182108711.png)
+![image-20250713182108711](https://raw.githubusercontent.com/dragon2030/springMVC/refs/heads/master/src/main/java/mysqlStudy/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8Bmysql/mysql%E5%9F%BA%E7%A1%80/assets/image-20250713182108711.png)
 
   改为更复杂的密码规则之后，设置成功，可以正常使用数据库了
 
-![image-20250713182129216](D:\PROJECT\IdeaProjects\springMVC\src\main\java\mysqlStudy\学习过程mysql\mysql基础\assets\image-20250713182129216.png)
+![image-20250713182129216](https://raw.githubusercontent.com/dragon2030/springMVC/refs/heads/master/src/main/java/mysqlStudy/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8Bmysql/mysql%E5%9F%BA%E7%A1%80/assets/image-20250713182129216.png)
 
 ###   3.3 设置远程登录
 
@@ -407,7 +407,7 @@ yum list installed | grep mysql
 
   在用SQLyog或Navicat中配置远程连接Mysql数据库时遇到如下报错信息，这是由于Mysql配置了不支持远程连接引起的。
 
-![image-20250713182145255](D:\PROJECT\IdeaProjects\springMVC\src\main\java\mysqlStudy\学习过程mysql\mysql基础\assets\image-20250713182145255.png)
+![image-20250713182145255](https://raw.githubusercontent.com/dragon2030/springMVC/refs/heads/master/src/main/java/mysqlStudy/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8Bmysql/mysql%E5%9F%BA%E7%A1%80/assets/image-20250713182145255.png)
 
 [][][][][][]
 
@@ -475,7 +475,7 @@ yum list installed | grep mysql
   select Host,User from user;
 ```
 
-![image-20250713182342625](D:\PROJECT\IdeaProjects\springMVC\src\main\java\mysqlStudy\学习过程mysql\mysql基础\assets\image-20250713182342625.png)
+![image-20250713182342625](https://raw.githubusercontent.com/dragon2030/springMVC/refs/heads/master/src/main/java/mysqlStudy/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8Bmysql/mysql%E5%9F%BA%E7%A1%80/assets/image-20250713182342625.png)
 
   可以看到root用户的当前主机配置信息为localhost。
 
@@ -491,7 +491,7 @@ update user set host = '%' where user ='root';
 
   Host设置了“%”后便可以允许远程访问。
 
-![image-20250713182611162](D:\PROJECT\IdeaProjects\springMVC\src\main\java\mysqlStudy\学习过程mysql\mysql基础\assets\image-20250713182611162.png)
+![image-20250713182611162](https://raw.githubusercontent.com/dragon2030/springMVC/refs/heads/master/src/main/java/mysqlStudy/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8Bmysql/mysql%E5%9F%BA%E7%A1%80/assets/image-20250713182611162.png)
 
   Host修改完成后记得执行flush privileges使配置立即生效：
 
@@ -504,7 +504,7 @@ update user set host = '%' where user ='root';
 *  如果是 MySQL5.7  版本，接下来就可以使用SQLyog或者Navicat成功连接至MySQL了。
 * 如果是  MySQL8 版本，连接时还会出现如下问题：
 
-![image-20250713182831231](D:\PROJECT\IdeaProjects\springMVC\src\main\java\mysqlStudy\学习过程mysql\mysql基础\assets\image-20250713182831231.png)
+![image-20250713182831231](https://raw.githubusercontent.com/dragon2030/springMVC/refs/heads/master/src/main/java/mysqlStudy/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8Bmysql/mysql%E5%9F%BA%E7%A1%80/assets/image-20250713182831231.png)
 
   配置新连接报错：错误号码 2058，分析是 mysql 密码加密方法变了。
 
@@ -781,22 +781,22 @@ mysql> SELECT * FROM mysql.component;
 
   MySQL8.0中执行：
 
-![image-20250715201426233](D:\PROJECT\IdeaProjects\springMVC\src\main\java\mysqlStudy\学习过程mysql\mysql基础\assets\image-20250715201426233.png)
+![image-20250715201426233](https://raw.githubusercontent.com/dragon2030/springMVC/refs/heads/master/src/main/java/mysqlStudy/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8Bmysql/mysql%E5%9F%BA%E7%A1%80/assets/image-20250715201426233.png)
 
   MySQL5.7中执行：
 
-![image-20250715201923758](D:\PROJECT\IdeaProjects\springMVC\src\main\java\mysqlStudy\学习过程mysql\mysql基础\assets\image-20250715201923758.png)
+![image-20250715201923758](https://raw.githubusercontent.com/dragon2030/springMVC/refs/heads/master/src/main/java/mysqlStudy/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8Bmysql/mysql%E5%9F%BA%E7%A1%80/assets/image-20250715201923758.png)
 
   MySQL 5.7 默认的客户端和服务器都用了 latin1
   不支持中文，保存中文会报错。
 
   在MySQL5.7中添加中文数据时，报错
 
-![image-20250715201946467](D:\PROJECT\IdeaProjects\springMVC\src\main\java\mysqlStudy\学习过程mysql\mysql基础\assets\image-20250715201946467.png)
+![image-20250715201946467](https://raw.githubusercontent.com/dragon2030/springMVC/refs/heads/master/src/main/java/mysqlStudy/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8Bmysql/mysql%E5%9F%BA%E7%A1%80/assets/image-20250715201946467.png)
 
   因为默认情况下，创建表使用的是 latin1 。
 
-![image-20250715202001030](D:\PROJECT\IdeaProjects\springMVC\src\main\java\mysqlStudy\学习过程mysql\mysql基础\assets\image-20250715202001030.png)
+![image-20250715202001030](https://raw.githubusercontent.com/dragon2030/springMVC/refs/heads/master/src/main/java/mysqlStudy/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8Bmysql/mysql%E5%9F%BA%E7%A1%80/assets/image-20250715202001030.png)
 
 #####   **操作2：修改字符集**
 
@@ -818,7 +818,7 @@ mysql> SELECT * FROM mysql.component;
 
   MySQL5.7版本中，以前创建的库，创建的表字符集还是latin1。
 
-![image-20250715202309246](D:\PROJECT\IdeaProjects\springMVC\src\main\java\mysqlStudy\学习过程mysql\mysql基础\assets\image-20250715202309246.png)
+![image-20250715202309246](https://raw.githubusercontent.com/dragon2030/springMVC/refs/heads/master/src/main/java/mysqlStudy/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8Bmysql/mysql%E5%9F%BA%E7%A1%80/assets/image-20250715202309246.png)
 
   修改已创建数据库的字符集
 
@@ -834,7 +834,7 @@ mysql> SELECT * FROM mysql.component;
   alter table t_emp convert to character set 'utf8';
 ```
 
-![image-20250715202352227](D:\PROJECT\IdeaProjects\springMVC\src\main\java\mysqlStudy\学习过程mysql\mysql基础\assets\image-20250715202352227.png)
+![image-20250715202352227](https://raw.githubusercontent.com/dragon2030/springMVC/refs/heads/master/src/main/java/mysqlStudy/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8Bmysql/mysql%E5%9F%BA%E7%A1%80/assets/image-20250715202352227.png)
 
 > 注意：但是原有的数据如果是用非'utf8'编码的话，数据本身编码不会发生改变。已有数据需要导出或删除，然后重新插入。
 
@@ -858,7 +858,7 @@ mysql> SELECT * FROM mysql.component;
 
 [][][][][][][][][][][][]
 
-![image-20250715202606880](D:\PROJECT\IdeaProjects\springMVC\src\main\java\mysqlStudy\学习过程mysql\mysql基础\assets\image-20250715202606880.png) 
+![image-20250715202606880](https://raw.githubusercontent.com/dragon2030/springMVC/refs/heads/master/src/main/java/mysqlStudy/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8Bmysql/mysql%E5%9F%BA%E7%A1%80/assets/image-20250715202606880.png) 
 
 * character_set_server：服务器级别的字符集
 
@@ -988,7 +988,7 @@ mysql> SELECT * FROM mysql.component;
 
   上表中，MySQL版本一共支持41种字符集，其中的 **Default collation**  列表示这种字符集中一种默认的比较规则，里面包含着该比较规则主要作用于哪种语言，比如  **utf8_polish_ci** 表示以波兰语的规则比较， **utf8_spanish_ci**  是以西班牙语的规则比较， **utf8_general_ci** 是一种通用的比较规则。
 
-> ![image-20250715204518033](D:\PROJECT\IdeaProjects\springMVC\src\main\java\mysqlStudy\学习过程mysql\mysql基础\assets\image-20250715204518033.png)
+> ![image-20250715204518033](https://raw.githubusercontent.com/dragon2030/springMVC/refs/heads/master/src/main/java/mysqlStudy/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8Bmysql/mysql%E5%9F%BA%E7%A1%80/assets/image-20250715204518033.png)
 >
 > 最后一列Maxlen代表最大字节数
 
@@ -1014,9 +1014,9 @@ mysql> SELECT * FROM mysql.component;
   SHOW COLLATION LIKE 'utf8%';
 ```
 
-![image-20250715230457093](D:\PROJECT\IdeaProjects\springMVC\src\main\java\mysqlStudy\学习过程mysql\mysql基础\assets\image-20250715230457093.png)
+![image-20250715230457093](https://raw.githubusercontent.com/dragon2030/springMVC/refs/heads/master/src/main/java/mysqlStudy/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8Bmysql/mysql%E5%9F%BA%E7%A1%80/assets/image-20250715230457093.png)
 
-![image-20250715230512833](D:\PROJECT\IdeaProjects\springMVC\src\main\java\mysqlStudy\学习过程mysql\mysql基础\assets\image-20250715230512833.png)
+![image-20250715230512833](https://raw.githubusercontent.com/dragon2030/springMVC/refs/heads/master/src/main/java/mysqlStudy/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8Bmysql/mysql%E5%9F%BA%E7%A1%80/assets/image-20250715230512833.png)
 
 
 
@@ -1079,7 +1079,7 @@ mysql> SELECT * FROM mysql.component;
 
 这几个系统变量在我的计算机上的默认值如下（不同操作系统的默认值可能不同）：
 
-![image-20250715232747456](D:\PROJECT\IdeaProjects\springMVC\src\main\java\mysqlStudy\学习过程mysql\mysql基础\assets\image-20250715232747456.png)
+![image-20250715232747456](https://raw.githubusercontent.com/dragon2030/springMVC/refs/heads/master/src/main/java/mysqlStudy/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8Bmysql/mysql%E5%9F%BA%E7%A1%80/assets/image-20250715232747456.png)
 
 以下是个示例具体说明三者之间的关系：
 
@@ -1132,7 +1132,7 @@ mysql> SELECT * FROM mysql.component;
 
   总结图示如下：
 
-![image-20250716001405613](D:\PROJECT\IdeaProjects\springMVC\src\main\java\mysqlStudy\学习过程mysql\mysql基础\assets\image-20250716001405613.png)
+![image-20250716001405613](https://raw.githubusercontent.com/dragon2030/springMVC/refs/heads/master/src/main/java/mysqlStudy/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8Bmysql/mysql%E5%9F%BA%E7%A1%80/assets/image-20250716001405613.png)
 
 **经验：**
 
@@ -1185,11 +1185,11 @@ default-character-set=utf8
 
 * Windows系统下：\
 
-![image-20250715233402072](D:\PROJECT\IdeaProjects\springMVC\src\main\java\mysqlStudy\学习过程mysql\mysql基础\assets\image-20250715233402072.png)
+![image-20250715233402072](https://raw.githubusercontent.com/dragon2030/springMVC/refs/heads/master/src/main/java/mysqlStudy/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8Bmysql/mysql%E5%9F%BA%E7%A1%80/assets/image-20250715233402072.png)
 
 * Linux系统下：
 
-![image-20250715233525647](D:\PROJECT\IdeaProjects\springMVC\src\main\java\mysqlStudy\学习过程mysql\mysql基础\assets\image-20250715233525647.png)
+![image-20250715233525647](https://raw.githubusercontent.com/dragon2030/springMVC/refs/heads/master/src/main/java/mysqlStudy/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8Bmysql/mysql%E5%9F%BA%E7%A1%80/assets/image-20250715233525647.png)
 
 * lower_case_table_names参数值的设置：
 
@@ -1292,7 +1292,7 @@ MySQL5.6和MySQL5.7默认的sql_mode模式参数是不一样的:
   group by department_id limit 10
 ```
 
-![image-20250715234019558](D:\PROJECT\IdeaProjects\springMVC\src\main\java\mysqlStudy\学习过程mysql\mysql基础\assets\image-20250715234019558.png)
+![image-20250715234019558](https://raw.githubusercontent.com/dragon2030/springMVC/refs/heads/master/src/main/java/mysqlStudy/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8Bmysql/mysql%E5%9F%BA%E7%A1%80/assets/image-20250715234019558.png)
 
   **宽松模式举例2：**
 
@@ -1303,13 +1303,13 @@ SELECT * FROM mytbl2;
 
 
 
-![image-20250715234139714](D:\PROJECT\IdeaProjects\springMVC\src\main\java\mysqlStudy\学习过程mysql\mysql基础\assets\image-20250715234139714.png)
+![image-20250715234139714](https://raw.githubusercontent.com/dragon2030/springMVC/refs/heads/master/src/main/java/mysqlStudy/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8Bmysql/mysql%E5%9F%BA%E7%A1%80/assets/image-20250715234139714.png)
 
-![image-20250715234153547](D:\PROJECT\IdeaProjects\springMVC\src\main\java\mysqlStudy\学习过程mysql\mysql基础\assets\image-20250715234153547.png)  
+![image-20250715234153547](https://raw.githubusercontent.com/dragon2030/springMVC/refs/heads/master/src/main/java/mysqlStudy/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8Bmysql/mysql%E5%9F%BA%E7%A1%80/assets/image-20250715234153547.png)  
 
 设置 sql_mode 模式为 STRICT_TRANS_TABLES ，然后插入数据：
 
-![image-20250715234212095](D:\PROJECT\IdeaProjects\springMVC\src\main\java\mysqlStudy\学习过程mysql\mysql基础\assets\image-20250715234212095.png)
+![image-20250715234212095](https://raw.githubusercontent.com/dragon2030/springMVC/refs/heads/master/src/main/java/mysqlStudy/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8Bmysql/mysql%E5%9F%BA%E7%A1%80/assets/image-20250715234212095.png)
 
 
 
@@ -1361,7 +1361,7 @@ SELECT * FROM mytbl2;
 
 ### 7.5 sql_mode常用值
 
-![image-20250716003316246](D:\PROJECT\IdeaProjects\springMVC\src\main\java\mysqlStudy\学习过程mysql\mysql基础\assets\image-20250716003316246.png)
+![image-20250716003316246](https://raw.githubusercontent.com/dragon2030/springMVC/refs/heads/master/src/main/java/mysqlStudy/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8Bmysql/mysql%E5%9F%BA%E7%A1%80/assets/image-20250716003316246.png)
 
 # 其他
 
