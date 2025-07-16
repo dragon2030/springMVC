@@ -1424,3 +1424,5 @@ Linux/Unix系统通常使用`d`后缀表示**守护进程（daemon）**，例如
 | `mysqld` | **服务端**（守护进程）   | `systemctl start mysqld` |
 
 所以，当你运行`systemctl status mysqld.service`时，实际上是在查看MySQL**服务端**的运行状态。
+
+![image-20250716003316246](https://raw.githubusercontent.com/dragon2030/springMVC/refs/heads/master/src/main/java/mysqlStudy/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8Bmysql/mysql%E5%9F%BA%E7%A1%80/assets/image-20250716003316246.png)
