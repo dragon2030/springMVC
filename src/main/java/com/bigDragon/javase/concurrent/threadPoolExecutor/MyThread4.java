@@ -47,6 +47,7 @@ public class MyThread4 {
 		ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(10, 10,
 				0L, TimeUnit.MILLISECONDS,
 				new LinkedBlockingQueue<Runnable>());
+		threadPoolExecutor.execute(()-> System.out.println(1));
 		
 		new MyThread4().fixedThreadPool();
 		new MyThread4().scheduledThreadPool();

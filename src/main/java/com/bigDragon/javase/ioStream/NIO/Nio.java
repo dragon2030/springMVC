@@ -37,8 +37,8 @@ public class Nio {
         //大文件/高并发场景：必须使用 NIO 或更高级框架（如 Netty）。
     
         //NIO
-        new com.bigDragon.javase.InetAddress.NioClient();
-        new com.bigDragon.javase.InetAddress.NioServer();
+        new com.bigDragon.javase.ioStream.BIO.InetAddress.NioClient();
+        new com.bigDragon.javase.ioStream.BIO.InetAddress.NioServer();
         //AIO
     }
 

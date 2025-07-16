@@ -18,4 +18,8 @@ public class ExceptionMain {
         //手动生成异常
         new ManualException();
     }
+    
+    public void m1(){
+        new RuntimeException("111");
+    }
 }

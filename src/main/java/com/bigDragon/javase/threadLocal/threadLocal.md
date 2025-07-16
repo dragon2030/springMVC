@@ -450,19 +450,35 @@ private void set(ThreadLocal<?> key, Object value) {
 
 **Key是弱引用会被GC自动回收，但Value是强引用会一直存活，导致Entry无法被清除**，最终造成内存泄漏。
 
-### 内存泄漏的根本原因
+## 内存泄漏机制
 
-ThreadLocal 内存泄漏的核心在于 **ThreadLocalMap 中 Entry 的特殊结构**：
+1. **Entry 的弱引用设计**：
 
-```
-static class Entry extends WeakReference<ThreadLocal<?>> {
-    Object value;
-    Entry(ThreadLocal<?> k, Object v) {
-        super(k);  // Key是弱引用（继承自WeakReference）
-        value = v;  // Value是强引用
-    }
-}
-```
+   - ThreadLocalMap 中的 Entry 继承自 WeakReference，其 key（ThreadLocal 对象）是弱引用
+
+     > ```java
+     > static class Entry extends WeakReference<ThreadLocal<?>> {
+     >     Object value;
+     >     Entry(ThreadLocal<?> k, Object v) {
+     >         super(k);  // Key是弱引用（继承自WeakReference）
+     >         value = v;  // Value是强引用
+     >     }
+     > }
+     > ```
+
+   - 但 Entry 的 value 是强引用
+
+2. **垃圾回收时的行为**：
+
+   - 当 ThreadLocal 外部强引用被置为 null 后，key 会因为弱引用被 GC 回收
+   - 但 value 仍然保持强引用，导致无法被回收
+   - 产生 key 为 null 但 value 不为 null 的 Entry
+
+3. **长期存活的线程问题**：
+
+   - 如果线程是线程池中的工作线程，通常会长期存活
+   - 这些无效 Entry 会一直存在于 ThreadLocalMap 中
+   - 导致 value 及其引用的对象无法被回收
 
 ### 泄漏链条分析
 
@@ -475,6 +491,17 @@ Thread (强引用) -> ThreadLocalMap → Entry[] -> Entry -> Value (强引用)
                                                  ↑
                             ThreadLocal (弱引用) -┘
 ```
+
+## 为什么需要 remove()
+
+1. **主动清理**：
+   - remove() 方法会显式删除当前线程的 ThreadLocalMap 中对应的 Entry
+   - 彻底断开 value 的强引用链
+2. **自动清理不完全**：
+   - ThreadLocalMap 在 set/get 时会尝试清理无效 Entry（启发式清理）
+   - 但这种清理不彻底，不能保证所有无效 Entry 都被清除
+
+
 
 ### 为什么必须手动remove？
 

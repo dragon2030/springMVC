@@ -224,7 +224,7 @@ private static class SynchronizedMap<K,V> implements Map<K,V>, Serializable {
 
 ### ConcurrentHashMap 的线程安全设计
 
-JDK8 的 ConcurrentHashMap 放弃了 JDK7 的分段锁设计，转而采用更高效的 **CAS + synchronized** 组合方案6。其核心思想是：
+JDK8 的 ConcurrentHashMap 放弃了 JDK7 的分段锁设计，转而采用更高效的 **CAS + synchronized** 组合方案。其核心思想是：
 
 1. **减小锁粒度**：只锁住单个桶（链表头节点或树根节点），而非整个表
 2. **无锁化读取**：get 操作完全不加锁，依赖 volatile 和 final 保证可见性
@@ -339,7 +339,7 @@ ConcurrentHashMap 的扩容（`transfer()` 方法）支持多线程协同：
 
 1. 通过 `sizeCtl` 标志位控制扩容状态
 2. 线程发现正在扩容会协助迁移数据
-3. 使用 `ForwardingNode` 标记已迁移的桶9
+3. 使用 `ForwardingNode` 标记已迁移的桶
 
 ```
 if ((fh = f.hash) == MOVED) // MOVED = -1
@@ -366,7 +366,7 @@ Hashtable 通过在方法上加 synchronized 实现线程安全，导致并发�
 
 ConcurrentHashMap 通过以下设计解决 HashMap 的线程安全问题：
 
-1. **CAS + synchronized 组合锁**：空桶用 CAS，非空桶用 synchronized，平衡性能与安全性69
+1. **CAS + synchronized 组合锁**：空桶用 CAS，非空桶用 synchronized，平衡性能与安全性
 2. **volatile 变量**：保证内存可见性，实现无锁读取
 3. **细粒度锁**：只锁单个桶，极大提高并发度
 4. **并发扩容**：多线程协同扩容，避免阻塞

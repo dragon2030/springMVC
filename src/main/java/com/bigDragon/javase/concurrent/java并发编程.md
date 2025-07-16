@@ -194,6 +194,10 @@ Future<String> future = executor.submit(() -> "result"); // Callable
 executor.shutdown();
 ```
 
+> [Java线程池](D:\PROJECT\IdeaProjects\springMVC\src\main\java\com\bigDragon\javase\concurrent\threadPoolExecutor\Java线程池.md)
+>
+> 线程池是Java多线程编程中的一个重要概念，它提供了一种高效管理和复用线程的机制，避免了频繁创建和销毁线程带来的性能开销。核心优势：降低资源消耗、提高响应速度、提高线程可管理性。核心类：Executors工厂类和ThreadPoolExecutor类。需要掌握工作流程，拒绝策略，任务队列
+
 ### 2. 同步辅助类
 
 #### CountDownLatch
